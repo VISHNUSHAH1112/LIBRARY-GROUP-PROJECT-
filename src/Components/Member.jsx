@@ -17,10 +17,11 @@ function Members() {
         BooksMember();
     }, []);
 
-    const deletarrary = (index) => {
-        const deletarrarys = membershow.filter((i) => i !== index);
-        setmembershow(deletarrarys)
-    }
+    const deletarrary = async (id) => {
+        await axios.delete(`http://localhost:3000/members/${id}`);
+        const deletarrarys = membershow.filter((member) => member.id !== id);
+        setmembershow(deletarrarys);
+    };
 
     return (
         <div className="container py-4" >
@@ -67,11 +68,10 @@ function Members() {
                                         (member?.isActive ? "text-bg-success" : "text-bg-secondary")
                                     }
                                 >
-                                    {/* {member.gender} */}
                                     {member?.available ? "Active" : "Inactive"}
                                 </span>
                                 <span >
-                                    <button className="btn btn-danger" onClick={() => { deletarrary(index) }}>Delete</button>
+                                    <button className="btn btn-danger" onClick={() => { deletarrary(member.id) }}>Delete</button>
                                 </span>
                             </div>
                         </div>
