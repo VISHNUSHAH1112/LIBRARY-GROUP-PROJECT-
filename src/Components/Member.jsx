@@ -60,14 +60,15 @@ function Members() {
                             </div>
 
                             <div className="d-flex align-items-center gap-2">
-                                <span className="badge text-bg-primary">{member?.type}</span>
+                                <span className="badge text-bg-primary">{member?.gender}</span>
                                 <span
                                     className={
                                         "badge " +
                                         (member?.isActive ? "text-bg-success" : "text-bg-secondary")
                                     }
                                 >
-                                    {member?.isActive ? "Active" : "Inactive"}
+                                    {/* {member.gender} */}
+                                    {member?.available ? "Active" : "Inactive"}
                                 </span>
                                 <span >
                                     <button className="btn btn-danger" onClick={() => { deletarrary(index) }}>Delete</button>
