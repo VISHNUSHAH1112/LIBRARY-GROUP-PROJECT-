@@ -1,394 +1,631 @@
 {
+  "members": [
+    {
+      "id": 1,
+      "name": "Rohan Mehta",
+      "email": "rohan@example.com",
+      "phone": "9876543210",
+      "available": true,
+      "gender": "Male",
+      "address": "Andheri West, Mumbai, Maharashtra"
+    },
+    {
+      "id": 2,
+      "name": "Priya Sharma",
+      "email": "priya@example.com",
+      "phone": "9876543211",
+      "available": true,
+      "gender": "Female",
+      "address": "Rajouri Garden, New Delhi"
+    },
+    {
+      "id": 3,
+      "name": "Amit Verma",
+      "email": "amit@example.com",
+      "phone": "9876543212",
+      "available": false,
+      "gender": "Male",
+      "address": "Gomti Nagar, Lucknow, Uttar Pradesh"
+    },
+    {
+      "id": 4,
+      "name": "Neha Patel",
+      "email": "neha@example.com",
+      "phone": "9876543213",
+      "available": true,
+      "gender": "Female",
+      "address": "Navrangpura, Ahmedabad, Gujarat"
+    },
+    {
+      "id": 5,
+      "name": "Suresh Yadav",
+      "email": "suresh@example.com",
+      "phone": "9876543214",
+      "available": false,
+      "gender": "Male",
+      "address": "Civil Lines, Jaipur, Rajasthan"
+    },
+    {
+      "id": 6,
+      "name": "Kavita Joshi",
+      "email": "kavita@example.com",
+      "phone": "9876543215",
+      "available": true,
+      "gender": "Female",
+      "address": "Sector 17, Chandigarh"
+    },
+    {
+      "id": 7,
+      "name": "Vikram Singh",
+      "email": "vikram@example.com",
+      "phone": "9876543216",
+      "available": true,
+      "gender": "Male",
+      "address": "Banjara Hills, Hyderabad, Telangana"
+    },
+    {
+      "id": 8,
+      "name": "Alok Gupta",
+      "email": "alok@example.com",
+      "phone": "9876543217",
+      "available": false,
+      "gender": "Male",
+      "address": "Hazaribagh, Jharkhand"
+    },
+    {
+      "id": 9,
+      "name": "Sunita Rao",
+      "email": "sunita@example.com",
+      "phone": "9876543218",
+      "available": true,
+      "gender": "Female",
+      "address": "Indiranagar, Bengaluru, Karnataka"
+    },
+    {
+      "id": 10,
+      "name": "Deepak Kumar",
+      "email": "deepak@example.com",
+      "phone": "9876543219",
+      "available": true,
+      "gender": "Male",
+      "address": "Fraser Town, Bengaluru, Karnataka"
+    },
+    {
+      "id": 11,
+      "name": "Manish Tiwari",
+      "email": "manish@example.com",
+      "phone": "9876543220",
+      "available": false,
+      "gender": "Male",
+      "address": "Aliganj, Lucknow, Uttar Pradesh"
+    },
+    {
+      "id": 12,
+      "name": "Anjali Desai",
+      "email": "anjali@example.com",
+      "phone": "9876543221",
+      "available": true,
+      "gender": "Female",
+      "address": "Vastrapur, Ahmedabad, Gujarat"
+    },
+    {
+      "id": 13,
+      "name": "Pooja Bansal",
+      "email": "pooja@example.com",
+      "phone": "9876543222",
+      "available": true,
+      "gender": "Female",
+      "address": "Model Town, Ludhiana, Punjab"
+    },
+    {
+      "id": 14,
+      "name": "Rahul Nair",
+      "email": "rahul@example.com",
+      "phone": "9876543223",
+      "available": false,
+      "gender": "Male",
+      "address": "Kochi, Kerala"
+    },
+    {
+      "id": 15,
+      "name": "Sneha Kapoor",
+      "email": "sneha@example.com",
+      "phone": "9876543224",
+      "available": true,
+      "gender": "Female",
+      "address": "Connaught Place, New Delhi"
+    }
+  ],
   "books": [
     {
-      "id": "1",
-      "title": "Frankenstein",
-      "author": "Mary Shelley",
-      "isAvailable": true,
-      "isbn": ["1001", "1002", "1003"],
-      "rent": 8,
-      "gener": "Gothic Fiction",
-      "cover": "img/frankenstein.jpg"
+      "id": "B101",
+      "title": "JavaScript Guide",
+      "author": "Kyle Simpson",
+      "genre": "Programming",
+      "available": true,
+      "isbn": ["10", "20"]
     },
     {
-      "id": "2",
-      "title": "Pride and Prejudice",
-      "author": "Jane Austen",
-      "isAvailable": false,
-      "isbn": ["1004", "1005", "1006"],
-      "rent": 10,
-      "gener": "Romance",
-      "cover": "img/pride_prejudice.jpg"
+      "id": "B102",
+      "title": "Python Programming",
+      "author": "Mark Lutz",
+      "genre": "Programming",
+      "available": true
     },
     {
-      "id": "3",
-      "title": "1984",
-      "author": "George Orwell",
-      "isAvailable": true,
-      "isbn": ["1007", "1008", "1009"],
-      "rent": 9,
-      "gener": "Dystopian",
-      "cover": "img/1984.jpg"
+      "id": "B103",
+      "title": "Data Structures",
+      "author": "Narasimha Karumanchi",
+      "genre": "Computer Science",
+      "available": false
     },
     {
-      "id": "4",
-      "title": "To Kill a Mockingbird",
-      "author": "Harper Lee",
-      "isAvailable": true,
-      "isbn": ["1010", "1011", "1012"],
-      "rent": 7,
-      "gener": "Classic Fiction",
-      "cover": "img/to_kill_a_mockingbird.jpg"
+      "id": "B104",
+      "title": "HTML & CSS Basics",
+      "author": "Jon Duckett",
+      "genre": "Web Development",
+      "available": true
     },
     {
-      "id": "5",
-      "title": "Moby Dick",
-      "author": "Herman Melville",
-      "isAvailable": false,
-      "isbn": ["1013", "1014", "1015"],
-      "rent": 6,
-      "gener": "Adventure",
-      "cover": "img/moby_dick.jpg"
+      "id": "B105",
+      "title": "React for Beginners",
+      "author": "Cory House",
+      "genre": "Web Development",
+      "available": true
     },
     {
-      "id": "6",
-      "title": "The Great Gatsby",
-      "author": "F. Scott Fitzgerald",
-      "isAvailable": true,
-      "isbn": ["1016", "1017", "1018"],
-      "rent": 8,
-      "gener": "Tragedy",
-      "cover": "img/great_gatsby.jpg"
+      "id": "B106",
+      "title": "Node.js Design Patterns",
+      "author": "Mario Casciaro",
+      "genre": "Programming",
+      "available": false
     },
     {
-      "id": "7",
-      "title": "War and Peace",
-      "author": "Leo Tolstoy",
-      "isAvailable": true,
-      "isbn": ["1019", "1020", "1021"],
-      "rent": 12,
-      "gener": "Historical Fiction",
-      "cover": "img/war_and_peace.jpg"
+      "id": "B107",
+      "title": "Clean Code",
+      "author": "Robert C. Martin",
+      "genre": "Programming",
+      "available": true
     },
     {
-      "id": "8",
-      "title": "The Catcher in the Rye",
-      "author": "J.D. Salinger",
-      "isAvailable": false,
-      "isbn": ["1022", "1023", "1024"],
-      "rent": 7,
-      "gener": "Coming-of-Age",
-      "cover": "img/catcher_in_the_rye.jpg"
+      "id": "B108",
+      "title": "Design Patterns",
+      "author": "Erich Gamma",
+      "genre": "Software Engineering",
+      "available": true
     },
     {
-      "id": "9",
-      "title": "The Hobbit",
-      "author": "J.R.R. Tolkien",
-      "isAvailable": true,
-      "isbn": ["1025", "1026", "1027"],
-      "rent": 9,
-      "gener": "Fantasy",
-      "cover": "img/hobbit.jpg"
+      "id": "B109",
+      "title": "Artificial Intelligence",
+      "author": "Stuart Russell",
+      "genre": "AI",
+      "available": false
     },
     {
-      "id": "10",
-      "title": "Jane Eyre",
-      "author": "Charlotte Brontë",
-      "isAvailable": false,
-      "isbn": ["1028", "1029", "1030"],
-      "rent": 8,
-      "gener": "Romance",
-      "cover": "img/jane_eyre.jpg"
+      "id": "B110",
+      "title": "Machine Learning",
+      "author": "Tom Mitchell",
+      "genre": "AI",
+      "available": true
     },
     {
-      "id": "11",
-      "title": "The Odyssey",
-      "author": "Homer",
-      "isAvailable": true,
-      "isbn": ["1031", "1032", "1033"],
-      "rent": 11,
-      "gener": "Epic Poetry",
-      "cover": "img/odyssey.jpg"
+      "id": "B111",
+      "title": "Operating Systems",
+      "author": "Silberschatz",
+      "genre": "Computer Science",
+      "available": true
     },
     {
-      "id": "12",
-      "title": "Crime and Punishment",
-      "author": "Fyodor Dostoevsky",
-      "isAvailable": false,
-      "isbn": ["1034", "1035", "1036"],
-      "rent": 10,
-      "gener": "Psychological Fiction",
-      "cover": "img/crime_and_punishment.jpg"
+      "id": "B112",
+      "title": "Database Systems",
+      "author": "Raghu Ramakrishnan",
+      "genre": "Computer Science",
+      "available": true
     },
     {
-      "id": "13",
-      "title": "Brave New World",
-      "author": "Aldous Huxley",
-      "isAvailable": true,
-      "isbn": ["1037", "1038", "1039"],
-      "rent": 9,
-      "gener": "Science Fiction",
-      "cover": "img/brave_new_world.jpg"
+      "id": "B113",
+      "title": "C++ Primer",
+      "author": "Stanley Lippman",
+      "genre": "Programming",
+      "available": false
     },
     {
-      "id": "14",
-      "title": "The Divine Comedy",
-      "author": "Dante Alighieri",
-      "isAvailable": false,
-      "isbn": ["1040", "1041", "1042"],
-      "rent": 13,
-      "gener": "Epic Poetry",
-      "cover": "img/divine_comedy.jpg"
+      "id": "B114",
+      "title": "Java Programming",
+      "author": "Herbert Schildt",
+      "genre": "Programming",
+      "available": true
     },
     {
-      "id": "15",
-      "title": "Les Misérables",
-      "author": "Victor Hugo",
-      "isAvailable": true,
-      "isbn": ["1043", "1044", "1045"],
-      "rent": 12,
-      "gener": "Historical Fiction",
-      "cover": "img/les_miserables.jpg"
-    },
-    {
-      "id": "16",
-      "title": "The Alchemist",
-      "author": "Paulo Coelho",
-      "isAvailable": true,
-      "isbn": ["1046", "1047", "1048"],
-      "rent": 8,
-      "gener": "Philosophical Fiction",
-      "cover": "img/alchemist.jpg"
-    },
-    {
-      "id": "17",
-      "title": "The Brothers Karamazov",
-      "author": "Fyodor Dostoevsky",
-      "isAvailable": false,
-      "isbn": ["1049", "1050", "1051"],
-      "rent": 11,
-      "gener": "Philosophical Fiction",
-      "cover": "img/brothers_karamazov.jpg"
-    },
-    {
-      "id": "18",
-      "title": "Wuthering Heights",
-      "author": "Emily Brontë",
-      "isAvailable": true,
-      "isbn": ["1052", "1053", "1054"],
-      "rent": 9,
-      "gener": "Gothic Fiction",
-      "cover": "img/wuthering_heights.jpg"
-    },
-    {
-      "id": "19",
-      "title": "Fahrenheit 451",
-      "author": "Ray Bradbury",
-      "isAvailable": true,
-      "isbn": ["1055", "1056", "1057"],
-      "rent": 7,
-      "gener": "Dystopian",
-      "cover": "img/fahrenheit_451.jpg"
-    },
-    {
-      "id": "20",
-      "title": "Dracula",
-      "author": "Bram Stoker",
-      "isAvailable": false,
-      "isbn": ["1058", "1059", "1060"],
-      "rent": 8,
-      "gener": "Gothic Horror",
-      "cover": "img/dracula.jpg"
-    },
-    {
-      "id": "21",
-      "title": "Anna Karenina",
-      "author": "Leo Tolstoy",
-      "isAvailable": true,
-      "isbn": ["1061", "1062", "1063"],
-      "rent": 10,
-      "gener": "Romance",
-      "cover": "img/anna_karenina.jpg"
-    },
-    {
-      "id": "22",
-      "title": "Don Quixote",
-      "author": "Miguel de Cervantes",
-      "isAvailable": false,
-      "isbn": ["1064", "1065", "1066"],
-      "rent": 9,
-      "gener": "Satire",
-      "cover": "img/don_quixote.jpg"
-    },
-    {
-      "id": "23",
-      "title": "The Lord of the Rings",
-      "author": "J.R.R. Tolkien",
-      "isAvailable": true,
-      "isbn": ["1067", "1068", "1069"],
-      "rent": 12,
-      "gener": "Fantasy",
-      "cover": "img/lord_of_the_rings.jpg"
-    },
-    {
-      "id": "24",
-      "title": "The Picture of Dorian Gray",
-      "author": "Oscar Wilde",
-      "isAvailable": true,
-      "isbn": ["1070", "1071", "1072"],
-      "rent": 7,
-      "gener": "Philosophical Fiction",
-      "cover": "img/dorian_gray.jpg"
-    },
-    {
-      "id": "25",
-      "title": "A Tale of Two Cities",
-      "author": "Charles Dickens",
-      "isAvailable": false,
-      "isbn": ["1073", "1074", "1075"],
-      "rent": 8,
-      "gener": "Historical Fiction",
-      "cover": "img/tale_of_two_cities.jpg"
+      "id": "B115",
+      "title": "Cyber Security Basics",
+      "author": "William Stallings",
+      "genre": "Security",
+      "available": true
     }
   ],
-  "member": [
+
+  "issues": [
     {
-      "id": "1",
-      "name": "Shruti Rao",
-      "email": "shruti.r@gmail.com",
-      "phone": "+919934567890",
-      "address": "Coimbatore, Tamil Nadu - 641001",
-      "type": "student",
-      "isActive": true
+      "id": 1,
+      "memberName": "Rohan Mehta",
+      "bookName": "JavaScript Guide",
+      "issueDate": "2025-08-01",
+      "dueDate": "2025-08-15",
+      "returnDate": null
     },
     {
-      "id": "2",
-      "name": "Rohan Mehta",
-      "email": "rohan.mehta@gmail.com",
-      "phone": "+919823456710",
-      "address": "Ahmedabad, Gujarat - 380001",
-      "type": "student",
-      "isActive": false
+      "id": 2,
+      "memberName": "Priya Sharma",
+      "bookName": "Python Programming",
+      "issueDate": "2025-08-02",
+      "dueDate": "2025-08-16",
+      "returnDate": "2025-08-10"
     },
     {
-      "id": "3",
-      "name": "Priya Sharma",
-      "email": "priya.sharma@gmail.com",
-      "phone": "+919812345678",
-      "address": "Jaipur, Rajasthan - 302001",
-      "type": "student",
-      "isActive": true
+      "id": 3,
+      "memberName": "Amit Verma",
+      "bookName": "Data Structures",
+      "issueDate": "2025-08-03",
+      "dueDate": "2025-08-17",
+      "returnDate": null
     },
     {
-      "id": "4",
-      "name": "Vikram Singh",
-      "email": "vikram.singh@gmail.com",
-      "phone": "+919876543210",
-      "address": "Lucknow, Uttar Pradesh - 226001",
-      "type": "student",
-      "isActive": false
+      "id": 4,
+      "memberName": "Neha Patel",
+      "bookName": "HTML & CSS Basics",
+      "issueDate": "2025-08-04",
+      "dueDate": "2025-08-18",
+      "returnDate": null
     },
     {
-      "id": "5",
-      "name": "Ananya Iyer",
-      "email": "ananya.iyer@gmail.com",
-      "phone": "+919954321876",
-      "address": "Chennai, Tamil Nadu - 600001",
-      "type": "student",
-      "isActive": true
+      "id": 5,
+      "memberName": "Suresh Yadav",
+      "bookName": "React for Beginners",
+      "issueDate": "2025-08-05",
+      "dueDate": "2025-08-19",
+      "returnDate": null
     },
     {
-      "id": "6",
-      "name": "Sahil Khan",
-      "email": "sahil.khan@gmail.com",
-      "phone": "+919965432108",
-      "address": "Mumbai, Maharashtra - 400001",
-      "type": "student",
-      "isActive": false
+      "id": 6,
+      "memberName": "Kavita Joshi",
+      "bookName": "Node.js Design Patterns",
+      "issueDate": "2025-08-06",
+      "dueDate": "2025-08-20",
+      "returnDate": "2025-08-14"
     },
     {
-      "id": "7",
-      "name": "Neha Verma",
-      "email": "neha.verma@gmail.com",
-      "phone": "+919843215670",
-      "address": "Bhopal, Madhya Pradesh - 462001",
-      "type": "student",
-      "isActive": true
+      "id": 7,
+      "memberName": "Vikram Singh",
+      "bookName": "Clean Code",
+      "issueDate": "2025-08-07",
+      "dueDate": "2025-08-21",
+      "returnDate": null
     },
     {
-      "id": "8",
-      "name": "Aman Gupta",
-      "email": "aman.gupta@gmail.com",
-      "phone": "+919812765432",
-      "address": "Patna, Bihar - 800001",
-      "type": "student",
-      "isActive": true
+      "id": 8,
+      "memberName": "Alok Gupta",
+      "bookName": "Design Patterns",
+      "issueDate": "2025-08-08",
+      "dueDate": "2025-08-22",
+      "returnDate": null
     },
     {
-      "id": "9",
-      "name": "Kavya Menon",
-      "email": "kavya.menon@gmail.com",
-      "phone": "+919901234567",
-      "address": "Kochi, Kerala - 682001",
-      "type": "student",
-      "isActive": false
+      "id": 9,
+      "memberName": "Sunita Rao",
+      "bookName": "Artificial Intelligence",
+      "issueDate": "2025-08-09",
+      "dueDate": "2025-08-23",
+      "returnDate": null
     },
     {
-      "id": "10",
-      "name": "Aditya Reddy",
-      "email": "aditya.reddy@gmail.com",
-      "phone": "+919923456781",
-      "address": "Hyderabad, Telangana - 500001",
-      "type": "student",
-      "isActive": true
+      "id": 10,
+      "memberName": "Deepak Kumar",
+      "bookName": "Machine Learning",
+      "issueDate": "2025-08-10",
+      "dueDate": "2025-08-24",
+      "returnDate": null
     },
     {
-      "id": "11",
-      "name": "Simran Kaur",
-      "email": "simran.kaur@gmail.com",
-      "phone": "+919834567120",
-      "address": "Amritsar, Punjab - 143001",
-      "type": "student",
-      "isActive": false
+      "id": 11,
+      "memberName": "Manish Tiwari",
+      "bookName": "Operating Systems",
+      "issueDate": "2025-08-11",
+      "dueDate": "2025-08-25",
+      "returnDate": null
     },
     {
-      "id": "12",
-      "name": "Rajesh Kumar",
-      "email": "rajesh.kumar@gmail.com",
-      "phone": "+919912345789",
-      "address": "Ranchi, Jharkhand - 834001",
-      "type": "student",
-      "isActive": true
+      "id": 12,
+      "memberName": "Anjali Desai",
+      "bookName": "Database Systems",
+      "issueDate": "2025-08-12",
+      "dueDate": "2025-08-26",
+      "returnDate": null
     },
     {
-      "id": "13",
-      "name": "Pooja Patel",
-      "email": "pooja.patel@gmail.com",
-      "phone": "+919807654321",
-      "address": "Surat, Gujarat - 395001",
-      "type": "student",
-      "isActive": true
+      "id": 13,
+      "memberName": "Pooja Bansal",
+      "bookName": "C++ Primer",
+      "issueDate": "2025-08-13",
+      "dueDate": "2025-08-27",
+      "returnDate": null
     },
     {
-      "id": "14",
-      "name": "Harsh Yadav",
-      "email": "harsh.yadav@gmail.com",
-      "phone": "+919821098765",
-      "address": "Gurugram, Haryana - 122001",
-      "type": "student",
-      "isActive": false
+      "id": 14,
+      "memberName": "Rahul Nair",
+      "bookName": "Java Programming",
+      "issueDate": "2025-08-14",
+      "dueDate": "2025-08-28",
+      "returnDate": null
     },
     {
-      "id": "15",
-      "name": "Meera Joshi",
-      "email": "meera.joshi@gmail.com",
-      "phone": "+919976543210",
-      "address": "Pune, Maharashtra - 411001",
-      "type": "student",
-      "isActive": true
+      "id": 15,
+      "memberName": "Sneha Kapoor",
+      "bookName": "Cyber Security Basics",
+      "issueDate": "2025-08-15",
+      "dueDate": "2025-08-29",
+      "returnDate": null
     }
   ],
-  "fines": [{}],
-  "issue": [{}],
-  "reservation": [{}]
+
+  "reservations": [
+    {
+      "id": 1,
+      "memberName": "Rohan Mehta",
+      "bookName": "JavaScript Guide",
+      "bookId": "B101",
+      "reservationDate": "2025-08-10",
+      "expiryDate": "2025-08-15",
+      "status": "Approved"
+    },
+    {
+      "id": 2,
+      "memberName": "Priya Sharma",
+      "bookName": "Python Programming",
+      "bookId": "B102",
+      "reservationDate": "2025-08-11",
+      "expiryDate": "2025-08-16",
+      "status": "Pending"
+    },
+    {
+      "id": 3,
+      "memberName": "Amit Verma",
+      "bookName": "Data Structures",
+      "bookId": "B103",
+      "reservationDate": "2025-08-12",
+      "expiryDate": "2025-08-17",
+      "status": "Cancelled"
+    },
+    {
+      "id": 4,
+      "memberName": "Neha Patel",
+      "bookName": "HTML & CSS Basics",
+      "bookId": "B104",
+      "reservationDate": "2025-08-13",
+      "expiryDate": "2025-08-18",
+      "status": "Approved"
+    },
+    {
+      "id": 5,
+      "memberName": "Suresh Yadav",
+      "bookName": "React for Beginners",
+      "bookId": "B105",
+      "reservationDate": "2025-08-14",
+      "expiryDate": "2025-08-19",
+      "status": "Pending"
+    },
+    {
+      "id": 6,
+      "memberName": "Kavita Joshi",
+      "bookName": "Node.js Design Patterns",
+      "bookId": "B106",
+      "reservationDate": "2025-08-15",
+      "expiryDate": "2025-08-20",
+      "status": "Approved"
+    },
+    {
+      "id": 7,
+      "memberName": "Vikram Singh",
+      "bookName": "Clean Code",
+      "bookId": "B107",
+      "reservationDate": "2025-08-16",
+      "expiryDate": "2025-08-21",
+      "status": "Pending"
+    },
+    {
+      "id": 8,
+      "memberName": "Alok Gupta",
+      "bookName": "Design Patterns",
+      "bookId": "B108",
+      "reservationDate": "2025-08-17",
+      "expiryDate": "2025-08-22",
+      "status": "Approved"
+    },
+    {
+      "id": 9,
+      "memberName": "Sunita Rao",
+      "bookName": "Artificial Intelligence",
+      "bookId": "B109",
+      "reservationDate": "2025-08-18",
+      "expiryDate": "2025-08-23",
+      "status": "Pending"
+    },
+    {
+      "id": 10,
+      "memberName": "Deepak Kumar",
+      "bookName": "Machine Learning",
+      "bookId": "B110",
+      "reservationDate": "2025-08-19",
+      "expiryDate": "2025-08-24",
+      "status": "Cancelled"
+    },
+    {
+      "id": 11,
+      "memberName": "Manish Tiwari",
+      "bookName": "Operating Systems",
+      "bookId": "B111",
+      "reservationDate": "2025-08-20",
+      "expiryDate": "2025-08-25",
+      "status": "Approved"
+    },
+    {
+      "id": 12,
+      "memberName": "Anjali Desai",
+      "bookName": "Database Systems",
+      "bookId": "B112",
+      "reservationDate": "2025-08-21",
+      "expiryDate": "2025-08-26",
+      "status": "Pending"
+    },
+    {
+      "id": 13,
+      "memberName": "Pooja Bansal",
+      "bookName": "C++ Primer",
+      "bookId": "B113",
+      "reservationDate": "2025-08-22",
+      "expiryDate": "2025-08-27",
+      "status": "Approved"
+    },
+    {
+      "id": 14,
+      "memberName": "Rahul Nair",
+      "bookName": "Java Programming",
+      "bookId": "B114",
+      "reservationDate": "2025-08-23",
+      "expiryDate": "2025-08-28",
+      "status": "Pending"
+    },
+    {
+      "id": 15,
+      "memberName": "Sneha Kapoor",
+      "bookName": "Cyber Security Basics",
+      "bookId": "B115",
+      "reservationDate": "2025-08-24",
+      "expiryDate": "2025-08-29",
+      "status": "Approved"
+    }
+  ],
+
+  "fines": [
+    {
+      "id": 1,
+      "memberName": "Rohan Mehta",
+      "bookName": "JavaScript Guide",
+      "dueDate": "2025-08-15",
+      "returnDate": "2025-08-20",
+      "fineAmount": 50
+    },
+    {
+      "id": 2,
+      "memberName": "Priya Sharma",
+      "bookName": "Python Programming",
+      "dueDate": "2025-08-16",
+      "returnDate": "2025-08-18",
+      "fineAmount": 20
+    },
+    {
+      "id": 3,
+      "memberName": "Amit Verma",
+      "bookName": "Data Structures",
+      "dueDate": "2025-08-17",
+      "returnDate": "2025-08-25",
+      "fineAmount": 80
+    },
+    {
+      "id": 4,
+      "memberName": "Neha Patel",
+      "bookName": "HTML & CSS Basics",
+      "dueDate": "2025-08-18",
+      "returnDate": "2025-08-19",
+      "fineAmount": 10
+    },
+    {
+      "id": 5,
+      "memberName": "Suresh Yadav",
+      "bookName": "React for Beginners",
+      "dueDate": "2025-08-19",
+      "returnDate": "2025-08-23",
+      "fineAmount": 40
+    },
+    {
+      "id": 6,
+      "memberName": "Kavita Joshi",
+      "bookName": "Node.js Design Patterns",
+      "dueDate": "2025-08-20",
+      "returnDate": "2025-08-28",
+      "fineAmount": 80
+    },
+    {
+      "id": 7,
+      "memberName": "Vikram Singh",
+      "bookName": "Clean Code",
+      "dueDate": "2025-08-21",
+      "returnDate": "2025-08-24",
+      "fineAmount": 30
+    },
+    {
+      "id": 8,
+      "memberName": "Alok Gupta",
+      "bookName": "Design Patterns",
+      "dueDate": "2025-08-22",
+      "returnDate": "2025-08-30",
+      "fineAmount": 100
+    },
+    {
+      "id": 9,
+      "memberName": "Sunita Rao",
+      "bookName": "Artificial Intelligence",
+      "dueDate": "2025-08-23",
+      "returnDate": "2025-08-27",
+      "fineAmount": 40
+    },
+    {
+      "id": 10,
+      "memberName": "Deepak Kumar",
+      "bookName": "Machine Learning",
+      "dueDate": "2025-08-24",
+      "returnDate": "2025-08-26",
+      "fineAmount": 20
+    },
+    {
+      "id": 11,
+      "memberName": "Manish Tiwari",
+      "bookName": "Operating Systems",
+      "dueDate": "2025-08-25",
+      "returnDate": "2025-08-31",
+      "fineAmount": 60
+    },
+    {
+      "id": 12,
+      "memberName": "Anjali Desai",
+      "bookName": "Database Systems",
+      "dueDate": "2025-08-26",
+      "returnDate": "2025-08-29",
+      "fineAmount": 30
+    },
+    {
+      "id": 13,
+      "memberName": "Pooja Bansal",
+      "bookName": "C++ Primer",
+      "dueDate": "2025-08-27",
+      "returnDate": "2025-09-02",
+      "fineAmount": 70
+    },
+    {
+      "id": 14,
+      "memberName": "Rahul Nair",
+      "bookName": "Java Programming",
+      "dueDate": "2025-08-28",
+      "returnDate": "2025-09-05",
+      "fineAmount": 90
+    },
+    {
+      "id": 15,
+      "memberName": "Sneha Kapoor",
+      "bookName": "Cyber Security Basics",
+      "dueDate": "2025-08-29",
+      "returnDate": "2025-09-01",
+      "fineAmount": 30
+    }
+  ]
 }
