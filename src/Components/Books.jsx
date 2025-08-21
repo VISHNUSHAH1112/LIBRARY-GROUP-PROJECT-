@@ -115,6 +115,7 @@ const Books = () => {
         <h1>Library Books</h1>
       </header>
 
+<<<<<<< HEAD
       {/* Error Toast */}
       {showError && (
         <div style={styles.errorToast}>
@@ -122,6 +123,32 @@ const Books = () => {
           <button style={styles.closeBtn} onClick={() => setShowError(false)}>
             ✕
           </button>
+=======
+            <div className="books-grid">
+                {showbooks.map((data) => (
+                    <article key={data?.id} className="book-card">
+
+                        <div className="book-body">
+                            <span className="badge-genre">{data.genre}</span>
+                            <h2 className="book-title">{data.title}</h2>
+
+                            <div className="book-meta">
+                                <span className="book-author">by {data.author}</span>
+                                <span className="book-isbn">ISBN: {data.isbn}</span>
+                            </div>
+
+                            <div className="book-footer">
+                                <div className="rent">
+                                    <span>Rent</span>
+                                    <strong>{data.rent}</strong>
+                                </div>
+                                <Button className="btn-view" variant="primary">View</Button>
+                            </div>
+                        </div>
+                    </article>
+                ))}
+            </div>
+>>>>>>> a021539f50a8b508d767fddb8bef88c06bf9d18f
         </div>
       )}
 
