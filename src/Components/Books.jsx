@@ -28,8 +28,6 @@ function Books() {
             <div className="books-grid">
                 {showbooks.map((data) => (
                     <article key={data?.id} className="book-card">
-                        {/* Agar cover image ho to yahan dikha sakte ho */}
-                        {/* <img src={data.cover} alt={data.title} className="book-cover" /> */}
 
                         <div className="book-body">
                             <span className="badge-genre">{data.gener}</span>

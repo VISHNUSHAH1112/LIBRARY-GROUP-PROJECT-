@@ -16,13 +16,14 @@ function Members() {
     useEffect(() => {
         BooksMember();
     }, []);
+
     const deletarrary = (index) => {
         const deletarrarys = membershow.filter((i) => i !== index);
         setmembershow(deletarrarys)
     }
 
     return (
-        <div className="container py-4">
+        <div className="container py-4" >
             <h2 className="mb-3 text-white">Members</h2>
 
             {membershow.length === 0 && (
@@ -68,7 +69,7 @@ function Members() {
                                 >
                                     {member?.isActive ? "Active" : "Inactive"}
                                 </span>
-                                <span>
+                                <span >
                                     <button className="btn btn-danger" onClick={() => { deletarrary(index) }}>Delete</button>
                                 </span>
                             </div>
@@ -78,6 +79,7 @@ function Members() {
             </div>
             <br />
             <button
+
                 type="button"
                 className="btn btn-outline-success add-member-btn"
 
