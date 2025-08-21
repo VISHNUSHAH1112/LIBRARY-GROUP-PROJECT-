@@ -30,7 +30,7 @@ function Books() {
                     <article key={data?.id} className="book-card">
 
                         <div className="book-body">
-                            <span className="badge-genre">{data.gener}</span>
+                            <span className="badge-genre">{data.genre}</span>
                             <h2 className="book-title">{data.title}</h2>
 
                             <div className="book-meta">

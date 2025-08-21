@@ -6,7 +6,7 @@ function Members() {
 
     const BooksMember = async () => {
         try {
-            const res = await axios.get("http://localhost:3000/member");
+            const res = await axios.get("http://localhost:3000/members");
             setmembershow(res.data || []);
         } catch (error) {
             console.log("Server-Down");
