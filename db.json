@@ -1,15 +1,6 @@
 {
   "members": [
     {
-      "id": 1,
-      "name": "Rohan Mehta",
-      "email": "rohan@example.com",
-      "phone": "9876543210",
-      "available": true,
-      "gender": "Male",
-      "address": "Andheri West, Mumbai, Maharashtra"
-    },
-    {
       "id": 2,
       "name": "Priya Sharma",
       "email": "priya@example.com",
@@ -143,7 +134,10 @@
       "author": "Kyle Simpson",
       "genre": "Programming",
       "available": true,
-      "isbn": ["10", "20"]
+      "isbn": [
+        "10",
+        "20"
+      ]
     },
     {
       "id": "B102",

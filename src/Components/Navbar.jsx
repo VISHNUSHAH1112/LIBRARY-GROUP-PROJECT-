@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { NavLink, useNavigate } from "react-router-dom";
-
+import Dropdown from "react-bootstrap/Dropdown";
 
 function LibraryNavbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,10 +14,11 @@ function LibraryNavbar() {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [LibraryButton, setLibraryButton] = useState(false)
-  const [MemberButton, setMemberButton] = useState(false)
-  const [disable, setdisable] = useState(true)
-  const LibraryBack = useNavigate()
+  const [LibraryButton, setLibraryButton] = useState(false);
+  const [MemberButton, setMemberButton] = useState(false);
+  const [disable, setdisable] = useState(true);
+  const LibraryBack = useNavigate();
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
@@ -35,13 +36,14 @@ function LibraryNavbar() {
       alert("Invalid Credentials");
     }
   };
+
   const handleonetimeback = () => {
-    LibraryBack(-1)
-    setdisable(true)
-  }
+    LibraryBack(-1);
+    setdisable(true);
+  };
   const disbalebutton = () => {
-    setdisable(false)
-  }
+    setdisable(false);
+  };
 
   return (
     <>
@@ -60,34 +62,57 @@ function LibraryNavbar() {
               </Button>
             )}
 
-            {isLoggedIn && (role == "admin" ? (
-              <Button
-                as={NavLink}
-                to={"/Members"}
-                variant="outline-info"
-                onClick={() => {
-                  setLibraryButton(false)
-                  disbalebutton()
-                }}>
-                Members
-              </Button>
-            ) : (
-              <Button
-                style={{ backgroundColor: "#0d6efd", color: "white" }}
-                variant="outline-info"
-                disabled
-              >
-                Members
-              </Button>
-            ))}
-            {isLoggedIn && (<Button onClick={handleonetimeback} disabled={disable} >
-              Library
-            </Button>)}
+            {/* Dropdown */}
+            {isLoggedIn && role === "admin" && (
+              <Dropdown>
+                <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+                  Records
+                </Dropdown.Toggle>
 
+                <Dropdown.Menu>
+                  <Dropdown.Item as={NavLink} to="/Issues">
+                    Issues
+                  </Dropdown.Item>
+                  <Dropdown.Item as={NavLink} to="/Fines">
+                    Fines
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+            )}
+
+            {isLoggedIn &&
+              (role == "admin" ? (
+                <Button
+                  as={NavLink}
+                  to={"/Members"}
+                  variant="outline-info"
+                  onClick={() => {
+                    setLibraryButton(false);
+                    disbalebutton();
+                  }}
+                >
+                  Members
+                </Button>
+              ) : (
+                <Button
+                  style={{ backgroundColor: "#0d6efd", color: "white" }}
+                  variant="outline-info"
+                  disabled
+                >
+                  Members
+                </Button>
+              ))}
+
+            {isLoggedIn && (
+              <Button onClick={handleonetimeback} disabled={disable}>
+                Library
+              </Button>
+            )}
           </div>
         </Container>
-      </Navbar >
+      </Navbar>
 
+      {/* Login Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>
