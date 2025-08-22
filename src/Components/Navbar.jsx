@@ -67,7 +67,6 @@ function LibraryNavbar() {
                 <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
                   Records
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
                   <Dropdown.Item as={NavLink} to="/Issues">
                     Issues

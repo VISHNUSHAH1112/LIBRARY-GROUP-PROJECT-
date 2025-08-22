@@ -134,109 +134,120 @@
       "author": "Kyle Simpson",
       "genre": "Programming",
       "available": true,
-      "rent":450,
-      "isbn": [
-        "10",
-        "20"
-      ]
+      "rent": 450,
+      "isbn": ["10", "20"]
     },
     {
       "id": "B102",
       "title": "Python Programming",
       "author": "Mark Lutz",
       "genre": "Programming",
-      "available": true
+      "available": true,
+      "rent": 250
     },
     {
       "id": "B103",
       "title": "Data Structures",
       "author": "Narasimha Karumanchi",
       "genre": "Computer Science",
-      "available": false
+      "available": false,
+      "rent": 150
     },
     {
       "id": "B104",
       "title": "HTML & CSS Basics",
       "author": "Jon Duckett",
       "genre": "Web Development",
-      "available": true
+      "available": true,
+      "rent": 50
     },
     {
       "id": "B105",
       "title": "React for Beginners",
       "author": "Cory House",
       "genre": "Web Development",
-      "available": true
+      "available": true,
+      "rent": 400
     },
     {
       "id": "B106",
       "title": "Node.js Design Patterns",
       "author": "Mario Casciaro",
       "genre": "Programming",
-      "available": false
+      "available": false,
+      "rent": 400
     },
     {
       "id": "B107",
       "title": "Clean Code",
       "author": "Robert C. Martin",
       "genre": "Programming",
-      "available": true
+      "available": true,
+      "rent": 40
     },
     {
       "id": "B108",
       "title": "Design Patterns",
       "author": "Erich Gamma",
       "genre": "Software Engineering",
-      "available": true
+      "available": true,
+      "rent": 40
     },
     {
       "id": "B109",
       "title": "Artificial Intelligence",
       "author": "Stuart Russell",
       "genre": "AI",
-      "available": false
+      "available": false,
+      "rent": 450
     },
     {
       "id": "B110",
       "title": "Machine Learning",
       "author": "Tom Mitchell",
       "genre": "AI",
-      "available": true
+      "available": true,
+      "rent": 450
     },
     {
       "id": "B111",
       "title": "Operating Systems",
       "author": "Silberschatz",
       "genre": "Computer Science",
-      "available": true
+      "available": true,
+      "rent": 425
     },
     {
       "id": "B112",
       "title": "Database Systems",
       "author": "Raghu Ramakrishnan",
       "genre": "Computer Science",
-      "available": true
+      "available": true,
+      "rent": 435
     },
     {
       "id": "B113",
       "title": "C++ Primer",
       "author": "Stanley Lippman",
       "genre": "Programming",
-      "available": false
+      "available": false,
+      "rent": 450
     },
     {
       "id": "B114",
       "title": "Java Programming",
       "author": "Herbert Schildt",
       "genre": "Programming",
-      "available": true
+      "available": true,
+      "rent": 450
     },
     {
       "id": "B115",
       "title": "Cyber Security Basics",
       "author": "William Stallings",
       "genre": "Security",
-      "available": true
+      "available": true,
+      "rent": 450
     }
   ],
   "issues": [

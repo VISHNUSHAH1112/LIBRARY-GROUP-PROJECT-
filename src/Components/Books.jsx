@@ -41,7 +41,8 @@ function Books() {
                             <div className="book-footer">
                                 <div className="rent">
                                     <span>Rent
-                                        {data.rent}</span>
+                                        ₹<strong> {data.rent}</strong>
+                                    </span>
                                 </div>
                                 <Button className="btn-view" variant="primary">View</Button>
                             </div>
