@@ -14,7 +14,6 @@ function Books() {
             console.log("Server-Down");
         }
     };
-    // dhruvi
 
     useEffect(() => {
         BooksData();
@@ -36,13 +35,13 @@ function Books() {
 
                             <div className="book-meta">
                                 <span className="book-author">by {data.author}</span>
-                                <span className="book-isbn">ISBN: {data.isbn}</span>
+                                <br />
                             </div>
 
                             <div className="book-footer">
                                 <div className="rent">
-                                    <span>Rent</span>
-                                    <strong>{data.rent}</strong>
+                                    <span>Rent
+                                        {data.rent}</span>
                                 </div>
                                 <Button className="btn-view" variant="primary">View</Button>
                             </div>

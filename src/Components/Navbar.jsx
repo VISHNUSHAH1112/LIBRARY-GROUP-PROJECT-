@@ -62,7 +62,6 @@ function LibraryNavbar() {
               </Button>
             )}
 
-            {/* Dropdown */}
             {isLoggedIn && role === "admin" && (
               <Dropdown>
               
@@ -110,7 +109,6 @@ function LibraryNavbar() {
         </Container>
       </Navbar>
 
-      {/* Login Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>

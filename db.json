@@ -134,6 +134,7 @@
       "author": "Kyle Simpson",
       "genre": "Programming",
       "available": true,
+      "rent":450,
       "isbn": [
         "10",
         "20"
