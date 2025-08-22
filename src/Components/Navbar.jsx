@@ -65,7 +65,9 @@ function LibraryNavbar() {
             {/* Dropdown */}
             {isLoggedIn && role === "admin" && (
               <Dropdown>
-              
+                <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+                  Records
+                </Dropdown.Toggle>
 
                 <Dropdown.Menu>
                   <Dropdown.Item as={NavLink} to="/Issues">
