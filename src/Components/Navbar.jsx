@@ -62,13 +62,11 @@ function LibraryNavbar() {
               </Button>
             )}
 
-            {/* Dropdown */}
             {isLoggedIn && role === "admin" && (
               <Dropdown>
                 <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
                   Records
                 </Dropdown.Toggle>
-
                 <Dropdown.Menu>
                   <Dropdown.Item as={NavLink} to="/Issues">
                     Issues
@@ -112,7 +110,6 @@ function LibraryNavbar() {
         </Container>
       </Navbar>
 
-      {/* Login Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>
