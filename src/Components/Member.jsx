@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 
 function Members() {
     const [membershow, setmembershow] = useState([]);
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        gender: "Male",
+        available: true
+    });
 
     const BooksMember = async () => {
         try {
@@ -23,8 +32,39 @@ function Members() {
         setmembershow(deletarrarys);
     };
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: name === "available" ? value === "true" : value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!formData.name || !formData.email) {
+            alert("Name and Email are required!");
+            return;
+        }
+        try {
+            const res = await axios.post("http://localhost:3000/members", formData);
+            setmembershow([...membershow, res.data]);
+            setFormData({
+                name: "",
+                email: "",
+                phone: "",
+                address: "",
+                gender: "Male",
+                available: true
+            });
+            setShowForm(false); // close modal after add
+        } catch (error) {
+            console.log("Error adding member");
+        }
+    };
+
     return (
-        <div className="container py-4" >
+        <div className="container py-4">
             <h2 className="mb-3 text-white">Members</h2>
 
             {membershow.length === 0 && (
@@ -65,28 +105,109 @@ function Members() {
                                 <span
                                     className={
                                         "badge " +
-                                        (member?.isActive ? "text-bg-success" : "text-bg-secondary")
+                                        (member?.available ? "text-bg-success" : "text-bg-secondary")
                                     }
                                 >
                                     {member?.available ? "Active" : "Inactive"}
                                 </span>
-                                <span >
-                                    <button className="btn btn-danger" onClick={() => { deletarrary(member.id) }}>Delete</button>
+                                <span>
+                                    <button
+                                        className="btn btn-danger"
+                                        onClick={() => {
+                                            deletarrary(member.id);
+                                        }}
+                                    >
+                                        Delete
+                                    </button>
                                 </span>
                             </div>
                         </div>
                     ))}
                 </ol>
             </div>
-            <br />
-            <button
 
-                type="button"
-                className="btn btn-outline-success add-member-btn"
+            {/* Add Member Button */}
+            <div className="text-center mt-4">
+                <button
+                    className="btn btn-outline-primary"
+                    onClick={() => setShowForm(true)}
+                >
+                    ➕ Add Member
+                </button>
+            </div>
 
-            >
-                Add Member
-            </button>
+            {/* Modal Form */}
+            {showForm && (
+                <div className="modal-overlay">
+                    <div className="modal-card">
+                        <div className="d-flex justify-content-between align-items-center mb-3">
+                            <h4 className="mb-0">Add Member</h4>
+                            <button
+                                className="btn-close"
+                                onClick={() => setShowForm(false)}
+                            ></button>
+                        </div>
+                        <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+                            <input
+                                type="text"
+                                name="name"
+                                placeholder="Full Name"
+                                className="form-control"
+                                value={formData.name}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="email"
+                                name="email"
+                                placeholder="Email"
+                                className="form-control"
+                                value={formData.email}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                name="phone"
+                                placeholder="Phone Number"
+                                className="form-control"
+                                value={formData.phone}
+                                onChange={handleChange}
+                            />
+                            <input
+                                type="text"
+                                name="address"
+                                placeholder="Address"
+                                className="form-control"
+                                value={formData.address}
+                                onChange={handleChange}
+                            />
+
+                            <select
+                                name="gender"
+                                className="form-control"
+                                value={formData.gender}
+                                onChange={handleChange}
+                            >
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+
+                            <select
+                                name="available"
+                                className="form-control"
+                                value={formData.available}
+                                onChange={handleChange}
+                            >
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+
+                            <button type="submit" className="btn btn-success w-100">
+                                Add Member
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
