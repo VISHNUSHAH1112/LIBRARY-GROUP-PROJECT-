@@ -5,7 +5,7 @@ export default function Fines() {
   const [fines, setFines] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/fines")   // <-- db.json se data la rahe hai
+    fetch("http://localhost:3000/fines")
       .then((res) => res.json())
       .then((data) => setFines(data));
   }, []);

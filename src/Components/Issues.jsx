@@ -5,7 +5,7 @@ const Issues = () => {
   const [issues, setIssues] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/issues") // db.json se fetch
+    fetch("http://localhost:3000/issues")
       .then((res) => res.json())
       .then((data) => setIssues(data))
       .catch((err) => console.error("Error fetching issues:", err));
