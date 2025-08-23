@@ -134,120 +134,87 @@
       "author": "Kyle Simpson",
       "genre": "Programming",
       "available": true,
-      "rent": 450,
-      "isbn": ["10", "20"]
+      "isbn": [
+        "10",
+        "20"
+      ]
     },
     {
       "id": "B102",
       "title": "Python Programming",
       "author": "Mark Lutz",
       "genre": "Programming",
-      "available": true,
-      "rent": 250
+      "available": true
     },
     {
       "id": "B103",
       "title": "Data Structures",
       "author": "Narasimha Karumanchi",
       "genre": "Computer Science",
-      "available": false,
-      "rent": 150
-    },
-    {
-      "id": "B104",
-      "title": "HTML & CSS Basics",
-      "author": "Jon Duckett",
-      "genre": "Web Development",
-      "available": true,
-      "rent": 50
-    },
-    {
-      "id": "B105",
-      "title": "React for Beginners",
-      "author": "Cory House",
-      "genre": "Web Development",
-      "available": true,
-      "rent": 400
-    },
-    {
-      "id": "B106",
-      "title": "Node.js Design Patterns",
-      "author": "Mario Casciaro",
-      "genre": "Programming",
-      "available": false,
-      "rent": 400
+      "available": false
     },
     {
       "id": "B107",
       "title": "Clean Code",
       "author": "Robert C. Martin",
       "genre": "Programming",
-      "available": true,
-      "rent": 40
+      "available": true
     },
     {
       "id": "B108",
       "title": "Design Patterns",
       "author": "Erich Gamma",
       "genre": "Software Engineering",
-      "available": true,
-      "rent": 40
+      "available": true
     },
     {
       "id": "B109",
       "title": "Artificial Intelligence",
       "author": "Stuart Russell",
       "genre": "AI",
-      "available": false,
-      "rent": 450
+      "available": false
     },
     {
       "id": "B110",
       "title": "Machine Learning",
       "author": "Tom Mitchell",
       "genre": "AI",
-      "available": true,
-      "rent": 450
+      "available": true
     },
     {
       "id": "B111",
       "title": "Operating Systems",
       "author": "Silberschatz",
       "genre": "Computer Science",
-      "available": true,
-      "rent": 425
+      "available": true
     },
     {
       "id": "B112",
       "title": "Database Systems",
       "author": "Raghu Ramakrishnan",
       "genre": "Computer Science",
-      "available": true,
-      "rent": 435
+      "available": true
     },
     {
       "id": "B113",
       "title": "C++ Primer",
       "author": "Stanley Lippman",
       "genre": "Programming",
-      "available": false,
-      "rent": 450
+      "available": false
     },
     {
       "id": "B114",
       "title": "Java Programming",
       "author": "Herbert Schildt",
       "genre": "Programming",
-      "available": true,
-      "rent": 450
+      "available": true
     },
     {
       "id": "B115",
       "title": "Cyber Security Basics",
       "author": "William Stallings",
       "genre": "Security",
-      "available": true,
-      "rent": 450
+      "available": true
     }
   ],
   "issues": [
@@ -399,33 +366,6 @@
       "reservationDate": "2025-08-12",
       "expiryDate": "2025-08-17",
       "status": "Cancelled"
-    },
-    {
-      "id": 4,
-      "memberName": "Neha Patel",
-      "bookName": "HTML & CSS Basics",
-      "bookId": "B104",
-      "reservationDate": "2025-08-13",
-      "expiryDate": "2025-08-18",
-      "status": "Approved"
-    },
-    {
-      "id": 5,
-      "memberName": "Suresh Yadav",
-      "bookName": "React for Beginners",
-      "bookId": "B105",
-      "reservationDate": "2025-08-14",
-      "expiryDate": "2025-08-19",
-      "status": "Pending"
-    },
-    {
-      "id": 6,
-      "memberName": "Kavita Joshi",
-      "bookName": "Node.js Design Patterns",
-      "bookId": "B106",
-      "reservationDate": "2025-08-15",
-      "expiryDate": "2025-08-20",
-      "status": "Approved"
     },
     {
       "id": 7,
