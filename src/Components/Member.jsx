@@ -57,7 +57,7 @@ function Members() {
                 gender: "Male",
                 available: true
             });
-            setShowForm(false); // close modal after add
+            setShowForm(false); 
         } catch (error) {
             console.log("Error adding member");
         }
@@ -126,7 +126,6 @@ function Members() {
                 </ol>
             </div>
 
-            {/* Add Member Button */}
             <div className="text-center mt-4">
                 <button
                     className="btn btn-outline-primary"
@@ -136,7 +135,6 @@ function Members() {
                 </button>
             </div>
 
-            {/* Modal Form */}
             {showForm && (
                 <div className="modal-overlay">
                     <div className="modal-card">
