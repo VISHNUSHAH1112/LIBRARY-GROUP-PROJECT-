@@ -129,24 +129,6 @@
   ],
   "books": [
     {
-      "id": "B101",
-      "title": "JavaScript Guide",
-      "author": "Kyle Simpson",
-      "genre": "Programming",
-      "available": true,
-      "isbn": [
-        "10",
-        "20"
-      ]
-    },
-    {
-      "id": "B102",
-      "title": "Python Programming",
-      "author": "Mark Lutz",
-      "genre": "Programming",
-      "available": true
-    },
-    {
       "id": "B103",
       "title": "Data Structures",
       "author": "Narasimha Karumanchi",
@@ -340,24 +322,6 @@
     }
   ],
   "reservations": [
-    {
-      "id": 1,
-      "memberName": "Rohan Mehta",
-      "bookName": "JavaScript Guide",
-      "bookId": "B101",
-      "reservationDate": "2025-08-10",
-      "expiryDate": "2025-08-15",
-      "status": "Approved"
-    },
-    {
-      "id": 2,
-      "memberName": "Priya Sharma",
-      "bookName": "Python Programming",
-      "bookId": "B102",
-      "reservationDate": "2025-08-11",
-      "expiryDate": "2025-08-16",
-      "status": "Pending"
-    },
     {
       "id": 3,
       "memberName": "Amit Verma",

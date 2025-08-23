@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { IoLibrary } from "react-icons/io5";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -14,35 +14,62 @@ function LibraryNavbar() {
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [LibraryButton, setLibraryButton] = useState(false);
-  const [MemberButton, setMemberButton] = useState(false);
-  const [disable, setdisable] = useState(true);
+  const [disable, setDisable] = useState(true);
+
   const LibraryBack = useNavigate();
 
+  // ✅ LocalStorage se login state load karna
+  useEffect(() => {
+    const savedLogin = localStorage.getItem("libraryUser");
+    if (savedLogin) {
+      const { role, isLoggedIn } = JSON.parse(savedLogin);
+      setRole(role);
+      setIsLoggedIn(isLoggedIn);
+    }
+  }, []);
+
+  // ✅ LocalStorage update karna
+  const saveLoginToStorage = (userData) => {
+    localStorage.setItem("libraryUser", JSON.stringify(userData));
+  };
+
+  // ✅ Login Submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
     if (username === "admin" && password === "123") {
       setRole("admin");
       setIsLoggedIn(true);
+      saveLoginToStorage({ role: "admin", isLoggedIn: true });
       alert("Admin Logged In");
       setShowModal(false);
     } else if (username === "user" && password === "123") {
       setRole("user");
       setIsLoggedIn(true);
+      saveLoginToStorage({ role: "user", isLoggedIn: true });
       alert("User Logged In");
       setShowModal(false);
     } else {
       alert("Invalid Credentials");
     }
+    setUsername("");
+    setPassword("");
   };
 
-  const handleonetimeback = () => {
-    LibraryBack(-1);
-    setdisable(true);
+  // ✅ Logout
+  const handleLogout = () => {
+    setRole("");
+    setIsLoggedIn(false);
+    localStorage.removeItem("libraryUser");
   };
-  const disbalebutton = () => {
-    setdisable(false);
+
+  const handleOneTimeBack = () => {
+    LibraryBack(-1);
+    setDisable(true);
+  };
+
+  const disableButton = () => {
+    setDisable(false);
   };
 
   return (
@@ -79,14 +106,13 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn &&
-              (role == "admin" ? (
+              (role === "admin" ? (
                 <Button
                   as={NavLink}
                   to={"/Members"}
                   variant="outline-info"
                   onClick={() => {
-                    setLibraryButton(false);
-                    disbalebutton();
+                    disableButton();
                   }}
                 >
                   Members
@@ -102,9 +128,14 @@ function LibraryNavbar() {
               ))}
 
             {isLoggedIn && (
-              <Button onClick={handleonetimeback} disabled={disable}>
-                Library
-              </Button>
+              <>
+                <Button onClick={handleOneTimeBack} disabled={disable}>
+                  Library
+                </Button>
+                <Button variant="danger" onClick={handleLogout}>
+                  Logout
+                </Button>
+              </>
             )}
           </div>
         </Container>
