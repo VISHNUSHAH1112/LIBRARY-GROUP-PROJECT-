@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import { IoLibrary } from "react-icons/io5";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -18,35 +18,18 @@ function LibraryNavbar() {
 
   const LibraryBack = useNavigate();
 
-  // ✅ LocalStorage se login state load karna
-  useEffect(() => {
-    const savedLogin = localStorage.getItem("libraryUser");
-    if (savedLogin) {
-      const { role, isLoggedIn } = JSON.parse(savedLogin);
-      setRole(role);
-      setIsLoggedIn(isLoggedIn);
-    }
-  }, []);
-
-  // ✅ LocalStorage update karna
-  const saveLoginToStorage = (userData) => {
-    localStorage.setItem("libraryUser", JSON.stringify(userData));
-  };
-
-  // ✅ Login Submit
+  // ✅ Login Submit (no localStorage)
   const handleLoginSubmit = (e) => {
     e.preventDefault();
 
     if (username === "admin" && password === "123") {
       setRole("admin");
       setIsLoggedIn(true);
-      saveLoginToStorage({ role: "admin", isLoggedIn: true });
       alert("Admin Logged In");
       setShowModal(false);
     } else if (username === "user" && password === "123") {
       setRole("user");
       setIsLoggedIn(true);
-      saveLoginToStorage({ role: "user", isLoggedIn: true });
       alert("User Logged In");
       setShowModal(false);
     } else {
@@ -60,7 +43,6 @@ function LibraryNavbar() {
   const handleLogout = () => {
     setRole("");
     setIsLoggedIn(false);
-    localStorage.removeItem("libraryUser");
   };
 
   const handleOneTimeBack = () => {
