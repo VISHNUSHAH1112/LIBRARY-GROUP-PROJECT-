@@ -12,9 +12,10 @@ import { AuthProvider } from "./Components/AuthContext";
 function App() {
   return (
     <>
-      <AuthProvider>
-        <LibraryNavbar />
-      </AuthProvider>
+
+      <LibraryNavbar />
+      {/* <Books /> */}
+
       <Routes>
         <Route path="/" element={<Books />} />
         <Route path="/Members" element={<Members />} />
