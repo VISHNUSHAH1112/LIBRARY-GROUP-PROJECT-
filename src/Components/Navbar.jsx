@@ -7,10 +7,12 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { NavLink, useNavigate } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useAuth } from "./AuthContext"; // ✅ Context import
 
 function LibraryNavbar() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState("");
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // const [role, setRole] = useState("");
+
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -18,31 +20,22 @@ function LibraryNavbar() {
 
   const LibraryBack = useNavigate();
 
-  // ✅ Login Submit (no localStorage)
+  // ✅ AuthContext se values nikal rahe hai
+  const { isLoggedIn, role, login, logout } = useAuth();
+
+  // ✅ Login Submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-
-    if (username === "admin" && password === "123") {
-      setRole("admin");
-      setIsLoggedIn(true);
-      alert("Admin Logged In");
-      setShowModal(false);
-    } else if (username === "user" && password === "123") {
-      setRole("user");
-      setIsLoggedIn(true);
-      alert("User Logged In");
-      setShowModal(false);
-    } else {
-      alert("Invalid Credentials");
-    }
+    const msg = login(username, password); // ✅ Context ke login ka use
+    alert(msg);
     setUsername("");
     setPassword("");
+    setShowModal(false);
   };
 
   // ✅ Logout
   const handleLogout = () => {
-    setRole("");
-    setIsLoggedIn(false);
+    logout(); // ✅ Context se logout call
   };
 
   const handleOneTimeBack = () => {
@@ -93,9 +86,7 @@ function LibraryNavbar() {
                   as={NavLink}
                   to={"/Members"}
                   variant="outline-info"
-                  onClick={() => {
-                    disableButton();
-                  }}
+                  onClick={disableButton}
                 >
                   Members
                 </Button>

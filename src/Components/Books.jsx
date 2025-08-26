@@ -1,8 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useAuth } from "./AuthContext";
 
-function Books({ role }) {
+function Books() {
     const [showbooks, setshowbooks] = useState([]);
     const [showModal, setShowModal] = useState(false);
 
@@ -13,7 +14,9 @@ function Books({ role }) {
         rent: "",
     });
 
-    // API se data fetch
+    const { isLoggedIn, role } = useAuth();
+    console.log(isLoggedIn)
+
     const BooksData = async () => {
         try {
             const res = await axios.get("http://localhost:3000/books");
@@ -27,37 +30,35 @@ function Books({ role }) {
         BooksData();
     }, []);
 
-    // Add Book
-    // const handleAddBook = () => {
-    //     if (!newBook.title || !newBook.author || !newBook.genre || !newBook.rent) {
-    //         alert("Please fill all fields!");
-    //         return;
-    //     }
+    const handleAddBook = () => {
+        if (!newBook.title || !newBook.author || !newBook.genre || !newBook.rent) {
+            alert("Please fill all fields!");
+            return;
+        }
 
-    //     const addedBook = { ...newBook, id: Date.now() };
-    //     setshowbooks([...showbooks, addedBook]);
-    //     setShowModal(false);
-    //     setNewBook({ title: "", author: "", genre: "", rent: "" });
-    // };
+        const addedBook = { ...newBook, id: Date.now() };
+        setshowbooks([...showbooks, addedBook]);
+        setShowModal(false);
+        setNewBook({ title: "", author: "", genre: "", rent: "" });
+    };
 
-    // Delete Book
-    // const deleteBook = (id) => {
-    //     const updatedBooks = showbooks.filter((book) => book.id !== id);
-    //     setshowbooks(updatedBooks);
-    // };
+    const deleteBook = (id) => {
+        const updatedBooks = showbooks.filter((book) => book.id !== id);
+        setshowbooks(updatedBooks);
+    };
 
     return (
         <div className="books-wrap">
-            {/* Header */}
             <header className="books-header d-flex justify-content-between align-items-center">
                 <h1>Library Books</h1>
 
-                <Button variant="success" onClick={() => setShowModal(true)}>
-                    + Add Book
-                </Button>
+                {isLoggedIn && role === "admin" && (
+                    <Button variant="success" onClick={() => setShowModal(true)}>
+                        + Add Book
+                    </Button>
+                )}
             </header>
 
-            {/* Books Grid */}
             <div className="books-grid">
                 {showbooks.map((data) => (
                     <article key={data.id} className="book-card">
@@ -77,16 +78,19 @@ function Books({ role }) {
                                     <Button className="btn-view" variant="primary">
                                         View
                                     </Button>
-                                    <Button
-                                        onClick={() => deleteBook(data.id)}
-                                        style={{
-                                            backgroundColor: "red",
-                                            borderColor: "red",
-                                            color: "white",
-                                        }}
-                                    >
-                                        Delete
-                                    </Button>
+
+                                    {isLoggedIn && role === "admin" && (
+                                        <Button
+                                            onClick={() => deleteBook(data.id)}
+                                            style={{
+                                                backgroundColor: "red",
+                                                borderColor: "red",
+                                                color: "white",
+                                            }}
+                                        >
+                                            Delete
+                                        </Button>
+                                    )}
                                 </div>
                             </div>
                         </div>
@@ -94,11 +98,9 @@ function Books({ role }) {
                 ))}
             </div>
 
-            {/* Add Book Modal */}
-            {showModal && (
+            {showModal && isLoggedIn && role === "admin" && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        {/* Modal Header */}
                         <div className="modal-header d-flex justify-content-between align-items-center">
                             <h4 style={{ color: "black" }}>Add New Book</h4>
                             <button className="btn-close" onClick={() => setShowModal(false)}>
@@ -107,7 +109,6 @@ function Books({ role }) {
                         </div>
                         <br />
 
-                        {/* Modal Body */}
                         <div className="modal-body">
                             <Form>
                                 <Form.Group className="mb-3">
@@ -160,7 +161,6 @@ function Books({ role }) {
                             </Form>
                         </div>
 
-                        {/* Modal Footer */}
                         <div className="modal-footer d-flex justify-content-end gap-2">
                             <Button variant="secondary" onClick={() => setShowModal(false)}>
                                 Close
