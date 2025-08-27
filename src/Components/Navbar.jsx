@@ -5,28 +5,23 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useAuth } from "./AuthContext"; // ✅ Context import
+import { useAuth } from "./AuthContext";
 
 function LibraryNavbar() {
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
-  // const [role, setRole] = useState("");
-
   const [showModal, setShowModal] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [disable, setDisable] = useState(true);
 
-  const LibraryBack = useNavigate();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  // ✅ AuthContext se values nikal rahe hai
   const { isLoggedIn, role, login, logout } = useAuth();
 
-  // ✅ Login Submit
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    const msg = login(username, password); // ✅ Context ke login ka use
+    const msg = login(username, password);
     alert(msg);
     setUsername("");
     setPassword("");
@@ -35,16 +30,7 @@ function LibraryNavbar() {
 
   // ✅ Logout
   const handleLogout = () => {
-    logout(); // ✅ Context se logout call
-  };
-
-  const handleOneTimeBack = () => {
-    LibraryBack(-1);
-    setDisable(true);
-  };
-
-  const disableButton = () => {
-    setDisable(false);
+    logout();
   };
 
   return (
@@ -54,7 +40,16 @@ function LibraryNavbar() {
           <div style={{ color: "white" }}>
             <IoLibrary style={{ fontSize: "24px" }} /> Library
           </div>
+
           <div style={{ display: "flex", gap: "10px" }}>
+            <Button
+              variant="primary"
+              disabled={location.pathname === "/"}
+              onClick={() => navigate("/")}
+            >
+              Library
+            </Button>
+
             {!isLoggedIn && (
               <Button
                 variant="outline-light"
@@ -80,35 +75,20 @@ function LibraryNavbar() {
               </Dropdown>
             )}
 
-            {isLoggedIn &&
-              (role === "admin" ? (
-                <Button
-                  as={NavLink}
-                  to={"/Members"}
-                  variant="outline-info"
-                  onClick={disableButton}
-                >
-                  Members
-                </Button>
-              ) : (
-                <Button
-                  style={{ backgroundColor: "#0d6efd", color: "white" }}
-                  variant="outline-info"
-                  disabled
-                >
-                  Members
-                </Button>
-              ))}
+            {isLoggedIn && role === "admin" && (
+              <Button
+                as={NavLink}
+                to={"/Members"}
+                variant="outline-info"
+              >
+                Members
+              </Button>
+            )}
 
             {isLoggedIn && (
-              <>
-                <Button onClick={handleOneTimeBack} disabled={disable}>
-                  Library
-                </Button>
-                <Button variant="danger" onClick={handleLogout}>
-                  Logout
-                </Button>
-              </>
+              <Button variant="danger" onClick={handleLogout}>
+                Logout
+              </Button>
             )}
           </div>
         </Container>

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
-import Description from "./Description";
+// import Description from "./Description"
 import { useNavigate } from "react-router-dom";
 
 function Books() {
@@ -17,7 +17,6 @@ function Books() {
     });
 
     const { isLoggedIn, role } = useAuth();
-    console.log(isLoggedIn)
 
     const BooksData = async () => {
         try {
@@ -79,7 +78,18 @@ function Books() {
                                     </span>
                                 </div>
                                 <div className="d-flex gap-2">
-                                    <Button className="btn-view" variant="primary" onClick={() => navigate(`/Description/${data.id}`)}>
+                                    <Button
+                                        className="btn-view"
+                                        variant="primary"
+                                        onClick={() => {
+                                            if (!isLoggedIn) {
+                                                alert("Please Login First!");
+                                            } else {
+                                                navigate(`/Description/${data.id}`);
+                                            }
+                                        }}
+                                        severity="success"
+                                    >
                                         View
                                     </Button>
 
