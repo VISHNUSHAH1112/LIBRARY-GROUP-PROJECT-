@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
+import Description from "./Description";
+import { useNavigate } from "react-router-dom";
 
 function Books() {
     const [showbooks, setshowbooks] = useState([]);
@@ -15,7 +17,7 @@ function Books() {
     });
 
     const { isLoggedIn, role } = useAuth();
-    console.log(isLoggedIn  )
+    console.log(isLoggedIn)
 
     const BooksData = async () => {
         try {
@@ -47,6 +49,8 @@ function Books() {
         setshowbooks(updatedBooks);
     };
 
+    const navigate = useNavigate()
+
     return (
         <div className="books-wrap">
             <header className="books-header d-flex justify-content-between align-items-center">
@@ -75,7 +79,7 @@ function Books() {
                                     </span>
                                 </div>
                                 <div className="d-flex gap-2">
-                                    <Button className="btn-view" variant="primary">
+                                    <Button className="btn-view" variant="primary" onClick={() => navigate(`/Description/${data.id}`)}>
                                         View
                                     </Button>
 

@@ -8,6 +8,7 @@ import Issues from "./Components/Issues";
 import Members from "./Components/Member";
 import Books from "./Components/Books";
 import { AuthProvider } from "./Components/AuthContext";
+import Description from "./Components/Description";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Books />} />
+        <Route path="/Description/:id" element={<Description />} />
         <Route path="/Members" element={<Members />} />
         <Route path="/Fines" element={<Fines />} />
         <Route path="/Issues" element={<Issues />} />
