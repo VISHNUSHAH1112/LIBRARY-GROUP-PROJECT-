@@ -42,13 +42,13 @@ function LibraryNavbar() {
           </div>
 
           <div style={{ display: "flex", gap: "10px" }}>
-            <Button
+            {isLoggedIn&&(<Button
               variant="primary"
               disabled={location.pathname === "/"}
               onClick={() => navigate("/")}
             >
               Library
-            </Button>
+            </Button>)}
 
             {!isLoggedIn && (
               <Button

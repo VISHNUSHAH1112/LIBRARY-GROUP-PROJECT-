@@ -15,8 +15,6 @@ export const AuthProvider = ({ children }) => {
     if (username.toLowerCase() === "admin" && password === "123") {
       setIsLoggedIn(true);
       setRole("admin");
-
-      // 🔹 Step 2: login hone par localStorage me save karo
       localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("role", "admin");
 
@@ -25,7 +23,6 @@ export const AuthProvider = ({ children }) => {
       setIsLoggedIn(true);
       setRole("user");
 
-      // 🔹 Step 2: login hone par localStorage me save karo
       localStorage.setItem("isLoggedIn", true);
       localStorage.setItem("role", "user");
 
@@ -39,12 +36,10 @@ export const AuthProvider = ({ children }) => {
     setIsLoggedIn(false);
     setRole("");
 
-    // 🔹 Step 3: logout hone par localStorage clear karo
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("role");
   };
 
-  // 🔹 Step 4: (Optional) agar state change ho to sync karo
   useEffect(() => {
     localStorage.setItem("isLoggedIn", JSON.stringify(isLoggedIn));
     localStorage.setItem("role", role);
