@@ -35,7 +35,7 @@ function LibraryNavbar() {
 
   return (
     <>
-      <Navbar bg="black" data-bs-theme="dark">
+      <Navbar style={{backgroundColor:"#50B498"}}>
         <Container>
           <div style={{ color: "white" }}>
             <IoLibrary style={{ fontSize: "24px" }} /> Library
@@ -52,7 +52,7 @@ function LibraryNavbar() {
 
             {!isLoggedIn && (
               <Button
-                variant="outline-light"
+                variant="outline-success"
                 onClick={() => setShowModal(true)}
               >
                 Login
@@ -86,7 +86,7 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn && (
-              <Button variant="danger" onClick={handleLogout}>
+              <Button style={{backgroundColor:"#ee3b3bff"}} onClick={handleLogout}>
                 Logout
               </Button>
             )}

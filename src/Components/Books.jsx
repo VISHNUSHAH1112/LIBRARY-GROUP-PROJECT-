@@ -97,7 +97,7 @@ function Books() {
                                         <Button
                                             onClick={() => deleteBook(data.id)}
                                             style={{
-                                                backgroundColor: "red",
+                                                backgroundColor: "#ee3b3bff",
                                                 borderColor: "red",
                                                 color: "white",
                                             }}

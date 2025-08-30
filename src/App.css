@@ -1,4 +1,3 @@
-/* ---- Base Layout ---- */
 :root {
     --bg: #0b0f14;
     --card: rgba(255, 255, 255, 0.06);
@@ -29,22 +28,21 @@
 }
 
 body {
-    background: radial-gradient(1200px 800px at 10% -10%, rgba(77, 163, 255, 0.15), transparent 60%),
+    /* background: radial-gradient(1200px 800px at 10% -10%, rgba(77, 163, 255, 0.15), transparent 60%),
         radial-gradient(800px 600px at 100% 0%, rgba(139, 92, 246, 0.15), transparent 60%),
-        var(--bg);
+        var(--bg); */
     color: var(--text);
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+    /* font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif; */
     line-height: 1.5;
     margin: 0;
+    background-color: white;
 }
 
-/* ---- Page Wrapper ---- */
 .books-wrap {
     width: min(1200px, 92%);
     margin: 40px auto 80px;
 }
 
-/* ---- Header ---- */
 .books-header {
     display: grid;
     gap: 6px;
@@ -64,14 +62,12 @@ body {
     font-size: clamp(13px, 1.6vw, 15px);
 }
 
-/* ---- Responsive Grid ---- */
 .books-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 18px;
 }
 
-/* ---- Card ---- */
 .book-card {
     position: relative;
     background: linear-gradient(180deg, var(--card), rgba(255, 255, 255, 0.02));
@@ -89,7 +85,7 @@ body {
     inset: -1px;
     border-radius: inherit;
     background: conic-gradient(from 180deg at 50% 50%,
-            rgba(77, 163, 255, 0.20), rgba(139, 92, 246, 0.20), rgba(77, 163, 255, 0.20));
+            rgba(11, 206, 164, 0.2), rgba(11, 206, 164, 0.2), rgba(11, 206, 164, 0.2));
     filter: blur(26px);
     opacity: 0;
     transition: opacity .3s ease;
@@ -109,9 +105,9 @@ body {
 
 .book-body {
     padding: 18px 18px 14px;
+    background-color: #0e684e;
 }
 
-/* ---- Optional Cover Image ---- */
 .book-cover {
     width: 100%;
     height: 180px;
@@ -122,28 +118,25 @@ body {
     border-bottom: 1px solid rgba(255, 255, 255, 0.10);
 }
 
-/* ---- Chip / Badge ---- */
 .badge-genre {
     display: inline-flex;
     align-items: center;
     gap: 6px;
     font-size: 12px;
     letter-spacing: .35px;
-    color: #fff;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    color: #ffffff;
+    background: #50B498;
     padding: 6px 10px;
     border-radius: 999px;
-    box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 6px 16px rgba(0, 255, 191, 0.35);
 }
 
-/* ---- Title ---- */
 .book-title {
     margin: 12px 0 8px;
     font-size: clamp(18px, 2.2vw, 22px);
     line-height: 1.25;
 }
 
-/* ---- Meta ---- */
 .book-meta {
     display: grid;
     gap: 4px;
@@ -160,7 +153,6 @@ body {
     opacity: 0.9;
 }
 
-/* ---- Footer ---- */
 .book-footer {
     display: flex;
     align-items: center;
@@ -184,19 +176,19 @@ body {
     font-size: 18px;
 }
 
-/* ---- Button polish (react-bootstrap Button) ---- */
 .btn-view {
     border-radius: 12px !important;
     padding: 10px 14px !important;
     border: none !important;
-    background-image: linear-gradient(90deg, var(--accent), var(--accent-2)) !important;
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35) !important;
+    background-color: #88f0b8;
+    box-shadow: 0 8px 20px rgba(191, 233, 3, 0.35) !important;
     transition: transform .2s ease, box-shadow .2s ease, opacity .2s ease !important;
 }
 
 .btn-view:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 26px rgba(37, 99, 235, 0.42) !important;
+    /* box-shadow: 0 12px 26px rgba(37, 99, 235, 0.42) !important; */
+    background-color: #06ce63;
     opacity: 0.95;
 }
 
@@ -204,7 +196,6 @@ body {
     transform: translateY(0);
 }
 
-/* ---- Nice scrollbar (desktop) ---- */
 @media (hover:hover) {
     * {
         scrollbar-width: thin;
@@ -226,7 +217,6 @@ body {
     }
 }
 
-/* ---- Small screens tweaks ---- */
 @media (max-width: 420px) {
     .book-footer {
         flex-direction: column;
@@ -238,14 +228,11 @@ body {
     }
 }
 
-/* ==== Members Page Styling ==== */
 body {
-    background: #0f172a;
-    /* dark bg */
+    background: #109771;
     font-family: "Poppins", sans-serif;
 }
 
-/* Header Row */
 .member-header {
     display: flex;
     justify-content: space-between;
@@ -263,7 +250,6 @@ body {
     font-weight: 600;
 }
 
-/* Member Row */
 .member-item {
     background: #1e293b;
     border-radius: 12px;
@@ -278,20 +264,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
-/* Name (Light Grey) */
 .member-name {
     color: #9ca3af;
     font-weight: 600;
     letter-spacing: 0.3px;
 }
 
-/* Email (White) */
 .member-email {
     color: #ffffff;
     font-weight: 500;
 }
 
-/* Phone (Grey badge look) */
 .member-phone {
     background: #334155 !important;
     color: #e2e8f0;
@@ -301,14 +284,12 @@ body {
     font-size: 13px;
 }
 
-/* Address (Soft White) */
 .member-address {
     color: #f8fafc;
     font-size: 13px;
     max-width: 180px;
 }
 
-/* Add Member Button */
 .add-member-btn {
     display: block;
     margin: 0 auto;
@@ -318,14 +299,12 @@ body {
     border-radius: 8px;
 }
 
-/* input box  */
 input {
     outline: none !important;
     box-shadow: none !important;
     border-color: black !important;
 }
 
-/* add book box css */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -353,7 +332,6 @@ input {
     border-color: #ccc !important;
 }
 
-/* add book */
 
 
 .modal-content {
@@ -376,7 +354,7 @@ input {
     cursor: pointer;
 }
 
-.modal-body{
+.modal-body {
     outline: none;
     border-color: #28a745;
 }
