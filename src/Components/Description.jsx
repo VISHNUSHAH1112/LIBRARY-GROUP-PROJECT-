@@ -49,10 +49,8 @@ function Description() {
                     gridTemplateColumns: "1fr 1.5fr"
                 }}
             >
-                {/* Image */}
                 <div style={{ position: "relative" }}>
                     <img
-                        // src={book.image}
                         src={book.image}
                         alt={book.title}
                         style={{
