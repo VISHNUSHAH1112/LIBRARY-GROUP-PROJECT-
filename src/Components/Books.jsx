@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
-// import Description from "./Description"
 import { useNavigate } from "react-router-dom";
 
 function Books() {
@@ -17,6 +16,7 @@ function Books() {
     });
 
     const { isLoggedIn, role } = useAuth();
+    const navigate = useNavigate();
 
     const BooksData = async () => {
         try {
@@ -31,24 +31,31 @@ function Books() {
         BooksData();
     }, []);
 
-    const handleAddBook = () => {
+    const handleAddBook = async () => {
         if (!newBook.title || !newBook.author || !newBook.genre || !newBook.rent) {
             alert("Please fill all fields!");
             return;
         }
 
-        const addedBook = { ...newBook, id: Date.now() };
-        setshowbooks([...showbooks, addedBook]);
-        setShowModal(false);
-        setNewBook({ title: "", author: "", genre: "", rent: "" });
+        try {
+            const res = await axios.post("http://localhost:3000/books", newBook);
+            setshowbooks([...showbooks, res.data]);
+            setShowModal(false);
+            setNewBook({ title: "", author: "", genre: "", rent: "" });
+        } catch (err) {
+            console.log("Error adding book:", err);
+        }
     };
 
-    const deleteBook = (id) => {
-        const updatedBooks = showbooks.filter((book) => book.id !== id);
-        setshowbooks(updatedBooks);
+    const deleteBook = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3000/books/${id}`);
+            const updatedBooks = showbooks.filter((book) => book.id !== id);
+            setshowbooks(updatedBooks);
+        } catch (err) {
+            console.log("Error deleting book:", err);
+        }
     };
-
-    const navigate = useNavigate()
 
     return (
         <div className="books-wrap">
@@ -88,7 +95,6 @@ function Books() {
                                                 navigate(`/Description/${data.id}`);
                                             }
                                         }}
-                                        severity="success"
                                     >
                                         View
                                     </Button>
