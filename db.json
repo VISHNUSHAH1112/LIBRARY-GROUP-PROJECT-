@@ -127,20 +127,9 @@
       "id": 16
     }
   ],
-
   "books": [
     {
-      "id": "B103",
-      "title": "Data Structures",
-      "author": "Narasimha Karumanchi",
-      "genre": "Computer Science",
-      "available": false,
-      "rent": 50,
-      "description": "This book covers fundamental and advanced data structures. It includes problem-solving techniques and practical examples that are useful for interviews and exams.",
-      "image": "https://d3525k1ryd2155.cloudfront.net/f/866/108/9781468108866.ME.0.m.jpg"
-    },
-    {
-      "id": "B107", 
+      "id": "B107",
       "title": "Clean Code",
       "author": "Robert C. Martin",
       "genre": "Programming",
@@ -329,9 +318,7 @@
       "description": "Covers foundations of cloud computing including virtualization, SaaS, IaaS, and distributed systems.",
       "image": "https://m.media-amazon.com/images/I/71w2uD8jSSL.jpg"
     }
-
   ],
-
   "issues": [
     {
       "id": 1,
@@ -455,15 +442,6 @@
     }
   ],
   "reservations": [
-    {
-      "id": 3,
-      "memberName": "Amit Verma",
-      "bookName": "Data Structures",
-      "bookId": "B103",
-      "reservationDate": "2025-08-12",
-      "expiryDate": "2025-08-17",
-      "status": "Cancelled"
-    },
     {
       "id": 7,
       "memberName": "Vikram Singh",
