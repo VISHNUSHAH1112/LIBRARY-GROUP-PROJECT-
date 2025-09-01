@@ -22,7 +22,7 @@ function LibraryNavbar() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const msg = login(username, password);
-    alert(msg);
+   
     setUsername("");
     setPassword("");
     setShowModal(false);
@@ -35,7 +35,7 @@ function LibraryNavbar() {
 
   return (
     <>
-      <Navbar style={{backgroundColor:"#50B498"}}>
+      <Navbar bg="black" data-bs-theme="dark">
         <Container>
           <div style={{ color: "white" }}>
             <IoLibrary style={{ fontSize: "24px" }} /> Library
@@ -52,7 +52,7 @@ function LibraryNavbar() {
 
             {!isLoggedIn && (
               <Button
-                variant="outline-success"
+                variant="outline-light"
                 onClick={() => setShowModal(true)}
               >
                 Login
@@ -86,7 +86,7 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn && (
-              <Button style={{backgroundColor:"#ee3b3bff"}} onClick={handleLogout}>
+              <Button variant="danger" onClick={handleLogout}>
                 Logout
               </Button>
             )}
