@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useAuth } from "./AuthContext";
+import { useAuth } from "./AuthContext";  
 import { useNavigate } from "react-router-dom";
 
 function Books() {
@@ -15,9 +15,11 @@ function Books() {
         rent: "",
     });
 
-    const { isLoggedIn, role } = useAuth();
+    // ✅ include showToast & requireLogin from context
+    const { isLoggedIn, role, showToast, requireLogin } = useAuth();
     const navigate = useNavigate();
 
+    // ---- Fetch books ----
     const BooksData = async () => {
         try {
             const res = await axios.get("http://localhost:3000/books");
@@ -31,30 +33,26 @@ function Books() {
         BooksData();
     }, []);
 
-    const handleAddBook = async () => {
+    // ---- Add book ----
+    const handleAddBook = () => {
         if (!newBook.title || !newBook.author || !newBook.genre || !newBook.rent) {
-            alert("Please fill all fields!");
+            showToast("warn", "⚠️ Please fill all fields!"); 
             return;
         }
 
-        try {
-            const res = await axios.post("http://localhost:3000/books", newBook);
-            setshowbooks([...showbooks, res.data]);
-            setShowModal(false);
-            setNewBook({ title: "", author: "", genre: "", rent: "" });
-        } catch (err) {
-            console.log("Error adding book:", err);
-        }
+        const addedBook = { ...newBook, id: Date.now() };
+        setshowbooks([...showbooks, addedBook]);
+        setShowModal(false);
+        setNewBook({ title: "", author: "", genre: "", rent: "" });
+
+        showToast("info", "📘 Book added successfully!"); 
     };
 
-    const deleteBook = async (id) => {
-        try {
-            await axios.delete(`http://localhost:3000/books/${id}`);
-            const updatedBooks = showbooks.filter((book) => book.id !== id);
-            setshowbooks(updatedBooks);
-        } catch (err) {
-            console.log("Error deleting book:", err);
-        }
+    // ---- Delete book ----
+    const deleteBook = (id) => {
+        const updatedBooks = showbooks.filter((book) => book.id !== id);
+        setshowbooks(updatedBooks);
+        showToast("error", "❌ Book deleted!"); 
     };
 
     return (
@@ -85,13 +83,13 @@ function Books() {
                                     </span>
                                 </div>
                                 <div className="d-flex gap-2">
+                                    {/* ---- View Button ---- */}
                                     <Button
                                         className="btn-view"
                                         variant="primary"
                                         onClick={() => {
-                                            if (!isLoggedIn) {
-                                                alert("Please Login First!");
-                                            } else {
+                                            if (requireLogin()) {
+                                                showToast("success", `✅ Opening ${data.title}`); // 🟢 green
                                                 navigate(`/Description/${data.id}`);
                                             }
                                         }}
@@ -99,11 +97,12 @@ function Books() {
                                         View
                                     </Button>
 
+                                    {/* ---- Delete Button (Admin only) ---- */}
                                     {isLoggedIn && role === "admin" && (
                                         <Button
                                             onClick={() => deleteBook(data.id)}
                                             style={{
-                                                backgroundColor: "#ee3b3bff",
+                                                backgroundColor: "red",
                                                 borderColor: "red",
                                                 color: "white",
                                             }}
@@ -118,6 +117,7 @@ function Books() {
                 ))}
             </div>
 
+            {/* ---- Modal ---- */}
             {showModal && isLoggedIn && role === "admin" && (
                 <div className="modal-overlay">
                     <div className="modal-content">
