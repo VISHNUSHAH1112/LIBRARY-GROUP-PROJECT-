@@ -1,65 +1,55 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
-import { useAuth } from "./AuthContext";  
+import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
+// ✅ Redux imports
+import { useDispatch, useSelector } from "react-redux";
+import { FetchData, AddBooks, DeleteData } from "../Slice/BooksSlice";
+
 function Books() {
-    const [showbooks, setshowbooks] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [newBook, setNewBook] = useState({ title: "", author: "", genre: "", rent: "" });
 
-    const [newBook, setNewBook] = useState({
-        title: "",
-        author: "",
-        genre: "",
-        rent: "",
-    });
-
-    // ✅ include showToast & requireLogin from context
+    const { books, status, error } = useSelector((state) => state.books);
+    const dispatch = useDispatch();
     const { isLoggedIn, role, showToast, requireLogin } = useAuth();
     const navigate = useNavigate();
 
-    // ---- Fetch books ----
-    const BooksData = async () => {
-        try {
-            const res = await axios.get("http://localhost:3000/books");
-            setshowbooks(res.data);
-        } catch (err) {
-            console.log("Error fetching books:", err);
-        }
+    // ✅ Fetch books on load
+    useEffect(() => {
+        dispatch(FetchData());
+    }, [dispatch]);
+
+    // ✅ Handle input change (generic function)
+    const handleChange = (e) => {
+        setNewBook({ ...newBook, [e.target.name]: e.target.value });
     };
 
-    useEffect(() => {
-        BooksData();
-    }, []);
-
-    // ---- Add book ----
+    // ✅ Add new book
     const handleAddBook = () => {
-        if (!newBook.title || !newBook.author || !newBook.genre || !newBook.rent) {
-            showToast("warn", "⚠️ Please fill all fields!"); 
-            return;
+        const { title, author, genre, rent } = newBook;
+        if (!title || !author || !genre || !rent) {
+            return showToast("warn", "⚠️ Please fill all fields!");
         }
 
-        const addedBook = { ...newBook, id: Date.now() };
-        setshowbooks([...showbooks, addedBook]);
+        dispatch(AddBooks({ ...newBook, id: Date.now() }));
         setShowModal(false);
         setNewBook({ title: "", author: "", genre: "", rent: "" });
-
-        showToast("info", "📘 Book added successfully!"); 
+        showToast("info", "📘 Book added successfully!");
     };
 
-    // ---- Delete book ----
+    // ✅ Delete book
     const deleteBook = (id) => {
-        const updatedBooks = showbooks.filter((book) => book.id !== id);
-        setshowbooks(updatedBooks);
-        showToast("error", "❌ Book deleted!"); 
+        dispatch(DeleteData(id));
+        showToast("error", "❌ Book deleted!");
     };
 
     return (
         <div className="books-wrap">
+            {/* ---- Header ---- */}
             <header className="books-header d-flex justify-content-between align-items-center">
                 <h1>Library Books</h1>
-
                 {isLoggedIn && role === "admin" && (
                     <Button variant="success" onClick={() => setShowModal(true)}>
                         + Add Book
@@ -67,29 +57,28 @@ function Books() {
                 )}
             </header>
 
+            {/* ---- Loader & Error ---- */}
+            {status === "loading" && <p>⏳ Loading books...</p>}
+            {status === "error" && <p style={{ color: "red" }}>❌ {error}</p>}
+
+            {/* ---- Books Grid ---- */}
             <div className="books-grid">
-                {showbooks.map((data) => (
+                {books.map((data) => (
                     <article key={data.id} className="book-card">
                         <div className="book-body">
                             <span className="badge-genre">{data.genre}</span>
                             <h2 className="book-title">{data.title}</h2>
-                            <div className="book-meta">
-                                <span className="book-author">by {data.author}</span>
-                            </div>
+                            <p className="book-author">by {data.author}</p>
+
                             <div className="book-footer d-flex justify-content-between align-items-center">
-                                <div className="rent">
-                                    <span>
-                                        Rent ₹<strong>{data.rent}</strong>
-                                    </span>
-                                </div>
+                                <span>Rent ₹<strong>{data.rent}</strong></span>
+
                                 <div className="d-flex gap-2">
-                                    {/* ---- View Button ---- */}
                                     <Button
-                                        className="btn-view"
                                         variant="primary"
                                         onClick={() => {
                                             if (requireLogin()) {
-                                                showToast("success", `✅ Opening ${data.title}`); // 🟢 green
+                                                showToast("success", `✅ Opening ${data.title}`);
                                                 navigate(`/Description/${data.id}`);
                                             }
                                         }}
@@ -97,16 +86,8 @@ function Books() {
                                         View
                                     </Button>
 
-                                    {/* ---- Delete Button (Admin only) ---- */}
                                     {isLoggedIn && role === "admin" && (
-                                        <Button
-                                            onClick={() => deleteBook(data.id)}
-                                            style={{
-                                                backgroundColor: "red",
-                                                borderColor: "red",
-                                                color: "white",
-                                            }}
-                                        >
+                                        <Button variant="danger" onClick={() => deleteBook(data.id)}>
                                             Delete
                                         </Button>
                                     )}
@@ -123,71 +104,31 @@ function Books() {
                     <div className="modal-content">
                         <div className="modal-header d-flex justify-content-between align-items-center">
                             <h4 style={{ color: "black" }}>Add New Book</h4>
-                            <button className="btn-close" onClick={() => setShowModal(false)}>
-                                ✖
-                            </button>
+                            <button className="btn-close" onClick={() => setShowModal(false)}>✖</button>
                         </div>
-                        <br />
 
                         <div className="modal-body">
                             <Form>
-                                <Form.Group className="mb-3">
-                                    <Form.Label style={{ color: "black" }}>Title</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter book title"
-                                        value={newBook.title}
-                                        onChange={(e) =>
-                                            setNewBook({ ...newBook, title: e.target.value })
-                                        }
-                                    />
-                                </Form.Group>
-
-                                <Form.Group className="mb-3">
-                                    <Form.Label style={{ color: "black" }}>Author</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter author name"
-                                        value={newBook.author}
-                                        onChange={(e) =>
-                                            setNewBook({ ...newBook, author: e.target.value })
-                                        }
-                                    />
-                                </Form.Group>
-
-                                <Form.Group className="mb-3">
-                                    <Form.Label style={{ color: "black" }}>Genre</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Enter genre"
-                                        value={newBook.genre}
-                                        onChange={(e) =>
-                                            setNewBook({ ...newBook, genre: e.target.value })
-                                        }
-                                    />
-                                </Form.Group>
-
-                                <Form.Group className="mb-3">
-                                    <Form.Label style={{ color: "black" }}>Rent Price</Form.Label>
-                                    <Form.Control
-                                        type="number"
-                                        placeholder="Enter rent price"
-                                        value={newBook.rent}
-                                        onChange={(e) =>
-                                            setNewBook({ ...newBook, rent: e.target.value })
-                                        }
-                                    />
-                                </Form.Group>
+                                {["title", "author", "genre", "rent"].map((field) => (
+                                    <Form.Group className="mb-3" key={field}>
+                                        <Form.Label style={{ color: "black" }}>
+                                            {field.charAt(0).toUpperCase() + field.slice(1)}
+                                        </Form.Label>
+                                        <Form.Control
+                                            type={field === "rent" ? "number" : "text"}
+                                            placeholder={`Enter ${field}`}
+                                            name={field}
+                                            value={newBook[field]}
+                                            onChange={handleChange}
+                                        />
+                                    </Form.Group>
+                                ))}
                             </Form>
                         </div>
 
                         <div className="modal-footer d-flex justify-content-end gap-2">
-                            <Button variant="secondary" onClick={() => setShowModal(false)}>
-                                Close
-                            </Button>
-                            <Button variant="success" onClick={handleAddBook}>
-                                Save Book
-                            </Button>
+                            <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
+                            <Button variant="success" onClick={handleAddBook}>Save Book</Button>
                         </div>
                     </div>
                 </div>
