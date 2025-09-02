@@ -127,7 +127,18 @@
       "id": 16
     }
   ],
+
   "books": [
+    {
+      "id": "B103",
+      "title": "Data Structures",
+      "author": "Narasimha Karumanchi",
+      "genre": "Computer Science",
+      "available": false,
+      "rent": 50,
+      "description": "This book covers fundamental and advanced data structures. It includes problem-solving techniques and practical examples that are useful for interviews and exams.",
+      "image": "https://d3525k1ryd2155.cloudfront.net/f/866/108/9781468108866.ME.0.m.jpg"
+    },
     {
       "id": "B107",
       "title": "Clean Code",
@@ -146,7 +157,7 @@
       "available": true,
       "rent": 70,
       "description": "This book introduces reusable design patterns that help developers create flexible and maintainable software. It is a classic reference for object-oriented design.",
-      "image": "https://m.media-amazon.com/images/I/51kuc0iWo-L.jpg"
+      "image": "https://m.media-amazon.com/images/I/71sjeQGh7VL.SL1500.jpg"
     },
     {
       "id": "B109",
@@ -154,9 +165,9 @@
       "author": "Stuart Russell",
       "genre": "AI",
       "available": false,
-      "rent": 80,
+      "rent": 100,
       "description": "Comprehensive guide to AI, covering search algorithms, machine learning, robotics, and natural language processing. A must-read for AI students and researchers.",
-      "image": "https://m.media-amazon.com/images/I/81FdxlVhR6L.jpg"
+      "image": "https://m.media-amazon.com/images/I/61-6TTTBZeL.SL1000.jpg"
     },
     {
       "id": "B110",
@@ -166,7 +177,7 @@
       "available": true,
       "rent": 90,
       "description": "One of the earliest standard textbooks in machine learning. It explains concepts like decision trees, neural networks, and probabilistic models with clarity.",
-      "image": "https://m.media-amazon.com/images/I/71N0jV9uI1L.jpg"
+      "image": "https://m.media-amazon.com/images/I/71NIrX79-HL.SY425.jpg"
     },
     {
       "id": "B111",
@@ -176,7 +187,7 @@
       "available": true,
       "rent": 65,
       "description": "Classic OS concepts explained with real-world examples. Topics include process management, memory, storage, and distributed systems.",
-      "image": "https://m.media-amazon.com/images/I/61H14DgBoQL.jpg"
+      "image": "https://m.media-amazon.com/images/I/81z6V7RHmNL.SL1500.jpg"
     },
     {
       "id": "B112",
@@ -186,7 +197,7 @@
       "available": true,
       "rent": 55,
       "description": "A complete guide to database system design, SQL queries, normalization, and distributed databases. Widely used as an academic textbook.",
-      "image": "https://m.media-amazon.com/images/I/71-0WQX6FpL.jpg"
+      "image": "https://cdn01.sapnaonline.com/product_media/9789339213114/md_9789339213114.jpg"
     },
     {
       "id": "B113",
@@ -196,7 +207,7 @@
       "available": false,
       "rent": 75,
       "description": "Comprehensive coverage of C++ programming language with practical coding examples. Suitable for both beginners and professionals.",
-      "image": "https://m.media-amazon.com/images/I/51BgA-45H1L.jpg"
+      "image": "https://d3525k1ryd2155.cloudfront.net/f/879/164/9780201164879.OL.0.m.jpg"
     },
     {
       "id": "B114",
@@ -206,7 +217,7 @@
       "available": true,
       "rent": 70,
       "description": "Detailed explanation of Java concepts, libraries, and APIs. This book is considered the bible for Java programmers worldwide.",
-      "image": "https://m.media-amazon.com/images/I/81cP9s9U4oL.jpg"
+      "image": "https://m.media-amazon.com/images/I/61yXSTATHHL.UF1000,1000_QL80.jpg"
     },
     {
       "id": "B115",
@@ -216,7 +227,7 @@
       "available": true,
       "rent": 85,
       "description": "Introduces cyber security threats, cryptography, and defensive techniques. It provides real-world case studies and strategies.",
-      "image": "https://m.media-amazon.com/images/I/71DQl-SbjkL.jpg"
+      "image": "https://i.ebayimg.com/images/g/SLsAAOSwMPRlWjJU/s-l1200.jpg"
     },
     {
       "id": "B116",
@@ -226,7 +237,7 @@
       "available": true,
       "rent": 90,
       "description": "In-depth coverage of networking principles, protocols, and architectures. A must-have for networking students and professionals.",
-      "image": "https://m.media-amazon.com/images/I/81Jg+0+5y4L.jpg"
+      "image": "https://m.media-amazon.com/images/I/711kWvQrcIL.UF1000,1000_QL80.jpg"
     },
     {
       "id": "B117",
@@ -236,7 +247,7 @@
       "available": true,
       "rent": 65,
       "description": "Beginner-friendly introduction to Python with projects on games, web apps, and data visualization. Perfect for self-learners.",
-      "image": "https://m.media-amazon.com/images/I/81iqZ2HHD-L.jpg"
+      "image": "https://m.media-amazon.com/images/I/71pys4B4OVL.UF1000,1000_QL80.jpg"
     },
     {
       "id": "B118",
@@ -246,7 +257,7 @@
       "available": false,
       "rent": 100,
       "description": "Definitive book on deep learning, covering neural networks, optimization, and modern architectures. Written by pioneers in the field.",
-      "image": "https://m.media-amazon.com/images/I/71fn+9wvn-L.jpg"
+      "image": "https://m.media-amazon.com/images/I/A10G+oKN3LL.jpg"
     },
     {
       "id": "B119",
@@ -256,7 +267,7 @@
       "available": true,
       "rent": 40,
       "description": "Visually rich introduction to HTML and CSS for beginners. Includes diagrams and step-by-step tutorials.",
-      "image": "https://m.media-amazon.com/images/I/81P7DztJfNL.jpg"
+      "image": "https://m.media-amazon.com/images/I/613ZTDcDsiL.jpg"
     },
     {
       "id": "B120",
@@ -276,7 +287,7 @@
       "available": true,
       "rent": 60,
       "description": "Deep dive into the inner workings of JavaScript. Each volume covers specific areas like scope, closures, async, and performance.",
-      "image": "https://m.media-amazon.com/images/I/81kqrwS1nNL.jpg"
+      "image": "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1585414018i/52764087.jpg"
     },
     {
       "id": "B122",
@@ -286,7 +297,7 @@
       "available": false,
       "rent": 80,
       "description": "Updated edition covering modern OS architectures, security, and virtualization concepts. Widely used as a reference book.",
-      "image": "https://m.media-amazon.com/images/I/71d6JZc3g0L.jpg"
+      "image": "https://m.media-amazon.com/images/I/9162thPPL+L.UF1000,1000_QL80.jpg"
     },
     {
       "id": "B123",
@@ -296,7 +307,7 @@
       "available": true,
       "rent": 70,
       "description": "Practical guide for beginners to learn Linux with hacking tools and commands. Great for ethical hackers and security students.",
-      "image": "https://m.media-amazon.com/images/I/81s0B6NYXML.jpg"
+      "image": "https://m.media-amazon.com/images/I/81FX4OK2njL.jpg"
     },
     {
       "id": "B124",
@@ -306,7 +317,7 @@
       "available": true,
       "rent": 85,
       "description": "Detailed book on penetration testing, ethical hacking methods, and modern cyber threats with case studies.",
-      "image": "https://m.media-amazon.com/images/I/71mJv-MR9aL.jpg"
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRn98Z0-jRCrtk18TeiTZFPpiLWxYORxjKU7wtu76bU_mRHwOWNTiLRIFtnAxLSiSxs17A&usqp=CAU"
     },
     {
       "id": "B125",
@@ -316,9 +327,10 @@
       "available": true,
       "rent": 75,
       "description": "Covers foundations of cloud computing including virtualization, SaaS, IaaS, and distributed systems.",
-      "image": "https://m.media-amazon.com/images/I/71w2uD8jSSL.jpg"
+      "image": "https://media.wiley.com/product_data/coverImage300/90/04708879/0470887990.jpg"
     }
   ],
+
   "issues": [
     {
       "id": 1,
@@ -442,6 +454,15 @@
     }
   ],
   "reservations": [
+    {
+      "id": 3,
+      "memberName": "Amit Verma",
+      "bookName": "Data Structures",
+      "bookId": "B103",
+      "reservationDate": "2025-08-12",
+      "expiryDate": "2025-08-17",
+      "status": "Cancelled"
+    },
     {
       "id": 7,
       "memberName": "Vikram Singh",
