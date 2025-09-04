@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     setRole(null);
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("role");
-
+    
     // 🔴 Red toast for logout
     showToast("error", "Logged out successfully!");
   };

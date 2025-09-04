@@ -31,6 +31,7 @@ function LibraryNavbar() {
   // ✅ Logout
   const handleLogout = () => {
     logout();
+
   };
 
   return (
@@ -86,7 +87,7 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn && (
-              <Button variant="danger" onClick={handleLogout}>
+              <Button variant="danger" onClick={handleLogout} >
                 Logout
               </Button>
             )}

@@ -104,7 +104,7 @@ function Books() {
                     <div className="modal-content">
                         <div className="modal-header d-flex justify-content-between align-items-center">
                             <h4 style={{ color: "black" }}>Add New Book</h4>
-                            <button className="btn-close" onClick={() => setShowModal(false)}>✖</button>
+                            <button className="btn-close" onClick={() => setShowModal(false)}></button>
                         </div>
 
                         <div className="modal-body">

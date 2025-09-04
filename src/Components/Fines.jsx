@@ -1,14 +1,25 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchFines } from "../Slice/FineSlice";
 
 export default function Fines() {
-  const [fines, setFines] = useState([]);
+  // const [fines, setFines] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/fines")
-      .then((res) => res.json())
-      .then((data) => setFines(data))
-      .catch((err) => console.error("Error fetching fines:", err));
-  }, []);
+
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/fines")
+  //     .then((res) => res.json())
+  //     .then((data) => setFines(data))
+  //     .catch((err) => console.error("Error fetching fines:", err));
+  // }, []);
+
+  const dispatch = useDispatch()
+
+  const { fines, loading, error } = useSelector((state) => state.fines)
+
+  // dispatch(FetchFines()){ }
+  useEffect(()=>{dispatch(FetchFines())},[dis])
 
   return (
     <div

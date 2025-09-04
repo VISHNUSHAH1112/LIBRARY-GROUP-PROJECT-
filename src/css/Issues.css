@@ -1,0 +1,71 @@
+/* ✅ Issues Container */
+.issues-container {
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+
+/* ✅ Issues Title */
+.issues-title {
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 12px;
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* ✅ Table Styling */
+.issues-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ✅ Table Header */
+.issue-header {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  color: #fff;
+  text-align: left;
+}
+
+.issue-header th {
+  padding: 14px;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* ✅ Table Row */
+.issue-row {
+  border-bottom: 1px solid #e0e0e0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.issue-row td {
+  padding: 12px;
+  font-size: 15px;
+  color: #333;
+}
+
+/* ✅ Hover Effect - Same style as member-item */
+.issue-row:hover {
+  background: linear-gradient(135deg, #d9f0ff, #e3f2fd); /* Light blue */
+  transform: translateY(-3px) scale(1.01);
+  box-shadow: 0 6px 16px rgba(0,123,255,0.25);
+  border-color: #007bff;
+}
+
+/* ✅ Hover Text Color */
+.issue-row:hover td {
+  color: #0056b3;
+}
