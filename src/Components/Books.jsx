@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
+import "../Styles/Book.css";
 import { useNavigate } from "react-router-dom";
 
 // ✅ Redux imports
@@ -51,7 +52,7 @@ function Books() {
             <header className="books-header d-flex justify-content-between align-items-center">
                 <h1>Library Books</h1>
                 {isLoggedIn && role === "admin" && (
-                    <Button variant="success" onClick={() => setShowModal(true)}>
+                    <Button  onClick={() => setShowModal(true)}>
                         + Add Book
                     </Button>
                 )}
@@ -59,7 +60,7 @@ function Books() {
 
             {/* ---- Loader & Error ---- */}
             {status === "loading" && <p>⏳ Loading books...</p>}
-            {status === "error" && <p style={{ color: "red" }}>❌ {error}</p>}
+            {status === "error" && <p>❌ {error}</p>}
 
             {/* ---- Books Grid ---- */}
             <div className="books-grid">
@@ -75,7 +76,7 @@ function Books() {
 
                                 <div className="d-flex gap-2">
                                     <Button
-                                        variant="primary"
+                                        
                                         onClick={() => {
                                             if (requireLogin()) {
                                                 showToast("success", `✅ Opening ${data.title}`);
@@ -87,7 +88,7 @@ function Books() {
                                     </Button>
 
                                     {isLoggedIn && role === "admin" && (
-                                        <Button variant="danger" onClick={() => deleteBook(data.id)}>
+                                        <Button  onClick={() => deleteBook(data.id)}>
                                             Delete
                                         </Button>
                                     )}
@@ -127,8 +128,8 @@ function Books() {
                         </div>
 
                         <div className="modal-footer d-flex justify-content-end gap-2">
-                            <Button variant="secondary" onClick={() => setShowModal(false)}>Close</Button>
-                            <Button variant="success" onClick={handleAddBook}>Save Book</Button>
+                            <Button onClick={() => setShowModal(false)}>Close</Button>
+                            <Button  onClick={handleAddBook}>Save Book</Button>
                         </div>
                     </div>
                 </div>

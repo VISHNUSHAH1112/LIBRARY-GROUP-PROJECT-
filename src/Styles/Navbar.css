@@ -1,0 +1,140 @@
+/*Navbar Container*/
+.custom-navbar {
+  /* background-color: #cde77f; */
+  background-color: #7f8fb4;
+  color: white;
+  padding: 12px 20px;
+  transition: background 0.4s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo Section */
+.library-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.library-icon {
+  font-size: 26px;
+  /* color: #333333; */
+  color: black;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.library-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: black;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+}
+/* ======= Buttons Section ======= */
+.library-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Generic button style */
+.nav-btn,
+.login-btn,
+.records-btn,
+.members-btn,
+.logout-btn {
+  font-size: 14px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* --- Library Navigation Button --- */
+.nav-btn {
+  background: #4A5A86;
+  color: #fff;
+  border: 1px solid black;
+}
+.nav-btn:hover {
+  background: #3d4c75;
+}
+
+/* --- Login Button --- */
+.login-btn {
+  background: #5f9569;
+  color: white;
+}
+.login-btn:hover {
+  background: #5b735e;
+}
+
+/* --- Records & Members Button --- */
+.records-btn,
+.members-btn {
+  background: #f4f4f4;
+  color: #333;
+  border: 1px solid black;
+}
+.records-btn:hover,
+.members-btn:hover {
+  background: #eaeaea;
+  color: black;
+}
+/* ===== Dropdown Fix: Remove blue focus ===== */
+.dropdown-toggle:focus,
+.dropdown-toggle:active,
+.show > .dropdown-toggle {
+  box-shadow: none !important;
+  background: #f4f4f4 !important;
+  color: #333 !important;
+  border: 1px solid  !important;
+}
+
+/* Dropdown Menu Style  */
+.dropdown-menu {
+  border-radius: 6px;
+  padding: 8px 0;
+  border: 1px solid #ddd;
+}
+.dropdown-item {
+  font-size: 14px;
+  padding: 8px 16px;
+  transition: background 0.3s ease;
+}
+.dropdown-item:hover {
+  background: #c6d7e7;
+}
+
+
+/* --- Logout Button --- */
+.logout-btn {
+  background: #ff4d4d;
+  color: #fff;
+  border: 1px solid black;
+}
+.logout-btn:hover {
+  background: #e60000;
+}
+
+/* ======= Responsive Design ======= */
+@media (max-width: 768px) {
+  .library-title {
+    font-size: 18px;
+  }
+
+  .library-buttons {
+    gap: 6px;
+  }
+
+  .nav-btn,
+  .login-btn,
+  .records-btn,
+  .members-btn,
+  .logout-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
