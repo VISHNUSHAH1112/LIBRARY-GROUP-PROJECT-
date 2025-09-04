@@ -1,5 +1,4 @@
 import Container from "react-bootstrap/Container";
-import "../Styles/Navbar.css";
 import Navbar from "react-bootstrap/Navbar";
 import { IoLibrary } from "react-icons/io5";
 import React, { useState } from "react";
@@ -36,7 +35,7 @@ function LibraryNavbar() {
     <>
       <Navbar className="custom-navbar">
         <Container>
-          {/* ===== Logo Section ===== */}
+          {/*  Logo Section  */}
           <div
             className="library-logo"
             onClick={() => navigate("/")}
@@ -45,7 +44,7 @@ function LibraryNavbar() {
             <span className="library-title">Library</span>
           </div>
 
-          {/* ===== Buttons Section ===== */}
+          {/*  Buttons Section  */}
           <div className="library-buttons">
             {isLoggedIn && (
               <button
@@ -100,7 +99,7 @@ function LibraryNavbar() {
         </Container>
       </Navbar>
 
-      {/* ===== Login Modal ===== */}
+      {/*  Login Modal  */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>

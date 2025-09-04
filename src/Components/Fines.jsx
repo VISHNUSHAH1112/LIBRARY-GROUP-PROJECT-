@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+
 export default function Fines() {
   const [fines, setFines] = useState([]);
 
@@ -13,7 +14,7 @@ export default function Fines() {
   return (
     <div
       style={{
-        maxWidth: "1000px",
+        maxWidth: "100vh",
         margin: "50px auto",
         padding: "20px",
         backgroundColor: "#f8f9fa",

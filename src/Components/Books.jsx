@@ -58,11 +58,11 @@ function Books() {
                 )}
             </header>
 
-            {/* ---- Loader & Error ---- */}
+            {/*  Loader & Error  */}
             {status === "loading" && <p>⏳ Loading books...</p>}
             {status === "error" && <p>❌ {error}</p>}
 
-            {/* ---- Books Grid ---- */}
+            {/*  Books Grid  */}
             <div className="books-grid">
                 {books.map((data) => (
                     <article key={data.id} className="book-card">
@@ -99,7 +99,7 @@ function Books() {
                 ))}
             </div>
 
-            {/* ---- Modal ---- */}
+            {/*  Modal  */}
             {showModal && isLoggedIn && role === "admin" && (
                 <div className="modal-overlay">
                     <div className="modal-content">
