@@ -28,10 +28,7 @@ function Description() {
                 padding: "40px",
                 display: "grid",
                 placeItems: "center",
-                background:
-                    "radial-gradient(1200px 600px at 10% 10%, #2a2f6b55 0%, transparent 50%)," +
-                    "radial-gradient(1000px 500px at 90% 20%, #4f37ff44 0%, transparent 50%)," +
-                    "linear-gradient(180deg, #0f1020, #1a1c3a)"
+                backgroundColor:"#B33791"
             }}
         >
             <div

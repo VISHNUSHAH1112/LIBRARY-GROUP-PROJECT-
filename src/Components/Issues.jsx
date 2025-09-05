@@ -4,16 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { FetchIssues } from "../Slice/IssuesSlice";
 
 const Issues = () => {
-  // const [issues, setIssues] = useState([]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/issues")
-  //     .then((res) => res.json())
-  //     .then((data) => setIssues(data))
-  //     .catch((err) => console.error("Error fetching issues:", err));
-  // }, []);
-
-  // const dispatch = useDispatch();
   const dispatch = useDispatch();
 
   const { issues, loading, error } = useSelector((state) => state.issues);
@@ -25,10 +16,9 @@ const Issues = () => {
   return (
     <div
       style={{
-        maxWidth: "900px",
-        margin: "50px auto",
-        padding: "20px",
-        backgroundColor: "#f8f9fa",
+         margin: "auto",
+        backgroundColor: "#B33791",
+        padding: "20px"      ,
         borderRadius: "12px",
         boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
       }}
@@ -78,10 +68,10 @@ const Issues = () => {
                 style={{
                   borderBottom: "1px solid #ddd",
                   transition: "background 0.3s",
-                  color: "black", // 👈 text hamesha black
+                  color: "black",
                 }}
                 onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#1389ffff") // 👈 hover light gray
+                  (e.currentTarget.style.background = "#1389ffff")
                 }
                 onMouseLeave={(e) =>
                   (e.currentTarget.style.background = "orange")

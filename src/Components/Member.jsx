@@ -2,10 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import "../css/Member.css"
 import { useDispatch, useSelector } from "react-redux";
-import { ShowMember } from "../Slice/MemberSlice";
+import { AddMember, DeleteMember, ShowMember } from "../Slice/MemberSlice";
+
+
 
 function Members() {
-    const [membershow, setmembershow] = useState([]);
+    const dispatch = useDispatch()
+    const { member, loading, error } = useSelector((state) => state.member);
+
+
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState({
         name: "",
@@ -16,25 +21,13 @@ function Members() {
         available: true
     });
 
-    // const BooksMember = async () => {
-    //     try {
-    //         const res = await axios.get("http://localhost:3000/members");
-    //         setmembershow(res.data);
-    //     } catch (error) {
-    //         console.log("Server-Down");
-    //     }
-    // };
-    dispatch = useDispatch()
-    const { member, loading, error } = useSelector((state) => state.member)
 
     useEffect(() => {
         dispatch(ShowMember())
     }, [dispatch]);
 
-    const deletarrary = async (id) => {
-        await axios.delete(`http://localhost:3000/members/${id}`);
-        const deletarrarys = membershow.filter((member) => member.id !== id);
-        setmembershow(deletarrarys);
+    const handleDelete = (id) => {
+        dispatch(DeleteMember(id));
     };
 
     const handleChange = (e) => {
@@ -45,15 +38,14 @@ function Members() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         if (!formData.name || !formData.email) {
             alert("Name and Email are required!");
             return;
         }
         try {
-            const res = await axios.post("http://localhost:3000/members", formData);
-            setmembershow([...membershow, res.data]);
+            dispatch(AddMember(formData))
             setFormData({
                 name: "",
                 email: "",
@@ -72,7 +64,7 @@ function Members() {
         <div className="container py-4">
             <h2 className="mb-3 text-white">Members</h2>
 
-            {membershow.length === 0 && (
+            {member.length === 0 && (
                 <div className="alert alert-light border">No members found.</div>
             )}
 
@@ -84,7 +76,7 @@ function Members() {
                     <h5>Address</h5>
                 </div>
                 <ol>
-                    {membershow.map((member) => (
+                    {member.map((member) => (
                         <div
                             key={member?.id}
                             className="list-group-item member-item d-flex align-items-center justify-content-between gap-3"
@@ -119,7 +111,7 @@ function Members() {
                                     <button
                                         className="btn btn-danger"
                                         onClick={() => {
-                                            deletarrary(member.id);
+                                            handleDelete(member.id);
                                         }}
                                     >
                                         Delete

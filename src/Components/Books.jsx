@@ -46,7 +46,10 @@ function Books() {
     };
 
     return (
-        <div className="books-wrap">
+        <div className="books-wrap" style={{
+            backgroundColor: "#B33791",
+            padding: "20px"
+        }}>
             {/* ---- Header ---- */}
             <header className="books-header d-flex justify-content-between align-items-center">
                 <h1>Library Books</h1>
@@ -62,7 +65,8 @@ function Books() {
             {status === "error" && <p style={{ color: "red" }}>❌ {error}</p>}
 
             {/* ---- Books Grid ---- */}
-            <div className="books-grid">
+            {/* background-color:; */}
+            <div className="books-grid" >
                 {books.map((data) => (
                     <article key={data.id} className="book-card">
                         <div className="book-body">

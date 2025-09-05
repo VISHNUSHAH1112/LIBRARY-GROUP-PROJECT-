@@ -3,31 +3,24 @@ import { useDispatch, useSelector } from "react-redux";
 import { FetchFines } from "../Slice/FineSlice";
 
 export default function Fines() {
-  // const [fines, setFines] = useState([]);
 
-
-
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/fines")
-  //     .then((res) => res.json())
-  //     .then((data) => setFines(data))
-  //     .catch((err) => console.error("Error fetching fines:", err));
-  // }, []);
 
   const dispatch = useDispatch()
 
   const { fines, loading, error } = useSelector((state) => state.fines)
 
-  // dispatch(FetchFines()){ }
-  useEffect(()=>{dispatch(FetchFines())},[dis])
+  useEffect(() => {
+    dispatch(FetchFines())
+  },
+    [dispatch])
 
   return (
     <div
       style={{
-        maxWidth: "1000px",
-        margin: "50px auto",
-        padding: "20px",
-        backgroundColor: "#f8f9fa",
+        // maxWidth: "1000px",
+        margin: "auto",
+        backgroundColor: "#B33791",
+        padding: "20px"      ,
         borderRadius: "12px",
         boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
       }}
@@ -78,7 +71,7 @@ export default function Fines() {
                 style={{
                   borderBottom: "1px solid #ddd",
                   transition: "background 0.3s",
-                  color: "black", // text black hi rahega
+                  color: "black",
                 }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.background = "#1389ffff")

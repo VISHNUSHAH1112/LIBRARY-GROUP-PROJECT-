@@ -9,43 +9,38 @@ export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(() => localStorage.getItem("role") || null);
   const [toasts, setToasts] = useState([]);
 
-  // ---- LOGIN ----
   const login = (userRole) => {
     setIsLoggedIn(true);
     setRole(userRole);
+
     localStorage.setItem("isLoggedIn", true);
     localStorage.setItem("role", userRole);
 
-    // ✅ Correct success toast
     showToast("success", "Login successful!");
   };
 
-  // ---- LOGOUT ----
   const logout = () => {
     setIsLoggedIn(false);
     setRole(null);
+
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("role");
-    
-    // 🔴 Red toast for logout
+
     showToast("error", "Logged out successfully!");
   };
 
-  // ---- TOAST HANDLER ----
   const showToast = (type, message) => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, type, message }]);
 
-    // Auto remove after 5s
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     }, 4000);
   };
 
-  // ---- PROTECT ACTION (for View button etc.) ----
   const requireLogin = (actionName) => {
     if (!isLoggedIn) {
-      showToast("error", "Please login first!"); // 🔴 red popup instead of alert
+      showToast("error", "Please login first!");
       return false;
     }
     return true;
@@ -57,7 +52,6 @@ export const AuthProvider = ({ children }) => {
     >
       {children}
 
-      {/* ✅ Toast Container */}
       <div style={styles.toastContainer}>
         {toasts.map((toast) => (
           <div
@@ -99,12 +93,12 @@ const styles = {
     backgroundColor: "green",
   },
   error: {
-    backgroundColor: "red", // 🔴 red popup
+    backgroundColor: "red",
   },
   info: {
-    backgroundColor: "blue", // 🔵
+    backgroundColor: "blue",
   },
   warning: {
-    backgroundColor: "orange", // 🟠
-  }
-}
+    backgroundColor: "orange",
+  },
+};
