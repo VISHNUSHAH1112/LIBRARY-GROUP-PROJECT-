@@ -28,7 +28,7 @@ function Description() {
                 padding: "40px",
                 display: "grid",
                 placeItems: "center",
-                backgroundColor:"#B33791"
+                backgroundColor: "#B33791"
             }}
         >
             <div
@@ -61,7 +61,7 @@ function Description() {
                             boxShadow: "0 10px 35px rgba(0,0,0,0.55)"
                         }}
                     />
-                    
+
                     <div
                         style={{
                             position: "absolute",
@@ -121,7 +121,11 @@ function Description() {
                     <h4 style={{ color: "#aab0ff", fontWeight: 500, margin: "0 0 8px" }}>{book.author}</h4>
 
                     <p style={{ color: "#dfe2ff", opacity: 0.92, lineHeight: 1.7 }}>{book.description}</p>
+
                 </div>
+               
+
+
             </div>
         </div>
     );

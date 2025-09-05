@@ -9,7 +9,8 @@ body {
 }
 
 .books-header {
-    background: linear-gradient(90deg, #ff6a00, #ee0979);
+    /* background: linear-gradient(90deg, #ff6a00, #ee0979); */
+    background-color: "#FEC5F6";
     padding: 18px 35px;
     border-radius: 14px;
     color: white;
@@ -31,7 +32,8 @@ body {
 }
 
 .books-header .btn-success {
-    background: linear-gradient(45deg, #43e97b, #38f9d7);
+    background: linear-gradient(45deg, #B33791);
+    /* background-color: "#FEC5F6"; */
     border: none;
     font-weight: 600;
     padding: 8px 18px;

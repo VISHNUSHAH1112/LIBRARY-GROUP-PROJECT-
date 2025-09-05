@@ -3,7 +3,6 @@ import { Button, Form } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
-// ✅ Redux imports
 import { useDispatch, useSelector } from "react-redux";
 import { FetchData, AddBooks, DeleteData } from "../Slice/BooksSlice";
 
@@ -16,17 +15,14 @@ function Books() {
     const { isLoggedIn, role, showToast, requireLogin } = useAuth();
     const navigate = useNavigate();
 
-    // ✅ Fetch books on load
     useEffect(() => {
         dispatch(FetchData());
     }, [dispatch]);
 
-    // ✅ Handle input change (generic function)
     const handleChange = (e) => {
         setNewBook({ ...newBook, [e.target.name]: e.target.value });
     };
 
-    // ✅ Add new book
     const handleAddBook = () => {
         const { title, author, genre, rent } = newBook;
         if (!title || !author || !genre || !rent) {
@@ -39,7 +35,6 @@ function Books() {
         showToast("info", "📘 Book added successfully!");
     };
 
-    // ✅ Delete book
     const deleteBook = (id) => {
         dispatch(DeleteData(id));
         showToast("error", "❌ Book deleted!");
@@ -50,7 +45,6 @@ function Books() {
             backgroundColor: "#B33791",
             padding: "20px"
         }}>
-            {/* ---- Header ---- */}
             <header className="books-header d-flex justify-content-between align-items-center">
                 <h1>Library Books</h1>
                 {isLoggedIn && role === "admin" && (
@@ -60,12 +54,9 @@ function Books() {
                 )}
             </header>
 
-            {/* ---- Loader & Error ---- */}
             {status === "loading" && <p>⏳ Loading books...</p>}
             {status === "error" && <p style={{ color: "red" }}>❌ {error}</p>}
 
-            {/* ---- Books Grid ---- */}
-            {/* background-color:; */}
             <div className="books-grid" >
                 {books.map((data) => (
                     <article key={data.id} className="book-card">
@@ -102,7 +93,6 @@ function Books() {
                 ))}
             </div>
 
-            {/* ---- Modal ---- */}
             {showModal && isLoggedIn && role === "admin" && (
                 <div className="modal-overlay">
                     <div className="modal-content">
