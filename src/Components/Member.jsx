@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "../css/Member.css"
+import { useDispatch, useSelector } from "react-redux";
+import { ShowMember } from "../Slice/MemberSlice";
 
 function Members() {
     const [membershow, setmembershow] = useState([]);
@@ -14,18 +16,20 @@ function Members() {
         available: true
     });
 
-    const BooksMember = async () => {
-        try {
-            const res = await axios.get("http://localhost:3000/members");
-            setmembershow(res.data);
-        } catch (error) {
-            console.log("Server-Down");
-        }
-    };
+    // const BooksMember = async () => {
+    //     try {
+    //         const res = await axios.get("http://localhost:3000/members");
+    //         setmembershow(res.data);
+    //     } catch (error) {
+    //         console.log("Server-Down");
+    //     }
+    // };
+    dispatch = useDispatch()
+    const { member, loading, error } = useSelector((state) => state.member)
 
     useEffect(() => {
-        BooksMember();
-    }, []);
+        dispatch(ShowMember())
+    }, [dispatch]);
 
     const deletarrary = async (id) => {
         await axios.delete(`http://localhost:3000/members/${id}`);
@@ -58,7 +62,7 @@ function Members() {
                 gender: "Male",
                 available: true
             });
-            setShowForm(false); 
+            setShowForm(false);
         } catch (error) {
             console.log("Error adding member");
         }
