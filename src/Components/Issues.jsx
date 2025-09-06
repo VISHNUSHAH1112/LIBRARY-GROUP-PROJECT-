@@ -1,64 +1,63 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AddIssues, FetchIssues, DeleteIssues } from "../Slice/IssuesSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../css/Issues.css";
+import { Button } from "react-bootstrap";
+import { useAuth } from "./AuthContext";
 
 function Issues() {
-  const [issues, setIssues] = useState([]);
+  const dispatch = useDispatch();
+  const { issues, loading, error } = useSelector((state) => state.issues);
+
+  // ✅ useAuth ko call kiya
+  const { showToast } = useAuth();
+
   const [showForm, setShowForm] = useState(false);
   const [formData, setFormData] = useState({
     memberName: "",
     bookName: "",
     issueDate: "",
     dueDate: "",
-    returnDate: "",
   });
 
-  // Fetch issues
-  const fetchIssues = async () => {
-    try {
-      const res = await axios.get("http://localhost:3000/issues");
-      setIssues(res.data);
-    } catch (error) {
-      console.log("Error fetching issues:", error);
-    }
-  };
-
   useEffect(() => {
-    fetchIssues();
-  }, []);
+    dispatch(FetchIssues());
+  }, [dispatch]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
+  // ✅ Delete ke sath toast
+  const handleDelete = (id) => {
+    dispatch(DeleteIssues(id));
+    showToast("error", "❌ Issue deleted!");
+  };
+
+  // ✅ Add ke sath toast
+  const handleSubmit = (e) => {
     e.preventDefault();
     if (
       !formData.memberName ||
       !formData.bookName ||
       !formData.issueDate ||
-      !formData.dueDate ||
-      !formData.returnDate
+      !formData.dueDate
     ) {
-      alert("All fields are required!");
+      showToast("warning", "⚠️ All fields are required!");
       return;
     }
-    try {
-      const res = await axios.post("http://localhost:3000/issues", formData);
-      setIssues([...issues, res.data]);
-      setFormData({
-        memberName: "",
-        bookName: "",
-        issueDate: "",
-        dueDate: "",
-        returnDate: "",
-      });
-      setShowForm(false);
-    } catch (error) {
-      console.log("Error adding issue:", error);
-    }
+
+    dispatch(AddIssues(formData));
+    setFormData({
+      memberName: "",
+      bookName: "",
+      issueDate: "",
+      dueDate: "",
+    });
+    setShowForm(false);
+    showToast("success", "✅ Issue added successfully!");
   };
 
   return (
@@ -81,18 +80,10 @@ function Issues() {
                 <button
                   className="btn-close"
                   onClick={() => setShowForm(false)}
-                ></button>
+                >❌</button>
               </div>
 
               <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <input
-                  type="text"
-                  name="ID"
-                  placeholder="ID"
-                  className="form-control"
-                  value={formData.bookName}
-                  onChange={handleChange}
-                />
                 <input
                   type="text"
                   name="memberName"
@@ -103,7 +94,7 @@ function Issues() {
                 />
                 <input
                   type="text"
-                  name="bookname"
+                  name="bookName"
                   placeholder="Book Name"
                   className="form-control"
                   value={formData.bookName}
@@ -112,7 +103,7 @@ function Issues() {
                 <input
                   type="text"
                   name="issueDate"
-                  placeholder="Issue date"
+                  placeholder="Issue Date"
                   className="form-control"
                   value={formData.issueDate}
                   onChange={handleChange}
@@ -125,7 +116,7 @@ function Issues() {
                   value={formData.dueDate}
                   onChange={handleChange}
                 />
-             
+
                 <button type="submit" className="btn btn-success w-100">
                   Add Issue
                 </button>
@@ -135,6 +126,14 @@ function Issues() {
         )}
 
         {/* Issues Table */}
+        {loading && <p>Loading issues...</p>}
+        {error && (
+          <>
+            <p style={{ color: "red" }}>Error: {error}</p>
+            {showToast("error", `❌ ${error}`)}
+          </>
+        )}
+
         <table className="issues-table">
           <thead>
             <tr>
@@ -143,10 +142,11 @@ function Issues() {
               <th>Book Name</th>
               <th>Issue Date</th>
               <th>Due Date</th>
+              <th>Delete Issues</th>
             </tr>
           </thead>
           <tbody>
-            {issues.length > 0 ? (
+            {Array.isArray(issues) && issues.length > 0 ? (
               issues.map((issue) => (
                 <tr key={issue.id}>
                   <td>{issue.id}</td>
@@ -154,11 +154,19 @@ function Issues() {
                   <td>{issue.bookName}</td>
                   <td>{issue.issueDate}</td>
                   <td>{issue.dueDate}</td>
+                  <td>
+                    <Button
+                      variant="danger"
+                      onClick={() => handleDelete(issue.id)}
+                    >
+                      Delete
+                    </Button>
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="no-issues">
+                <td colSpan="6" className="no-issues">
                   No issues found
                 </td>
               </tr>

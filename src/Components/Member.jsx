@@ -144,7 +144,7 @@ function Members() {
                             <button
                                 className="btn-close"
                                 onClick={() => setShowForm(false)}
-                            ></button>
+                            >❌</button>
                         </div>
                         <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
                             <input

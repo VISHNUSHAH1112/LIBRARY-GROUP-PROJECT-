@@ -12,7 +12,7 @@ export const AddIssues = createAsyncThunk("AddIssues", async (NewIssues) => {
 });
 
 export const DeleteIssues = createAsyncThunk("DeleteIssues", async (id) => {
-  const res = await axios.delete("http://localhost:3000/issues");
+  const res = await axios.delete(`http://localhost:3000/issues/${id}`);
   return id;
 });
 
@@ -63,7 +63,7 @@ const IssuesSlice = createSlice({
       })
       .addCase(DeleteIssues.rejected, (state, action) => {
         state.loading = false;
-        state.issues = action.error.message;
+        state.error = action.error.message;
       });
   },
 });

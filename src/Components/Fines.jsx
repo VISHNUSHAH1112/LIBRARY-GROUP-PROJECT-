@@ -44,109 +44,135 @@ export default function Fines() {
   return (
     <div
       style={{
-        maxWidth: "1000px",
-        margin: "50px auto",
-        padding: "20px",
-        backgroundColor: "#f8f9fa",
-        borderRadius: "12px",
-        boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        padding: "40px 20px",
+        fontFamily: "Poppins, sans-serif",
+        backgroundColor: "#F7F4EA",
       }}
     >
-      {/* Header with Add Fine button */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          marginBottom: "20px",
-        }}
-      >
-        <h2
-          style={{
-            padding: "10px",
-            backgroundColor: "#0d6efd",
-            color: "white",
-            borderRadius: "8px",
-          }}
-        >
-          💰 Fines Records
-        </h2>
-        <Button
-          onClick={() => setShowForm(true)}
-          style={{ backgroundColor: "#28a745", border: "none" }}
-        >
-          + Add Fine
-        </Button>
-      </div>
-
-      {/* Fines Table */}
-      <table
-        style={{
           width: "100%",
-          borderCollapse: "collapse",
-          backgroundColor: "white",
-          borderRadius: "8px",
-          overflow: "hidden",
+          background: "#fff",
+          borderRadius: "12px",
+          padding: "25px 30px",
+          boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
         }}
       >
-        <thead
+        {/* Header */}
+        <div
           style={{
-            backgroundColor: "#0d6efd",
-            color: "white",
-            textAlign: "left",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            marginBottom: "20px",
           }}
         >
-          <tr>
-            <th style={{ padding: "12px" }}>ID</th>
-            <th style={{ padding: "12px" }}>Member Name</th>
-            <th style={{ padding: "12px" }}>Book Name</th>
-            <th style={{ padding: "12px" }}>Due Date</th>
-            <th style={{ padding: "12px" }}>Return Date</th>
-            <th style={{ padding: "12px" }}>Fine Amount (₹)</th>
-          </tr>
-        </thead>
-        <tbody>
-          {fines.length > 0 ? (
-            fines.map((fine) => (
-              <tr
-                key={fine.id}
-                style={{
-                  borderBottom: "1px solid #ddd",
-                  transition: "background 0.3s",
-                  color: "black",
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#1389ffff")
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "orange")
-                }
-              >
-                <td style={{ padding: "10px" }}>{fine.id}</td>
-                <td style={{ padding: "10px" }}>{fine.memberName}</td>
-                <td style={{ padding: "10px" }}>{fine.bookName}</td>
-                <td style={{ padding: "10px" }}>{fine.dueDate}</td>
-                <td style={{ padding: "10px" }}>{fine.returnDate}</td>
-                <td style={{ padding: "10px" }}>{fine.fineAmount}</td>
-              </tr>
-            ))
-          ) : (
-            <tr>
-              <td
-                colSpan="6"
-                style={{
-                  textAlign: "center",
-                  padding: "15px",
-                  color: "gray",
-                  fontStyle: "italic",
-                }}
-              >
-                No fines found
-              </td>
+          <h2
+            style={{
+              fontSize: "22px",
+              fontWeight: 600,
+              color: "black",
+              margin: 0,
+            }}
+          >
+            💰 Fines Records
+          </h2>
+          <Button
+            onClick={() => setShowForm(true)}
+            style={{
+              backgroundColor: "black",
+              color: "white",
+              border: "none",
+              padding: "8px 16px",
+              borderRadius: "6px",
+              cursor: "pointer",
+            }}
+          >
+            + Add Fine
+          </Button>
+        </div>
+
+        {/* Fines Table */}
+        <table
+          style={{
+            width: "100%",
+            borderCollapse: "collapse",
+            borderRadius: "8px",
+            overflow: "hidden",
+            color: "black",
+          }}
+        >
+          <thead>
+            <tr
+              style={{
+                backgroundColor: "black",
+                color: "white",
+              }}
+            >
+              <th style={{ padding: "12px", textAlign: "left" }}>ID</th>
+              <th style={{ padding: "12px", textAlign: "left" }}>
+                Member Name
+              </th>
+              <th style={{ padding: "12px", textAlign: "left" }}>Book Name</th>
+              <th style={{ padding: "12px", textAlign: "left" }}>Due Date</th>
+              <th style={{ padding: "12px", textAlign: "left" }}>
+                Return Date
+              </th>
+              <th style={{ padding: "12px", textAlign: "left" }}>
+                Fine Amount (₹)
+              </th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {fines.length > 0 ? (
+              fines.map((fine) => (
+                <tr
+                  key={fine.id}
+                  style={{
+                    borderBottom: "1px solid #ddd",
+                    transition: "all 0.3s ease",
+                    cursor: "pointer",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background =
+                      "linear-gradient(90deg, #3d72a8, #0984e3)";
+                    e.currentTarget.style.color = "white";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = "white";
+                    e.currentTarget.style.color = "black";
+                  }}
+                >
+                  <td style={{ padding: "12px" }}>{fine.id}</td>
+                  <td style={{ padding: "12px" }}>{fine.memberName}</td>
+                  <td style={{ padding: "12px" }}>{fine.bookName}</td>
+                  <td style={{ padding: "12px" }}>{fine.dueDate}</td>
+                  <td style={{ padding: "12px" }}>{fine.returnDate}</td>
+                  <td style={{ padding: "12px" }}>{fine.fineAmount}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td
+                  colSpan="6"
+                  style={{
+                    textAlign: "center",
+                    padding: "15px",
+                    color: "gray",
+                    fontStyle: "italic",
+                  }}
+                >
+                  No fines found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {/* Add Fine Modal */}
       <Modal show={showForm} onHide={() => setShowForm(false)}>
@@ -203,10 +229,16 @@ export default function Fines() {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowForm(false)}>
+          <Button
+            style={{ backgroundColor: "gray", border: "none" }}
+            onClick={() => setShowForm(false)}
+          >
             Cancel
           </Button>
-          <Button variant="success" onClick={handleSubmit}>
+          <Button
+            style={{ backgroundColor: "green", border: "none" }}
+            onClick={handleSubmit}
+          >
             Add Fine
           </Button>
         </Modal.Footer>

@@ -38,7 +38,7 @@ function LibraryNavbar() {
   return (
     <>
       {/* Navbar */}
-      <Navbar className="custom-navbar" expand="lg">
+      <Navbar className="custom-navbar" expand="lg" style={{ backgroundColor: "#A8BBA3" }}>
         <Container>
           {/* Logo */}
           <div
@@ -54,7 +54,7 @@ function LibraryNavbar() {
           <div className="library-buttons d-flex align-items-center gap-2">
             {isLoggedIn && (
               <Button
-                variant="outline-primary"
+                style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}
                 disabled={location.pathname === "/"}
                 onClick={() => navigate("/")}
               >
@@ -71,7 +71,7 @@ function LibraryNavbar() {
             {isLoggedIn && role === "admin" && (
               <>
                 <Dropdown>
-                  <Dropdown.Toggle variant="secondary">
+                  <Dropdown.Toggle variant="secondary" style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}>
                     Records
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -85,7 +85,7 @@ function LibraryNavbar() {
                 </Dropdown>
 
                 <Button
-                  variant="info"
+                  style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}
                   onClick={() => navigate("/Members")}
                 >
                   Members
