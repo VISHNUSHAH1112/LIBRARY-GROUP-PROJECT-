@@ -103,7 +103,7 @@ function Issues() {
                 />
                 <input
                   type="text"
-                  name="bookName"
+                  name="bookname"
                   placeholder="Book Name"
                   className="form-control"
                   value={formData.bookName}

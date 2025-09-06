@@ -1,13 +1,15 @@
-import Container from "react-bootstrap/Container";
-import Navbar from "react-bootstrap/Navbar";
-import { IoLibrary } from "react-icons/io5";
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import Modal from "react-bootstrap/Modal";
-import { NavLink, useNavigate, useLocation } from "react-router-dom";
-import Dropdown from "react-bootstrap/Dropdown";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
+import { IoLibrary } from "react-icons/io5";
 import { useAuth } from "./AuthContext";
+import {
+  Navbar,
+  Container,
+  Button,
+  Modal,
+  Form,
+  Dropdown,
+} from "react-bootstrap";
 
 function LibraryNavbar() {
   const [showModal, setShowModal] = useState(false);
@@ -21,7 +23,8 @@ function LibraryNavbar() {
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    login(username, password);
+    const msg = login(username, password);
+    if (msg) alert(msg); // show message if login returns any
     setUsername("");
     setPassword("");
     setShowModal(false);
@@ -29,81 +32,77 @@ function LibraryNavbar() {
 
   const handleLogout = () => {
     logout();
-
+    navigate("/"); // redirect to home after logout
   };
 
   return (
     <>
-      <Navbar className="custom-navbar">
+      {/* Navbar */}
+      <Navbar className="custom-navbar" expand="lg">
         <Container>
-          {/*  Logo Section  */}
+          {/* Logo */}
           <div
             className="library-logo"
+            style={{ cursor: "pointer" }}
             onClick={() => navigate("/")}
           >
             <IoLibrary className="library-icon" size={26} />
             <span className="library-title">Library</span>
           </div>
 
-          {/*  Buttons Section  */}
-          <div className="library-buttons">
+          {/* Buttons */}
+          <div className="library-buttons d-flex align-items-center gap-2">
             {isLoggedIn && (
-              <button
-                className="nav-btn"
+              <Button
+                variant="outline-primary"
                 disabled={location.pathname === "/"}
                 onClick={() => navigate("/")}
               >
                 Library
-              </button>
+              </Button>
             )}
 
             {!isLoggedIn && (
-              <button
-                className="login-btn"
-                onClick={() => setShowModal(true)}
-              >
+              <Button variant="success" onClick={() => setShowModal(true)}>
                 Login
-              </button>
+              </Button>
             )}
 
             {isLoggedIn && role === "admin" && (
-              <Dropdown>
-                <Dropdown.Toggle className="records-btn">
-                  Records
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item as={NavLink} to="/Issues">
-                    Issues
-                  </Dropdown.Item>
-                  <Dropdown.Item as={NavLink} to="/Fines">
-                    Fines
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-            )}
+              <>
+                <Dropdown>
+                  <Dropdown.Toggle variant="secondary">
+                    Records
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <Dropdown.Item as={NavLink} to="/Issues">
+                      Issues
+                    </Dropdown.Item>
+                    <Dropdown.Item as={NavLink} to="/Fines">
+                      Fines
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
 
-            {isLoggedIn && role === "admin" && (
-              <button
-                className="members-btn"
-                onClick={() => navigate("/Members")}
-              >
-                Members
-              </button>
+                <Button
+                  variant="info"
+                  onClick={() => navigate("/Members")}
+                >
+                  Members
+                </Button>
+              </>
             )}
 
             {isLoggedIn && (
-
-              <button className="logout-btn" onClick={handleLogout}>
-
-              <Button variant="danger" onClick={handleLogout} >
+              <Button variant="danger" onClick={handleLogout}>
                 Logout
-              </button>
+              </Button>
             )}
           </div>
         </Container>
       </Navbar>
 
-      {/*  Login Modal  */}
+      {/* Login Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>
