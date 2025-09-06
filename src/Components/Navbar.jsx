@@ -35,7 +35,7 @@ function LibraryNavbar() {
 
   return (
     <>
-      <Navbar style={{ backgroundColor: "#C562AF" }}>
+      <Navbar style={{ backgroundColor: "#A8BBA3" }}>
         <Container>
           <div style={{ color: "white" }}>
             <IoLibrary style={{ fontSize: "24px" }} /> Library
@@ -43,7 +43,8 @@ function LibraryNavbar() {
 
           <div style={{ display: "flex", gap: "10px" }}>
             {isLoggedIn && (<Button
-              variant="primary"
+              variant=""
+              style={{ border: "none", fontSize: "20px" }}
               disabled={location.pathname === "/"}
               onClick={() => navigate("/")}
             >
@@ -61,15 +62,17 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn && role === "admin" && (
-              <Dropdown>
-                <Dropdown.Toggle variant="outline-info" id="dropdown-basic">
+              <Dropdown
+
+              >
+                <Dropdown.Toggle variant="" id="dropdown-basic" style={{ border: "none", fontSize: "20px" }} >
                   Records
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item as={NavLink} to="/Issues">
+                  <Dropdown.Item as={NavLink} to="/Issues" style={{ border: "none", fontSize: "20px" }}>
                     Issues
                   </Dropdown.Item>
-                  <Dropdown.Item as={NavLink} to="/Fines">
+                  <Dropdown.Item as={NavLink} to="/Fines" style={{ border: "none", fontSize: "20px" }}>
                     Fines
                   </Dropdown.Item>
                 </Dropdown.Menu>
@@ -78,16 +81,17 @@ function LibraryNavbar() {
 
             {isLoggedIn && role === "admin" && (
               <Button
+                style={{ border: "none", fontSize: "20px" }}
+                variant=""
                 as={NavLink}
                 to={"/Members"}
-                variant="outline-info"
               >
                 Members
               </Button>
             )}
 
             {isLoggedIn && (
-              <Button variant="danger" onClick={handleLogout} >
+              <Button variant="danger" onClick={handleLogout}  >
                 Logout
               </Button>
             )}

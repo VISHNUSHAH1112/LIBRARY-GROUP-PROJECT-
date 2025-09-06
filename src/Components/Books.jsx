@@ -42,11 +42,11 @@ function Books() {
 
     return (
         <div className="books-wrap" style={{
-            backgroundColor: "#B33791",
+            backgroundColor: "#F7F4EA",
             padding: "20px"
         }}>
             <header className="books-header d-flex justify-content-between align-items-center">
-                <h1>Library Books</h1>
+                <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
                 {isLoggedIn && role === "admin" && (
                     <Button variant="success" onClick={() => setShowModal(true)}>
                         + Add Book
@@ -59,7 +59,7 @@ function Books() {
 
             <div className="books-grid" >
                 {books.map((data) => (
-                    <article key={data.id} className="book-card">
+                    <article key={data.id} className="book-card" style={{ backgroundColor: "#EAD7BB" }}>
                         <div className="book-body">
                             <span className="badge-genre">{data.genre}</span>
                             <h2 className="book-title">{data.title}</h2>
@@ -70,6 +70,7 @@ function Books() {
 
                                 <div className="d-flex gap-2">
                                     <Button
+                                        style={{ backgroundColor: "#B87C4C", border: "none" }}
                                         variant="primary"
                                         onClick={() => {
                                             if (requireLogin()) {

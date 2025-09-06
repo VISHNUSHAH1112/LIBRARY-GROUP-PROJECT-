@@ -16,11 +16,12 @@ const Issues = () => {
   return (
     <div
       style={{
-         margin: "auto",
-        backgroundColor: "#B33791",
-        padding: "20px"      ,
-        borderRadius: "12px",
-        boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
+        margin: "auto",
+        // backgroundColor: "#B33791",
+        backgroundColor: "#F7F4EA",
+        padding: "20px",
+          borderRadius: "12px",
+            boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
       }}
     >
       <h2
@@ -101,7 +102,7 @@ const Issues = () => {
           )}
         </tbody>
       </table>
-    </div>
+    </div >
   );
 };
 

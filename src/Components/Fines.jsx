@@ -19,7 +19,9 @@ export default function Fines() {
       style={{
         // maxWidth: "1000px",
         margin: "auto",
-        backgroundColor: "#B33791",
+        // backgroundColor: "#B33791",
+            backgroundColor: "#F7F4EA",
+
         padding: "20px"      ,
         borderRadius: "12px",
         boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",

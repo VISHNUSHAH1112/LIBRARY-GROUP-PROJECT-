@@ -6,6 +6,7 @@ function Description() {
     const { id } = useParams();
     const navigate = useNavigate();
     const [book, setBook] = useState(null);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
         const fetchBook = async () => {
@@ -28,7 +29,8 @@ function Description() {
                 padding: "40px",
                 display: "grid",
                 placeItems: "center",
-                backgroundColor: "#B33791"
+                backgroundColor: "#F7F4EA",
+
             }}
         >
             <div
@@ -67,7 +69,7 @@ function Description() {
                             position: "absolute",
                             top: "14px",
                             left: "14px",
-                            background: "linear-gradient(135deg, #6a5cff, #8a7bff)",
+                            background: "linear-gradient(135deg, #000000ff, #f86060ff)",
                             color: "white",
                             padding: "8px 14px",
                             borderRadius: "999px",
@@ -86,23 +88,26 @@ function Description() {
                         <span
                             style={{
                                 border: "1px dashed rgba(255,255,255,0.12)",
-                                color: "#aab0ff",
+                                color: "#9A3F3F",
                                 padding: "6px 10px",
                                 borderRadius: "999px",
-                                fontSize: "12px"
+                                fontSize: "20px"
                             }}
                         >
                             Book ID: {book.id}
                         </span>
                         <button
                             onClick={() => navigate(-1)}
+                            onMouseEnter={() => setIsHovered(true)}
+                            onMouseLeave={() => setIsHovered(false)}
                             style={{
                                 borderRadius: "12px",
-                                border: "1px solid rgba(255,255,255,0.12)",
-                                background: "rgba(255,255,255,0.1)",
-                                color: "#eef0ff",
+                                border: "1px solid rgba(0, 0, 0, 0.12)",
+                                background: isHovered ? "red" : "rgba(255, 255, 255, 0.1)",
+                                color: isHovered ? "white" : "black",
                                 padding: "8px 14px",
-                                cursor: "pointer"
+                                cursor: "pointer",
+                                transition: "all 0.3s ease"
                             }}
                         >
                             ← Back
@@ -113,17 +118,18 @@ function Description() {
                         style={{
                             margin: "6px 0 0",
                             fontSize: "clamp(26px, 3.4vw, 40px)",
-                            lineHeight: 1.12
+                            lineHeight: 1.12,
+                            color: "#9A3F3F"
                         }}
                     >
                         {book.title}
                     </h2>
-                    <h4 style={{ color: "#aab0ff", fontWeight: 500, margin: "0 0 8px" }}>{book.author}</h4>
+                    <h4 style={{ color: "#9A3F3F", fontWeight: 1000, margin: "0 0 8px" }}>Author : {book.author}</h4>
 
-                    <p style={{ color: "#dfe2ff", opacity: 0.92, lineHeight: 1.7 }}>{book.description}</p>
+                    <p style={{ color: "#9A3F3F", fontWeight: 1000, lineHeight: 1.7 }}>{book.description}</p>
 
                 </div>
-               
+
 
 
             </div>
