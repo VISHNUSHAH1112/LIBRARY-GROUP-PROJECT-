@@ -1,31 +1,50 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchFines } from "../Slice/FineSlice";
-
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import Form from "react-bootstrap/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Fines() {
-  // const [fines, setFines] = useState([]);
+  const dispatch = useDispatch();
+  const { fines } = useSelector((state) => state.fines);
 
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    memberName: "",
+    bookName: "",
+    dueDate: "",
+    returnDate: "",
+    fineAmount: "",
+  });
 
+  useEffect(() => {
+    dispatch(FetchFines());
+  }, [dispatch]);
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/fines")
-  //     .then((res) => res.json())
-  //     .then((data) => setFines(data))
-  //     .catch((err) => console.error("Error fetching fines:", err));
-  // }, []);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-  const dispatch = useDispatch()
-
-  const { fines, loading, error } = useSelector((state) => state.fines)
-
-  // dispatch(FetchFines()){ }
-  useEffect(()=>{dispatch(FetchFines())},[dis])
+  const handleSubmit = () => {
+    console.log("New Fine Data:", formData);
+    // Dispatch your add fine action here
+    setShowForm(false);
+    setFormData({
+      memberName: "",
+      bookName: "",
+      dueDate: "",
+      returnDate: "",
+      fineAmount: "",
+    });
+  };
 
   return (
     <div
       style={{
-        maxWidth: "100vh",
+        maxWidth: "1000px",
         margin: "50px auto",
         padding: "20px",
         backgroundColor: "#f8f9fa",
@@ -33,19 +52,34 @@ export default function Fines() {
         boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
       }}
     >
-      <h2
+      {/* Header with Add Fine button */}
+      <div
         style={{
-          textAlign: "center",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
           marginBottom: "20px",
-          padding: "10px",
-          backgroundColor: "#0d6efd",
-          color: "white",
-          borderRadius: "8px",
         }}
       >
-        💰 Fines Records
-      </h2>
+        <h2
+          style={{
+            padding: "10px",
+            backgroundColor: "#0d6efd",
+            color: "white",
+            borderRadius: "8px",
+          }}
+        >
+          💰 Fines Records
+        </h2>
+        <Button
+          onClick={() => setShowForm(true)}
+          style={{ backgroundColor: "#28a745", border: "none" }}
+        >
+          + Add Fine
+        </Button>
+      </div>
 
+      {/* Fines Table */}
       <table
         style={{
           width: "100%",
@@ -79,7 +113,7 @@ export default function Fines() {
                 style={{
                   borderBottom: "1px solid #ddd",
                   transition: "background 0.3s",
-                  color: "black", // text black hi rahega
+                  color: "black",
                 }}
                 onMouseEnter={(e) =>
                   (e.currentTarget.style.background = "#1389ffff")
@@ -113,6 +147,70 @@ export default function Fines() {
           )}
         </tbody>
       </table>
+
+      {/* Add Fine Modal */}
+      <Modal show={showForm} onHide={() => setShowForm(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Fine</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3">
+              <Form.Label>Member Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="memberName"
+                value={formData.memberName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Book Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="bookName"
+                value={formData.bookName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Due Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="dueDate"
+                value={formData.dueDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Return Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="returnDate"
+                value={formData.returnDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Fine Amount (₹)</Form.Label>
+              <Form.Control
+                type="number"
+                name="fineAmount"
+                value={formData.fineAmount}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowForm(false)}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleSubmit}>
+            Add Fine
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }
