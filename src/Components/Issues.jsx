@@ -1,15 +1,26 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useDispatch, useSelector } from "react-redux";
+import { FetchIssues } from "../Slice/IssuesSlice";
 
 const Issues = () => {
-  const [issues, setIssues] = useState([]);
+  // const [issues, setIssues] = useState([]);
+
+  // useEffect(() => {
+  //   fetch("http://localhost:3000/issues")
+  //     .then((res) => res.json())
+  //     .then((data) => setIssues(data))
+  //     .catch((err) => console.error("Error fetching issues:", err));
+  // }, []);
+
+  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const { issues, loading, error } = useSelector((state) => state.issues);
 
   useEffect(() => {
-    fetch("http://localhost:3000/issues")
-      .then((res) => res.json())
-      .then((data) => setIssues(data))
-      .catch((err) => console.error("Error fetching issues:", err));
-  }, []);
+    dispatch(FetchIssues());
+  }, [dispatch]);
 
   return (
     <div

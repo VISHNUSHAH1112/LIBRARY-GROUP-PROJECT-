@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import "../css/Member.css"
 
 function Members() {
     const [membershow, setmembershow] = useState([]);
