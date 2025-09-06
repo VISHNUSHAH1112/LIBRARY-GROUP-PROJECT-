@@ -92,7 +92,10 @@ function LibraryNavbar() {
             )}
 
             {isLoggedIn && (
-              <Button variant="danger" onClick={handleLogout}>
+
+              <button className="logout-btn" onClick={handleLogout}>
+
+              <Button variant="danger" onClick={handleLogout} >
                 Logout
               </button>
             )}
