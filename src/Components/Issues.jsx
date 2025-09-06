@@ -1,118 +1,173 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { useDispatch, useSelector } from "react-redux";
-import { FetchIssues } from "../Slice/IssuesSlice";
+import "../css/Issues.css";
 
-const Issues = () => {
-  // const [issues, setIssues] = useState([]);
+function Issues() {
+  const [issues, setIssues] = useState([]);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    memberName: "",
+    bookName: "",
+    issueDate: "",
+    dueDate: "",
+    returnDate: "",
+  });
 
-  // useEffect(() => {
-  //   fetch("http://localhost:3000/issues")
-  //     .then((res) => res.json())
-  //     .then((data) => setIssues(data))
-  //     .catch((err) => console.error("Error fetching issues:", err));
-  // }, []);
-
-  // const dispatch = useDispatch();
-  const dispatch = useDispatch();
-
-  const { issues, loading, error } = useSelector((state) => state.issues);
+  // Fetch issues
+  const fetchIssues = async () => {
+    try {
+      const res = await axios.get("http://localhost:3000/issues");
+      setIssues(res.data);
+    } catch (error) {
+      console.log("Error fetching issues:", error);
+    }
+  };
 
   useEffect(() => {
-    dispatch(FetchIssues());
-  }, [dispatch]);
+    fetchIssues();
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (
+      !formData.memberName ||
+      !formData.bookName ||
+      !formData.issueDate ||
+      !formData.dueDate ||
+      !formData.returnDate
+    ) {
+      alert("All fields are required!");
+      return;
+    }
+    try {
+      const res = await axios.post("http://localhost:3000/issues", formData);
+      setIssues([...issues, res.data]);
+      setFormData({
+        memberName: "",
+        bookName: "",
+        issueDate: "",
+        dueDate: "",
+        returnDate: "",
+      });
+      setShowForm(false);
+    } catch (error) {
+      console.log("Error adding issue:", error);
+    }
+  };
 
   return (
-    <div
-      style={{
-        maxWidth: "900px",
-        margin: "50px auto",
-        padding: "20px",
-        backgroundColor: "#f8f9fa",
-        borderRadius: "12px",
-        boxShadow: "0px 4px 12px rgba(0,0,0,0.1)",
-      }}
-    >
-      <h2
-        style={{
-          textAlign: "center",
-          marginBottom: "20px",
-          padding: "10px",
-          backgroundColor: "#0d6efd",
-          color: "white",
-          borderRadius: "8px",
-        }}
-      >
-        📚 Issues List
-      </h2>
+    <div className="issues-page">
+      <div className="issues-container">
+        {/* Header + Add Button */}
+        <div className="issues-header">
+          <h2> 📚 Issues List</h2>
+          <button className="btn btn-dark" onClick={() => setShowForm(true)}>
+            ➕ Add New Issue
+          </button>
+        </div>
 
-      <table
-        style={{
-          width: "100%",
-          borderCollapse: "collapse",
-          backgroundColor: "white",
-          borderRadius: "8px",
-          overflow: "hidden",
-        }}
-      >
-        <thead
-          style={{
-            backgroundColor: "#0d6efd",
-            color: "white",
-            textAlign: "left",
-          }}
-        >
-          <tr>
-            <th style={{ padding: "12px" }}>ID</th>
-            <th style={{ padding: "12px" }}>Member Name</th>
-            <th style={{ padding: "12px" }}>Book Name</th>
-            <th style={{ padding: "12px" }}>Issue Date</th>
-            <th style={{ padding: "12px" }}>Due Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          {issues.length > 0 ? (
-            issues.map((issue) => (
-              <tr
-                key={issue.id}
-                style={{
-                  borderBottom: "1px solid #ddd",
-                  transition: "background 0.3s",
-                  color: "black", // 👈 text hamesha black
-                }}
-                onMouseEnter={(e) =>
-                  (e.currentTarget.style.background = "#1389ffff") // 👈 hover light gray
-                }
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.background = "orange")
-                }
-              >
-                <td style={{ padding: "10px" }}>{issue.id}</td>
-                <td style={{ padding: "10px" }}>{issue.memberName}</td>
-                <td style={{ padding: "10px" }}>{issue.bookName}</td>
-                <td style={{ padding: "10px" }}>{issue.issueDate}</td>
-                <td style={{ padding: "10px" }}>{issue.dueDate}</td>
-              </tr>
-            ))
-          ) : (
+        {/* Add Issue Modal */}
+        {showForm && (
+          <div className="modal-overlay">
+            <div className="modal-card">
+              <div className="d-flex justify-content-between align-items-center mb-3">
+                <h4 className="mb-0">Add Issue</h4>
+                <button
+                  className="btn-close"
+                  onClick={() => setShowForm(false)}
+                ></button>
+              </div>
+
+              <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
+                <input
+                  type="text"
+                  name="ID"
+                  placeholder="ID"
+                  className="form-control"
+                  value={formData.bookName}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="memberName"
+                  placeholder="Member Name"
+                  className="form-control"
+                  value={formData.memberName}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="bookName"
+                  placeholder="Book Name"
+                  className="form-control"
+                  value={formData.bookName}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="issueDate"
+                  placeholder="Issue date"
+                  className="form-control"
+                  value={formData.issueDate}
+                  onChange={handleChange}
+                />
+                <input
+                  type="text"
+                  name="dueDate"
+                  placeholder="Due Date"
+                  className="form-control"
+                  value={formData.dueDate}
+                  onChange={handleChange}
+                />
+             
+                <button type="submit" className="btn btn-success w-100">
+                  Add Issue
+                </button>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* Issues Table */}
+        <table className="issues-table">
+          <thead>
             <tr>
-              <td
-                colSpan="5"
-                style={{
-                  textAlign: "center",
-                  padding: "15px",
-                  color: "gray",
-                  fontStyle: "italic",
-                }}
-              >
-                No issues found
-              </td>
+              <th>ID</th>
+              <th>Member Name</th>
+              <th>Book Name</th>
+              <th>Issue Date</th>
+              <th>Due Date</th>
             </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {issues.length > 0 ? (
+              issues.map((issue) => (
+                <tr key={issue.id}>
+                  <td>{issue.id}</td>
+                  <td>{issue.memberName}</td>
+                  <td>{issue.bookName}</td>
+                  <td>{issue.issueDate}</td>
+                  <td>{issue.dueDate}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="5" className="no-issues">
+                  No issues found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
-};
+}
 
 export default Issues;

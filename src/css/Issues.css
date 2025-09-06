@@ -1,71 +1,146 @@
-/* ✅ Issues Container */
+.issues-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  background: linear-gradient(135deg, #e0f7fa, #e8eaf6);
+  font-family: "Poppins", sans-serif;
+}
+
 .issues-container {
-  max-width: 1000px;
-  margin: 50px auto;
-  padding: 20px;
-  background: #f8f9fa;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0,0,0,0.12);
-}
-
-/* ✅ Issues Title */
-.issues-title {
-  text-align: center;
-  margin-bottom: 20px;
-  padding: 12px;
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: white;
-  border-radius: 10px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-}
-
-/* ✅ Table Styling */
-.issues-table {
   width: 100%;
-  border-collapse: collapse;
+  max-width: 950px;
   background: #fff;
   border-radius: 12px;
-  overflow: hidden;
+  padding: 25px 30px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* ✅ Table Header */
-.issue-header {
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: #fff;
-  text-align: left;
+.issues-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
-.issue-header th {
-  padding: 14px;
-  font-size: 14px;
-  font-weight: 700;
-  text-transform: uppercase;
+.issues-header h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: black;
 }
 
-/* ✅ Table Row */
-.issue-row {
-  border-bottom: 1px solid #e0e0e0;
-  transition: all 0.3s ease;
+.issues-header button {
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
   cursor: pointer;
 }
 
-.issue-row td {
+.issues-header button:hover {
+  background-color: #333;
+}
+
+.issues-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  color: black;
+}
+
+.issues-table thead {
+  background-color: black;
+  color: white;
+}
+
+.issues-table thead th {
   padding: 12px;
-  font-size: 15px;
-  color: #333;
+  font-weight: 600;
+  text-align: left;
 }
 
-/* ✅ Hover Effect - Same style as member-item */
-.issue-row:hover {
-  background: linear-gradient(135deg, #d9f0ff, #e3f2fd); /* Light blue */
-  transform: translateY(-3px) scale(1.01);
-  box-shadow: 0 6px 16px rgba(0,123,255,0.25);
-  border-color: #007bff;
+.issues-table tbody td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  transition: background 0.3s ease;
 }
 
-/* ✅ Hover Text Color */
-.issue-row:hover td {
-  color: #0056b3;
+/* .issues-table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+} */
+ .issues-table tbody tr:hover {
+  background: linear-gradient(90deg, #3d72a8, #0984e3); /* blue gradient */
+  color: white; /* text readable on blue */
+  transform: scale(1.02); /* subtle zoom effect */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+/* ===== Records & Members Button (Match Navbar Gradient) ===== */
+
+.no-issues {
+  text-align: center;
+  padding: 15px;
+  color: gray;
+  font-style: italic;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.modal-card {
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0px 8px 25px rgba(0,0,0,0.2);
+}
+
+.modal-card h4 {
+  font-weight: 600;
+  color: #000;
+}
+
+.modal-card .btn-close {
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+.modal-card form .form-control {
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid black;
+}
+
+.modal-card form button {
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  font-weight: 500;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.modal-card form button:hover {
+  background-color: #218838;
 }
