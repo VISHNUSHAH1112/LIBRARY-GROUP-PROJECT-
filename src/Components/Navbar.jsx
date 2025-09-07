@@ -9,6 +9,7 @@ import {
   Modal,
   Form,
   Dropdown,
+  Nav,
 } from "react-bootstrap";
 
 function LibraryNavbar() {
@@ -24,7 +25,7 @@ function LibraryNavbar() {
   const handleLoginSubmit = (e) => {
     e.preventDefault();
     const msg = login(username, password);
-    if (msg) alert(msg); // show message if login returns any
+    if (msg) alert(msg);
     setUsername("");
     setPassword("");
     setShowModal(false);
@@ -32,73 +33,99 @@ function LibraryNavbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // redirect to home after logout
+    navigate("/"); // redirect to home
   };
 
   return (
     <>
       {/* Navbar */}
-      <Navbar className="custom-navbar" expand="lg" style={{ backgroundColor: "#A8BBA3" }}>
+      <Navbar
+        expand="lg"
+        className="shadow-sm"
+        style={{ backgroundColor: "#A8BBA3" }}
+      >
         <Container>
           {/* Logo */}
-          <div
-            className="library-logo"
-            style={{ cursor: "pointer" }}
+          <Navbar.Brand
+            style={{ cursor: "pointer", fontWeight: "bold" }}
             onClick={() => navigate("/")}
           >
-            <IoLibrary className="library-icon" size={26} />
-            <span className="library-title">Library</span>
-          </div>
+            <IoLibrary size={26} className="me-2" />
+            Library
+          </Navbar.Brand>
 
-          {/* Buttons */}
-          <div className="library-buttons d-flex align-items-center gap-2">
-            {isLoggedIn && (
-              <Button
-                style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}
-                disabled={location.pathname === "/"}
-                onClick={() => navigate("/")}
-              >
-                Library
-              </Button>
-            )}
+          {/* Toggler for mobile */}
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-            {!isLoggedIn && (
-              <Button variant="success" onClick={() => setShowModal(true)}>
-                Login
-              </Button>
-            )}
-
-            {isLoggedIn && role === "admin" && (
-              <>
-                <Dropdown>
-                  <Dropdown.Toggle variant="secondary" style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}>
-                    Records
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item as={NavLink} to="/Issues">
-                      Issues
-                    </Dropdown.Item>
-                    <Dropdown.Item as={NavLink} to="/Fines">
-                      Fines
-                    </Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown>
-
+          {/* Collapsible content */}
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto d-flex align-items-center gap-2">
+              {isLoggedIn && (
                 <Button
-                  style={{ backgroundColor: "#A8BBA3", border: "none", color: "black", fontSize: "20px" }}
-                  onClick={() => navigate("/Members")}
+                  style={{
+                    backgroundColor: "#A8BBA3",
+                    border: "none",
+                    color: "black",
+                    fontSize: "16px",
+                  }}
+                  disabled={location.pathname === "/"}
+                  onClick={() => navigate("/")}
                 >
-                  Members
+                  Library
                 </Button>
-              </>
-            )}
+              )}
 
-            {isLoggedIn && (
-              <Button variant="danger" onClick={handleLogout}>
-                Logout
-              </Button>
-            )}
-          </div>
+              {!isLoggedIn && (
+                <Button variant="success" onClick={() => setShowModal(true)}>
+                  Login
+                </Button>
+              )}
+
+              {isLoggedIn && role === "admin" && (
+                <>
+                  <Dropdown>
+                    <Dropdown.Toggle
+                      variant="secondary"
+                      style={{
+                        backgroundColor: "#A8BBA3",
+                        border: "none",
+                        color: "black",
+                        fontSize: "16px",
+                      }}
+                    >
+                      Records
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                      <Dropdown.Item as={NavLink} to="/Issues">
+                        Issues
+                      </Dropdown.Item>
+                      <Dropdown.Item as={NavLink} to="/Fines">
+                        Fines
+                      </Dropdown.Item>
+                    </Dropdown.Menu>
+                  </Dropdown>
+
+                  <Button
+                    style={{
+                      backgroundColor: "#A8BBA3",
+                      border: "none",
+                      color: "black",
+                      fontSize: "16px",
+                    }}
+                    onClick={() => navigate("/Members")}
+                  >
+                    Members
+                  </Button>
+                </>
+              )}
+
+              {isLoggedIn && (
+                <Button variant="danger" onClick={handleLogout}>
+                  Logout
+                </Button>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </Container>
       </Navbar>
 

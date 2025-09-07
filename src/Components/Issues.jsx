@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddIssues, FetchIssues, DeleteIssues } from "../Slice/IssuesSlice";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "../css/Issues.css";
-import { Button } from "react-bootstrap";
+import { Button, Modal, Form, Table, Spinner, Alert } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
 
 function Issues() {
@@ -61,81 +60,32 @@ function Issues() {
   };
 
   return (
-    <div className="issues-page">
-      <div className="issues-container">
-        {/* Header + Add Button */}
-        <div className="issues-header">
-          <h2> 📚 Issues List</h2>
-          <button className="btn btn-dark" onClick={() => setShowForm(true)}>
-            ➕ Add New Issue
-          </button>
+    <div className="container py-4">
+      {/* Header */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="fw-bold">📚 Issues List</h2>
+        <Button variant="dark" onClick={() => setShowForm(true)}>
+          ➕ Add New Issue
+        </Button>
+      </div>
+
+      {/* Error + Loading */}
+      {loading && (
+        <div className="text-center my-3">
+          <Spinner animation="border" />
+          <p className="mt-2">Loading issues...</p>
         </div>
+      )}
+      {error && (
+        <Alert variant="danger" className="my-3">
+          ❌ {error}
+        </Alert>
+      )}
 
-        {/* Add Issue Modal */}
-        {showForm && (
-          <div className="modal-overlay">
-            <div className="modal-card">
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h4 className="mb-0">Add Issue</h4>
-                <button
-                  className="btn-close"
-                  onClick={() => setShowForm(false)}
-                >❌</button>
-              </div>
-
-              <form onSubmit={handleSubmit} className="d-flex flex-column gap-3">
-                <input
-                  type="text"
-                  name="memberName"
-                  placeholder="Member Name"
-                  className="form-control"
-                  value={formData.memberName}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="bookName"
-                  placeholder="Book Name"
-                  className="form-control"
-                  value={formData.bookName}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="issueDate"
-                  placeholder="Issue Date"
-                  className="form-control"
-                  value={formData.issueDate}
-                  onChange={handleChange}
-                />
-                <input
-                  type="text"
-                  name="dueDate"
-                  placeholder="Due Date"
-                  className="form-control"
-                  value={formData.dueDate}
-                  onChange={handleChange}
-                />
-
-                <button type="submit" className="btn btn-success w-100">
-                  Add Issue
-                </button>
-              </form>
-            </div>
-          </div>
-        )}
-
-        {/* Issues Table */}
-        {loading && <p>Loading issues...</p>}
-        {error && (
-          <>
-            <p style={{ color: "red" }}>Error: {error}</p>
-            {showToast("error", `❌ ${error}`)}
-          </>
-        )}
-
-        <table className="issues-table">
-          <thead>
+      {/* Issues Table */}
+      <div className="table-responsive">
+        <Table bordered hover striped className="align-middle text-center">
+          <thead className="table-dark">
             <tr>
               <th>ID</th>
               <th>Member Name</th>
@@ -157,6 +107,7 @@ function Issues() {
                   <td>
                     <Button
                       variant="danger"
+                      size="sm"
                       onClick={() => handleDelete(issue.id)}
                     >
                       Delete
@@ -166,14 +117,66 @@ function Issues() {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="no-issues">
+                <td colSpan="6" className="text-muted fst-italic">
                   No issues found
                 </td>
               </tr>
             )}
           </tbody>
-        </table>
+        </Table>
       </div>
+
+      {/* Add Issue Modal */}
+      <Modal show={showForm} onHide={() => setShowForm(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Add New Issue</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group className="mb-3">
+              <Form.Label>Member Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="memberName"
+                placeholder="Enter member name"
+                value={formData.memberName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Book Name</Form.Label>
+              <Form.Control
+                type="text"
+                name="bookName"
+                placeholder="Enter book name"
+                value={formData.bookName}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Issue Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="issueDate"
+                value={formData.issueDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Due Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="dueDate"
+                value={formData.dueDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Button variant="success" type="submit" className="w-100">
+              Add Issue
+            </Button>
+          </Form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 }

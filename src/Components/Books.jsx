@@ -62,10 +62,10 @@ function Books() {
             {status === "error" && <p>❌ {error}</p>}
 
             {/* ✅ Responsive Books Grid */}
-            <Row className="g-3">
+            <Row className="g-3" >
                 {books.map((data) => (
-                    <Col key={data.id} xs={12} sm={6} md={4} lg={3}>
-                        <article className="book-card p-3 h-100" style={{ background: "white", borderRadius: "8px", boxShadow: "0px 2px 5px rgba(0,0,0,0.1)" }}>
+                    <Col key={data.id} xs={12} sm={6} md={4} lg={3} >
+                        <article className="book-card p-3 h-100" style={{ background: "#FFC7A7", borderRadius: "8px", boxShadow: "0px 2px 5px rgba(0,0,0,0.1)" }}>
                             <div className="book-body">
                                 <span className="badge-genre">{data.genre}</span>
                                 <h2 className="book-title">{data.title}</h2>

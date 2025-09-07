@@ -19,15 +19,6 @@
       "address": "Navrangpura, Ahmedabad, Gujarat"
     },
     {
-      "id": 5,
-      "name": "Suresh Yadav",
-      "email": "suresh@example.com",
-      "phone": "9876543214",
-      "available": false,
-      "gender": "Male",
-      "address": "Civil Lines, Jaipur, Rajasthan"
-    },
-    {
       "id": 6,
       "name": "Kavita Joshi",
       "email": "kavita@example.com",
