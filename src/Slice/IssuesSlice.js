@@ -1,18 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const api = "https://library-group-project-1.onrender.com/issues";
 
 export const FetchIssues = createAsyncThunk("FetchIssues", async () => {
-  const res = await axios.get("http://localhost:3000/issues");
+  const res = await axios.get(api);
   return res.data;
 });
 
 export const AddIssues = createAsyncThunk("AddIssues", async (NewIssues) => {
-  const res = await axios.post("http://localhost:3000/issues", NewIssues);
+  const res = await axios.post(api, NewIssues);
   return res.data;
 });
 
 export const DeleteIssues = createAsyncThunk("DeleteIssues", async (id) => {
-  const res = await axios.delete(`http://localhost:3000/issues/${id}`);
+  const res = await axios.delete(`${api}/${id}`);
   return id;
 });
 
@@ -59,7 +60,9 @@ const IssuesSlice = createSlice({
       })
       .addCase(DeleteIssues.fulfilled, (state, action) => {
         state.loading = false;
-        state.issues = state.issues.filter((issues)=>issues.id!==action.payload);
+        state.issues = state.issues.filter(
+          (issues) => issues.id !== action.payload
+        );
       })
       .addCase(DeleteIssues.rejected, (state, action) => {
         state.loading = false;

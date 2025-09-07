@@ -1,18 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+const api = "https://library-group-project-1.onrender.com/fines";
 
 export const FetchFines = createAsyncThunk("FetchFines", async () => {
-  const res = await axios.get("http://localhost:3000/fines");
+  const res = await axios.get(api);
   return res.data;
 });
 
 export const AddFines = createAsyncThunk("AddFines", async (newFines) => {
-  const res = await axios.post("http://localhost:3000/fines", newFines);
+  const res = await axios.post(api, newFines);
   return res.data;
 });
 
 export const DeleteFines = createAsyncThunk("DeleteFines", async (id) => {
-  const res = await axios.delete(`http://localhost:3000/fines/${id}`);
+  const res = await axios.delete(`${api}/${id}`);
   return id;
 });
 
@@ -42,7 +43,7 @@ const FinesSlice = createSlice({
         state.loading = true;
       })
       .addCase(AddFines.fulfilled, (state, action) => {
-        state.loading=false
+        state.loading = false;
         state.fines.push(action.payload);
       })
       .addCase(AddFines.rejected, (state, action) => {
@@ -52,13 +53,13 @@ const FinesSlice = createSlice({
         state.loading = true;
       })
       .addCase(DeleteFines.fulfilled, (state, action) => {
-        state.loading=false
+        state.loading = false;
         state.fines = state.fines.filter(
           (fines) => fines.id !== action.payload
         );
       })
       .addCase(DeleteFines.rejected, (state, action) => {
-        state.loading=false
+        state.loading = false;
         state.error = action.error.message;
       });
   },
