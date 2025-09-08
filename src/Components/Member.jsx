@@ -77,7 +77,6 @@ function Members() {
         <div className="container py-4">
             <h2 className="mb-3 text-dark fw-bold">👤 Members</h2>
 
-            {/* Loading State */}
             {loading && (
                 <div className="text-center my-3">
                     <Spinner animation="border" />
@@ -85,12 +84,10 @@ function Members() {
                 </div>
             )}
 
-            {/* No Members */}
             {!loading && membershow.length === 0 && (
                 <Alert variant="secondary">No members found.</Alert>
             )}
 
-            {/* Members Table */}
             {membershow.length > 0 && (
                 <div className="table-responsive">
                     <Table bordered hover striped className="align-middle text-center">
@@ -141,14 +138,12 @@ function Members() {
                 </div>
             )}
 
-            {/* Add Member Button */}
             <div className="text-center mt-4">
                 <Button variant="primary" onClick={() => setShowForm(true)}>
                     ➕ Add Member
                 </Button>
             </div>
 
-            {/* Add Member Modal */}
             <Modal show={showForm} onHide={() => setShowForm(false)} centered>
                 <Modal.Header closeButton>
                     <Modal.Title>Add Member</Modal.Title>

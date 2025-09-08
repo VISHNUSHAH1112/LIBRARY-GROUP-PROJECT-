@@ -43,7 +43,6 @@ export const AuthProvider = ({ children }) => {
     showToast("error", "Logged out successfully!");
   };
 
-  // ---- TOAST HANDLER ----
   const showToast = (type, message) => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, type, message }]);
@@ -53,7 +52,6 @@ export const AuthProvider = ({ children }) => {
     }, 4000);
   };
 
-  // ---- PROTECT ACTION ----
   const requireLogin = (actionName) => {
     if (!isLoggedIn) {
       showToast("error", "Please login first!");
@@ -68,7 +66,6 @@ export const AuthProvider = ({ children }) => {
     >
       {children}
 
-      {/* ✅ Toast Container */}
       <div style={styles.toastContainer}>
         {toasts.map((toast) => (
           <div

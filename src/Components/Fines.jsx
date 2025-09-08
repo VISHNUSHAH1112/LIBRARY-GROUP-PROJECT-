@@ -36,7 +36,6 @@ export default function Fines() {
 
   const handleSubmit = () => {
     console.log("New Fine Data:", formData);
-    // Dispatch your add fine action here
     setShowForm(false);
     setFormData({
       memberName: "",
@@ -52,7 +51,6 @@ export default function Fines() {
       <Row className="justify-content-center">
         <Col xs={12} md={10} lg={8}>
           <div className="bg-white rounded-4 shadow-sm p-4">
-            {/* Header */}
             <div className="d-flex justify-content-between align-items-center mb-3">
               <h2 className="h4 fw-bold m-0 text-dark">💰 Fines Records</h2>
               <Button variant="dark" onClick={() => setShowForm(true)}>
@@ -60,7 +58,6 @@ export default function Fines() {
               </Button>
             </div>
 
-            {/* Fines Table */}
             <div className="table-responsive">
               <Table bordered hover className="align-middle">
                 <thead className="table-dark">
@@ -99,7 +96,6 @@ export default function Fines() {
         </Col>
       </Row>
 
-      {/* Add Fine Modal */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add New Fine</Modal.Title>

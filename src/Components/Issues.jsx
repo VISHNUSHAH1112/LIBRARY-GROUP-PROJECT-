@@ -9,7 +9,6 @@ function Issues() {
   const dispatch = useDispatch();
   const { issues, loading, error } = useSelector((state) => state.issues);
 
-  // ✅ useAuth ko call kiya
   const { showToast } = useAuth();
 
   const [showForm, setShowForm] = useState(false);
@@ -29,13 +28,11 @@ function Issues() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // ✅ Delete ke sath toast
   const handleDelete = (id) => {
     dispatch(DeleteIssues(id));
     showToast("error", "❌ Issue deleted!");
   };
 
-  // ✅ Add ke sath toast
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -69,7 +66,6 @@ function Issues() {
         </Button>
       </div>
 
-      {/* Error + Loading */}
       {loading && (
         <div className="text-center my-3">
           <Spinner animation="border" />
@@ -82,7 +78,6 @@ function Issues() {
         </Alert>
       )}
 
-      {/* Issues Table */}
       <div className="table-responsive">
         <Table bordered hover striped className="align-middle text-center">
           <thead className="table-dark">

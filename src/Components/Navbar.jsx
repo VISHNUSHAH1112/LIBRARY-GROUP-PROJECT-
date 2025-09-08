@@ -33,19 +33,17 @@ function LibraryNavbar() {
 
   const handleLogout = () => {
     logout();
-    navigate("/"); // redirect to home
+    navigate("/"); 
   };
 
   return (
     <>
-      {/* Navbar */}
       <Navbar
         expand="lg"
         className="shadow-sm"
         style={{ backgroundColor: "#A8BBA3" }}
       >
         <Container>
-          {/* Logo */}
           <Navbar.Brand
             style={{ cursor: "pointer", fontWeight: "bold" }}
             onClick={() => navigate("/")}
@@ -54,10 +52,8 @@ function LibraryNavbar() {
             Library
           </Navbar.Brand>
 
-          {/* Toggler for mobile */}
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-          {/* Collapsible content */}
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto d-flex align-items-center gap-2">
               {isLoggedIn && (
@@ -129,7 +125,6 @@ function LibraryNavbar() {
         </Container>
       </Navbar>
 
-      {/* Login Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Body>
           <Form onSubmit={handleLoginSubmit}>

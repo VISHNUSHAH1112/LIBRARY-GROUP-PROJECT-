@@ -3,7 +3,6 @@ import { Button, Form, Container, Row, Col } from "react-bootstrap";
 import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
-// ✅ Redux imports
 import { useDispatch, useSelector } from "react-redux";
 import { FetchData, AddBooks, DeleteData } from "../Slice/BooksSlice";
 
@@ -16,12 +15,10 @@ function Books() {
     const { isLoggedIn, role, showToast, requireLogin } = useAuth();
     const navigate = useNavigate();
 
-    // ✅ Fetch books on load
     useEffect(() => {
         dispatch(FetchData());
     }, [dispatch]);
 
-    // ✅ Handle input change
     const handleChange = (e) => {
         setNewBook({ ...newBook, [e.target.name]: e.target.value });
     };
@@ -47,7 +44,6 @@ function Books() {
 
     return (
         <Container fluid className="books-wrap py-3" style={{ backgroundColor: "#F7F4EA" }}>
-            {/* ---- Header ---- */}
             <header className="books-header d-flex justify-content-between align-items-center mb-3">
                 <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
                 {isLoggedIn && role === "admin" && (
@@ -57,11 +53,9 @@ function Books() {
                 )}
             </header>
 
-            {/* Loader & Error */}
             {status === "loading" && <p>⏳ Loading books...</p>}
             {status === "error" && <p>❌ {error}</p>}
 
-            {/* ✅ Responsive Books Grid */}
             <Row className="g-3" >
                 {books.map((data) => (
                     <Col key={data.id} xs={12} sm={6} md={4} lg={3} >
@@ -99,7 +93,6 @@ function Books() {
                 ))}
             </Row>
 
-            {/* ✅ Modal */}
             {showModal && isLoggedIn && role === "admin" && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -110,13 +103,21 @@ function Books() {
 
                         <div className="modal-body">
                             <Form>
-                                {["title", "author", "genre", "rent"].map((field) => (
+                                {["title", "author", "genre", "rent", "imageUrl", "description"].map((field) => (
                                     <Form.Group className="mb-3" key={field}>
                                         <Form.Label style={{ color: "black" }}>
                                             {field.charAt(0).toUpperCase() + field.slice(1)}
                                         </Form.Label>
                                         <Form.Control
-                                            type={field === "rent" ? "number" : "text"}
+                                            type={
+                                                field === "rent"
+                                                    ? "number"
+                                                    : field === "imageUrl"
+                                                        ? "url"
+                                                        : "text"
+                                            }
+                                            as={field === "description" ? "textarea" : "input"}
+                                            rows={field === "description" ? 3 : undefined}
                                             placeholder={`Enter ${field}`}
                                             name={field}
                                             value={newBook[field]}
@@ -134,6 +135,7 @@ function Books() {
                     </div>
                 </div>
             )}
+
         </Container>
     );
 }

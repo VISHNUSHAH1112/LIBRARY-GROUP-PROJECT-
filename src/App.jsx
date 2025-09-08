@@ -17,7 +17,6 @@ function App() {
     <>
 
       <LibraryNavbar />
-      {/* <Books /> */}
 
       <Routes>
         <Route path="/" element={<Books />} />

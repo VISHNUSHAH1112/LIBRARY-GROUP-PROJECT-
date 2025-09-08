@@ -26,7 +26,6 @@ function Description() {
             <div className="row w-100 justify-content-center">
                 <div className="col-12 col-md-10 col-lg-8 bg-white shadow-lg rounded-4 p-4">
                     <div className="row g-4 align-items-center">
-                        {/* Image Section */}
                         <div className="col-12 col-md-5 text-center position-relative">
                             <img
                                 src={book.image}
@@ -40,7 +39,6 @@ function Description() {
                             </span>
                         </div>
 
-                        {/* Book Details */}
                         <div className="col-12 col-md-7">
                             <div className="d-flex justify-content-between align-items-center mb-3">
                                 <span className="badge text-dark border border-secondary px-3 py-2 rounded-pill">
