@@ -4,140 +4,239 @@ import { useAuth } from "./AuthContext";
 import { useNavigate } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
-import { FetchData, AddBooks, DeleteData } from "../Slice/BooksSlice";
+import {
+  FetchData,
+  AddBooks,
+  DeleteData,
+  setSearchTerm,
+} from "../Slice/BooksSlice";
 
 function Books() {
-    const [showModal, setShowModal] = useState(false);
-    const [newBook, setNewBook] = useState({ title: "", author: "", genre: "", rent: "" });
+  const [showModal, setShowModal] = useState(false);
+  const [newBook, setNewBook] = useState({
+    title: "",
+    author: "",
+    genre: "",
+    rent: "",
+  });
 
-    const { books, status, error } = useSelector((state) => state.books);
-    const dispatch = useDispatch();
-    const { isLoggedIn, role, showToast, requireLogin } = useAuth();
-    const navigate = useNavigate();
+  const [localSearch, setLocalSearch] = useState(""); // search bar input ke liye local state
 
-    useEffect(() => {
-        dispatch(FetchData());
-    }, [dispatch]);
+  const { books, status, error, searchTerm } = useSelector(
+    (state) => state.books
+  );
 
-    const handleChange = (e) => {
-        setNewBook({ ...newBook, [e.target.name]: e.target.value });
-    };
+  const dispatch = useDispatch();
+  const { isLoggedIn, role, showToast, requireLogin } = useAuth();
+  const navigate = useNavigate();
 
-    // ✅ Add new book
-    const handleAddBook = () => {
-        const { title, author, genre, rent } = newBook;
-        if (!title || !author || !genre || !rent) {
-            return showToast("warn", "⚠️ Please fill all fields!");
-        }
+  useEffect(() => {
+    dispatch(FetchData());
+  }, [dispatch]);
 
-        dispatch(AddBooks({ ...newBook, id: Date.now() }));
-        setShowModal(false);
-        setNewBook({ title: "", author: "", genre: "", rent: "" });
-        showToast("info", "📘 Book added successfully!");
-    };
+  const handleChange = (e) => {
+    setNewBook({ ...newBook, [e.target.name]: e.target.value });
+  };
 
-    // ✅ Delete book
-    const deleteBook = (id) => {
-        dispatch(DeleteData(id));
-        showToast("error", "❌ Book deleted!");
-    };
+  // ✅ Add new book
+  const handleAddBook = () => {
+    const { title, author, genre, rent } = newBook;
+    if (!title || !author || !genre || !rent) {
+      return showToast("warn", "⚠️ Please fill all fields!");
+    }
 
-    return (
-        <Container fluid className="books-wrap py-3" style={{ backgroundColor: "#F7F4EA" }}>
-            <header className="books-header d-flex justify-content-between align-items-center mb-3">
-                <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
-                {isLoggedIn && role === "admin" && (
-                    <Button onClick={() => setShowModal(true)} style={{ backgroundColor: "#F7F4EA", border: "none", color: "#B17F59", fontSize: "20px" }}>
-                        + Add Book
-                    </Button>
-                )}
-            </header>
+    dispatch(AddBooks({ ...newBook, id: Date.now() }));
+    setShowModal(false);
+    setNewBook({ title: "", author: "", genre: "", rent: "" });
+    showToast("info", "📘 Book added successfully!");
+  };
 
-            {status === "loading" && <p>⏳ Loading books...</p>}
-            {status === "error" && <p>❌ {error}</p>}
+  // ✅ Delete book
+  const deleteBook = (id) => {
+    dispatch(DeleteData(id));
+    showToast("error", "❌ Book deleted!");
+  };
 
-            <Row className="g-3" >
-                {books.map((data) => (
-                    <Col key={data.id} xs={12} sm={6} md={4} lg={3} >
-                        <article className="book-card p-3 h-100" style={{ background: "#FFC7A7", borderRadius: "8px", boxShadow: "0px 2px 5px rgba(0,0,0,0.1)" }}>
-                            <div className="book-body">
-                                <span className="badge-genre">{data.genre}</span>
-                                <h2 className="book-title">{data.title}</h2>
-                                <p className="book-author">by {data.author}</p>
+  // 🔹 Search logic
+  const handleSearch = () => {
+    dispatch(setSearchTerm(localSearch.trim()));
+  };
 
-                                <div className="book-footer d-flex justify-content-between align-items-center mt-3">
-                                    <span>Rent ₹<strong>{data.rent}</strong></span>
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleSearch();
+    }
+  };
 
-                                    <div className="d-flex gap-2">
-                                        <Button style={{ backgroundColor: "#CFAB8D", border: "none" }}
-                                            onClick={() => {
-                                                if (requireLogin()) {
-                                                    showToast("success", `✅ Opening ${data.title}`);
-                                                    navigate(`/Description/${data.id}`);
-                                                }
-                                            }}
-                                        >
-                                            View
-                                        </Button>
+  // 🔹 Filter books based on searchTerm
+  const filteredBooks = books.filter(
+    (data) =>
+      data.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      data.author.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-                                        {isLoggedIn && role === "admin" && (
-                                            <Button onClick={() => deleteBook(data.id)} style={{ backgroundColor: "red", border: "none" }}>
-                                                Delete
-                                            </Button>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-                    </Col>
-                ))}
-            </Row>
+  return (
+    <Container
+      fluid
+      className="books-wrap py-3"
+      style={{ backgroundColor: "#F7F4EA" }}
+    >
+      {/* ==== HEADER ==== */}
+      <header className="books-header d-flex justify-content-between align-items-center mb-3">
+        <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
 
-            {showModal && isLoggedIn && role === "admin" && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <div className="modal-header d-flex justify-content-between align-items-center">
-                            <h4 style={{ color: "black" }}>Add New Book</h4>
-                            <button className="btn-close" onClick={() => setShowModal(false)}></button>
-                        </div>
+        {/* 🔹 Search Section */}
+        <div className="d-flex" style={{ gap: "10px" }}>
+          <Form.Control
+            type="text"
+            placeholder="Search by Title or Author"
+            style={{ width: "250px" }}
+            value={localSearch}
+            onChange={(e) => setLocalSearch(e.target.value)}
+            onKeyDown={handleKeyDown} // enter press to search
+          />
+          <Button
+            variant="primary"
+            onClick={handleSearch}
+            style={{ backgroundColor: "#B87C4C", border: "none" }}
+          >
+            Search
+          </Button>
+        </div>
+      </header>
 
-                        <div className="modal-body">
-                            <Form>
-                                {["title", "author", "genre", "rent", "imageUrl", "description"].map((field) => (
-                                    <Form.Group className="mb-3" key={field}>
-                                        <Form.Label style={{ color: "black" }}>
-                                            {field.charAt(0).toUpperCase() + field.slice(1)}
-                                        </Form.Label>
-                                        <Form.Control
-                                            type={
-                                                field === "rent"
-                                                    ? "number"
-                                                    : field === "imageUrl"
-                                                        ? "url"
-                                                        : "text"
-                                            }
-                                            as={field === "description" ? "textarea" : "input"}
-                                            rows={field === "description" ? 3 : undefined}
-                                            placeholder={`Enter ${field}`}
-                                            name={field}
-                                            value={newBook[field]}
-                                            onChange={handleChange}
-                                        />
-                                    </Form.Group>
-                                ))}
-                            </Form>
-                        </div>
+      {/* ==== BOOKS GRID ==== */}
+      {status === "loading" && <p>⏳ Loading books...</p>}
+      {status === "error" && <p>❌ {error}</p>}
 
-                        <div className="modal-footer d-flex justify-content-end gap-2">
-                            <Button onClick={() => setShowModal(false)}>Close</Button>
-                            <Button onClick={handleAddBook}>Save Book</Button>
-                        </div>
+      <Row className="g-3">
+        {filteredBooks.length > 0 ? (
+          filteredBooks.map((data) => (
+            <Col key={data.id} xs={12} sm={6} md={4} lg={3}>
+              <article
+                className="book-card p-3 h-100"
+                style={{
+                  background: "#FFC7A7",
+                  borderRadius: "8px",
+                  boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
+                }}
+              >
+                <div className="book-body">
+                  <span className="badge-genre">{data.genre}</span>
+                  <h2 className="book-title">{data.title}</h2>
+                  <p className="book-author">by {data.author}</p>
+
+                  <div className="book-footer d-flex justify-content-between align-items-center mt-3">
+                    <span>
+                      Rent ₹<strong>{data.rent}</strong>
+                    </span>
+
+                    <div className="d-flex gap-2">
+                      <Button
+                        style={{ backgroundColor: "#CFAB8D", border: "none" }}
+                        onClick={() => {
+                          if (requireLogin()) {
+                            showToast("success", `✅ Opening ${data.title}`);
+                            navigate(`/Description/${data.id}`);
+                          }
+                        }}
+                      >
+                        View
+                      </Button>
+
+                      {isLoggedIn && role === "admin" && (
+                        <Button
+                          onClick={() => deleteBook(data.id)}
+                          style={{ backgroundColor: "red", border: "none" }}
+                        >
+                          Delete
+                        </Button>
+                      )}
                     </div>
+                  </div>
                 </div>
-            )}
+              </article>
+            </Col>
+          ))
+        ) : (
+          <p>No books found</p>
+        )}
+      </Row>
 
-        </Container>
-    );
+      {/* ==== ADD BOOK BUTTON AT BOTTOM ==== */}
+      {isLoggedIn && role === "admin" && (
+        <div className="d-flex justify-content-center mt-4">
+          <Button
+            onClick={() => setShowModal(true)}
+            style={{
+              backgroundColor: "#F7F4EA",
+              border: "2px solid #B17F59",
+              color: "#B17F59",
+              fontSize: "18px",
+              padding: "8px 20px",
+            }}
+          >
+            + Add Book
+          </Button>
+        </div>
+      )}
+
+      {/* ==== MODAL ==== */}
+      {showModal && isLoggedIn && role === "admin" && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <div className="modal-header d-flex justify-content-between align-items-center">
+              <h4 style={{ color: "black" }}>Add New Book</h4>
+              <button
+                className="btn-close"
+                onClick={() => setShowModal(false)}
+              ></button>
+            </div>
+
+            <div className="modal-body">
+              <Form>
+                {[
+                  "title",
+                  "author",
+                  "genre",
+                  "rent",
+                  "imageUrl",
+                  "description",
+                ].map((field) => (
+                  <Form.Group className="mb-3" key={field}>
+                    <Form.Label style={{ color: "black" }}>
+                      {field.charAt(0).toUpperCase() + field.slice(1)}
+                    </Form.Label>
+                    <Form.Control
+                      type={
+                        field === "rent"
+                          ? "number"
+                          : field === "imageUrl"
+                          ? "url"
+                          : "text"
+                      }
+                      as={field === "description" ? "textarea" : "input"}
+                      rows={field === "description" ? 3 : undefined}
+                      placeholder={`Enter ${field}`}
+                      name={field}
+                      value={newBook[field]}
+                      onChange={handleChange}
+                    />
+                  </Form.Group>
+                ))}
+              </Form>
+            </div>
+
+            <div className="modal-footer d-flex justify-content-end gap-2">
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+              <Button onClick={handleAddBook}>Save Book</Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </Container>
+  );
 }
 
 export default Books;
