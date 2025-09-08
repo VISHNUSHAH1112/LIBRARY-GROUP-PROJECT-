@@ -26,8 +26,8 @@ function Issues() {
   });
 
   // search states
-  const [localSearch, setLocalSearch] = useState(""); // input box me jo likh rahe hain
-  const [searchQuery, setSearchQuery] = useState(""); // final search query on button click
+  const [localSearch, setLocalSearch] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   useEffect(() => {
     dispatch(FetchIssues());
@@ -61,7 +61,7 @@ function Issues() {
     showToast("success", "✅ Issue added successfully!");
   };
 
-  // Filter issues based on searchQuery only (not live typing)
+  
   const filteredIssues = issues.filter(
     (issue) =>
       issue.memberName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -73,7 +73,7 @@ function Issues() {
       className="container py-4"
       style={{ backgroundColor: "#E0E0E0", marginTop: "30px", width: "100%" }}
     >
-      {/* ==== HEADER WITH SEARCH ==== */}
+    
       <header
         className="d-flex justify-content-between align-items-center mb-4 flex-wrap"
         style={{
@@ -96,7 +96,7 @@ function Issues() {
             }}
           />
           <Button
-            onClick={() => setSearchQuery(localSearch)} // search button click par filter apply
+            onClick={() => setSearchQuery(localSearch)} 
             style={{
               backgroundColor: "black",
               border: "1px solid gray",
@@ -108,7 +108,7 @@ function Issues() {
         </InputGroup>
       </header>
 
-      {/* ==== LOADING & ERROR ==== */}
+
       {loading && (
         <div className="text-center my-3">
           <Spinner animation="border" />
@@ -121,7 +121,7 @@ function Issues() {
         </Alert>
       )}
 
-      {/* ==== ISSUES TABLE ==== */}
+
       <div className="table-responsive">
         <Table bordered hover striped className="align-middle text-center">
           <thead className="table-dark">
@@ -165,7 +165,7 @@ function Issues() {
         </Table>
       </div>
 
-      {/* ==== ADD NEW ISSUE BUTTON ==== */}
+      
       <div className="d-flex justify-content-center mt-4">
         <Button
           onClick={() => setShowForm(true)}
@@ -187,7 +187,7 @@ function Issues() {
         </Button>
       </div>
 
-      {/* ==== ADD ISSUE MODAL ==== */}
+   
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add New Issue</Modal.Title>

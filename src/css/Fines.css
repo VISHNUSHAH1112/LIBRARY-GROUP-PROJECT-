@@ -1,7 +1,6 @@
-/* Fines Page Background */
+
 .fines-page {
   min-height: 100vh;
-  /* background-color: #F7F4EA; */
   padding: 40px 20px;
   display: flex;
   justify-content: center;
@@ -9,20 +8,16 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Fines Container Box */
 .fines-container {
   width: 100%;
   max-width: 1100px;
-  /* background: #fff; */
-    /* background-color: #F7F4EA; */
-    background-color: #E0DDDD;
-     /* background-color: #333; */
+  background-color: #E0DDDD;
   border-radius: 12px;
   padding: 25px 30px;
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Header (Title + Search + Button) */
+
 .fines-header {
   display: flex;
   justify-content: space-between;
@@ -32,7 +27,7 @@
   background: #fff;
   padding: 18px 25px;
   border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1); /* Added box shadow */
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
 .fines-header h2 {
@@ -41,7 +36,7 @@
   color: black;
 }
 
-/* Search bar */
+
 .fines-header .search-box {
   display: flex;
   gap: 10px;
@@ -60,7 +55,6 @@
   box-shadow: 0 0 5px rgba(9, 132, 227, 0.5);
 }
 
-/* Search Button */
 .fines-header .btn-search {
   background-color: black;
   color: white;
@@ -76,8 +70,6 @@
   background-color: #333;
 }
 
-/* Table */
-/* Table */
 .fines-table {
   width: 100%;
   border-collapse: collapse;
@@ -99,33 +91,41 @@
   text-align: left;
 }
 
+
 .fines-table tbody td {
   padding: 12px;
   border-bottom: 1px solid #ddd;
   color: black;
   transition: background 0.3s ease;
-  background-color: white; /* Default row background */
 }
 
-/* Alternate row colors */
+
+.fines-table tbody tr:nth-child(odd) td {
+  background-color: #ffffff; 
+}
+
 .fines-table tbody tr:nth-child(even) td {
-  background-color: #f5f5f5; /* Slightly darker row */
+  background-color: #f2f2f2; 
 }
 
-/* Hover effect */
+
 .fines-table tbody tr:hover td {
-  background-color: #e0e0e0; /* Hover effect */
+  background-color: #dcdcdc; 
   cursor: pointer;
 }
 
 
-/* Hover effect like Issues table */
-.fines-table tbody tr:hover {
-  background-color: #f2f2f2; /* Light gray hover like issues table */
-  cursor: pointer;
+.fines-table th,
+.fines-table td {
+  border-right: 1px solid #ddd;
 }
 
-/* No data message */
+.fines-table th:last-child,
+.fines-table td:last-child {
+  border-right: none; 
+}
+
+
 .no-fines {
   text-align: center;
   padding: 15px;
@@ -133,7 +133,7 @@
   font-style: italic;
 }
 
-/* Add Fine Button */
+
 .add-fine-btn {
   background-color: black;
   border: 2px solid gray;
