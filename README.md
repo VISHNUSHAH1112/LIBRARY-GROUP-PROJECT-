@@ -52,6 +52,5 @@ This project is a **Library Management System** designed with two roles – **Ad
 
 * Implement secure authentication system (JWT or similar).
 * Add search and filter functionality.
-* Add notification system (e.g., for book due dates).
 
 
