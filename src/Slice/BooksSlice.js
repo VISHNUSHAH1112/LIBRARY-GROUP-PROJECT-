@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const api = "http://localhost:3000/books";
+const api = "https://library-group-project.onrender.com/books";
 
 export const FetchData = createAsyncThunk("FetchData", async () => {
   const res = await axios.get(api);
