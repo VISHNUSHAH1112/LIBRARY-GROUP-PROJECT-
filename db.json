@@ -318,6 +318,156 @@
       "rent": 75,
       "description": "Covers foundations of cloud computing including virtualization, SaaS, IaaS, and distributed systems.",
       "image": "https://media.wiley.com/product_data/coverImage300/90/04708879/0470887990.jpg"
+    },
+    {
+      "id": "B126",
+      "title": "Rich Dad Poor Dad",
+      "author": "Robert T. Kiyosaki",
+      "genre": "Finance",
+      "available": true,
+      "rent": 50,
+      "description": "This book teaches the difference between working for money and making money work for you. It focuses on financial independence and investment strategies.",
+      "image": "https://m.media-amazon.com/images/I/81bsw6fnUiL.jpg"
+    },
+    {
+      "id": "B127",
+      "title": "Think and Grow Rich",
+      "author": "Napoleon Hill",
+      "genre": "Motivation",
+      "available": true,
+      "rent": 45,
+      "description": "A timeless classic on personal development and success, teaching the power of thoughts, persistence, and goal-setting.",
+      "image": "https://m.media-amazon.com/images/I/71UypkUjStL.jpg"
+    },
+    {
+      "id": "B128",
+      "title": "The Intelligent Investor",
+      "author": "Benjamin Graham",
+      "genre": "Finance",
+      "available": false,
+      "rent": 70,
+      "description": "Known as the bible of investing, this book teaches principles of value investing and risk management.",
+      "image": "https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg"
+    },
+    {
+      "id": "B129",
+      "title": "The Lean Startup",
+      "author": "Eric Ries",
+      "genre": "Business",
+      "available": true,
+      "rent": 60,
+      "description": "A guide for entrepreneurs on how to build successful startups using lean principles, experimentation, and validated learning.",
+      "image": "https://m.media-amazon.com/images/I/81-QB7nDh4L._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": "B130",
+      "title": "Zero to One",
+      "author": "Peter Thiel",
+      "genre": "Business",
+      "available": true,
+      "rent": 55,
+      "description": "Insights on innovation, monopoly building, and creating businesses that go from zero to something new and unique.",
+      "image": "https://m.media-amazon.com/images/I/71m-MxdJ2WL.jpg"
+    },
+    {
+      "id": "B131",
+      "title": "The 7 Habits of Highly Effective People",
+      "author": "Stephen R. Covey",
+      "genre": "Self-help",
+      "available": true,
+      "rent": 50,
+      "description": "Powerful habits for personal and professional effectiveness, focusing on character ethics and proactive behavior.",
+      "image": "https://m.media-amazon.com/images/I/71UypkUjStL._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": "B132",
+      "title": "How to Win Friends and Influence People",
+      "author": "Dale Carnegie",
+      "genre": "Self-help",
+      "available": true,
+      "rent": 40,
+      "description": "Classic book on communication, persuasion, and leadership skills to succeed personally and professionally.",
+      "image": "https://m.media-amazon.com/images/I/71kxa1-0mfL.jpg"
+    },
+    {
+      "id": "B133",
+      "title": "Atomic Habits",
+      "author": "James Clear",
+      "genre": "Self-help",
+      "available": true,
+      "rent": 65,
+      "description": "Explains how small daily habits lead to remarkable results. Practical techniques to build good habits and break bad ones.",
+      "image": "https://m.media-amazon.com/images/I/91bYsX41DVL.jpg"
+    },
+    {
+      "id": "B134",
+      "title": "Principles",
+      "author": "Ray Dalio",
+      "genre": "Business",
+      "available": false,
+      "rent": 80,
+      "description": "Billionaire investor Ray Dalio shares life and work principles that helped him build Bridgewater Associates.",
+      "image": "https://m.media-amazon.com/images/I/71M1eEsQ43L.jpg"
+    },
+    {
+      "id": "B135",
+      "title": "The 4-Hour Workweek",
+      "author": "Timothy Ferriss",
+      "genre": "Lifestyle",
+      "available": true,
+      "rent": 60,
+      "description": "Guides on designing a lifestyle of financial freedom, remote work, and automation to escape the 9-to-5 grind.",
+      "image": "https://m.media-amazon.com/images/I/81-QB7nDh4L.jpg"
+    },
+    {
+      "id": "B136",
+      "title": "Start with Why",
+      "author": "Simon Sinek",
+      "genre": "Business",
+      "available": true,
+      "rent": 50,
+      "description": "Explains the importance of purpose-driven leadership and how great leaders inspire action by starting with 'Why'.",
+      "image": "https://m.media-amazon.com/images/I/71s8H8UkULS.jpg"
+    },
+    {
+      "id": "B137",
+      "title": "Good to Great",
+      "author": "Jim Collins",
+      "genre": "Business",
+      "available": true,
+      "rent": 55,
+      "description": "Research-backed book on why some companies transition from good to great while others don’t.",
+      "image": "https://m.media-amazon.com/images/I/71M1eEsQ43L._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+      "id": "B138",
+      "title": "Blue Ocean Strategy",
+      "author": "W. Chan Kim & Renée Mauborgne",
+      "genre": "Business",
+      "available": true,
+      "rent": 65,
+      "description": "Teaches how to create uncontested market space and make competition irrelevant.",
+      "image": "https://m.media-amazon.com/images/I/71UwUu3eFZL.jpg"
+    },
+    {
+      "id": "B139",
+      "title": "The Power of Habit",
+      "author": "Charles Duhigg",
+      "genre": "Self-help",
+      "available": true,
+      "rent": 55,
+      "description": "Explores the science of habits and how they shape our lives, with strategies to change them.",
+      "image": "https://m.media-amazon.com/images/I/71UwUu3eFZL.jpg"
+    },
+    {
+      "id": "B140",
+      "title": "The Art of War",
+      "author": "Sun Tzu",
+      "genre": "Strategy",
+      "available": true,
+      "rent": 40,
+      "description": "Ancient Chinese military strategy text, widely applied in business, leadership, and decision-making.",
+      "image": "https://m.media-amazon.com/images/I/81Q9eK9oYSL.jpg"
     }
   ],
   "issues": [
