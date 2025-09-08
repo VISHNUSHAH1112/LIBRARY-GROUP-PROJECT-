@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AddIssues, FetchIssues, DeleteIssues } from "../Slice/IssuesSlice";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { Button, Modal, Form, Table, Spinner, Alert } from "react-bootstrap";
+import {
+  Button,
+  Modal,
+  Form,
+  Table,
+  Spinner,
+  Alert,
+  InputGroup,
+} from "react-bootstrap";
 import { useAuth } from "./AuthContext";
 
 function Issues() {
   const dispatch = useDispatch();
   const { issues, loading, error } = useSelector((state) => state.issues);
-
   const { showToast } = useAuth();
 
   const [showForm, setShowForm] = useState(false);
@@ -18,6 +24,10 @@ function Issues() {
     issueDate: "",
     dueDate: "",
   });
+
+  // search states
+  const [localSearch, setLocalSearch] = useState(""); // input box me jo likh rahe hain
+  const [searchQuery, setSearchQuery] = useState(""); // final search query on button click
 
   useEffect(() => {
     dispatch(FetchIssues());
@@ -45,27 +55,60 @@ function Issues() {
       return;
     }
 
-    dispatch(AddIssues(formData));
-    setFormData({
-      memberName: "",
-      bookName: "",
-      issueDate: "",
-      dueDate: "",
-    });
+    dispatch(AddIssues({ ...formData, id: Date.now() }));
+    setFormData({ memberName: "", bookName: "", issueDate: "", dueDate: "" });
     setShowForm(false);
     showToast("success", "✅ Issue added successfully!");
   };
 
-  return (
-    <div className="container py-4">
-      {/* Header */}
-      <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="fw-bold">📚 Issues List</h2>
-        <Button variant="dark" onClick={() => setShowForm(true)}>
-          ➕ Add New Issue
-        </Button>
-      </div>
+  // Filter issues based on searchQuery only (not live typing)
+  const filteredIssues = issues.filter(
+    (issue) =>
+      issue.memberName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      issue.bookName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
+  return (
+    <div
+      className="container py-4"
+      style={{ backgroundColor: "#E0E0E0", marginTop: "30px", width: "100%" }}
+    >
+      {/* ==== HEADER WITH SEARCH ==== */}
+      <header
+        className="d-flex justify-content-between align-items-center mb-4 flex-wrap"
+        style={{
+          gap: "15px",
+          background: "whitesmoke",
+          height: "70px",
+          borderRadius: "10px",
+          boxShadow: "0px 4px 12px rgba(0,0,0,0.35)",
+          padding: "10px",
+        }}
+      >
+        <h2 style={{ color: "black" }}>📚 Issues List</h2>
+        <InputGroup style={{ maxWidth: "300px" }}>
+          <Form.Control
+            placeholder="Search by Member or Book"
+            value={localSearch}
+            onChange={(e) => setLocalSearch(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") e.preventDefault();
+            }}
+          />
+          <Button
+            onClick={() => setSearchQuery(localSearch)} // search button click par filter apply
+            style={{
+              backgroundColor: "black",
+              border: "1px solid gray",
+              margin: "2px",
+            }}
+          >
+            Search
+          </Button>
+        </InputGroup>
+      </header>
+
+      {/* ==== LOADING & ERROR ==== */}
       {loading && (
         <div className="text-center my-3">
           <Spinner animation="border" />
@@ -78,6 +121,7 @@ function Issues() {
         </Alert>
       )}
 
+      {/* ==== ISSUES TABLE ==== */}
       <div className="table-responsive">
         <Table bordered hover striped className="align-middle text-center">
           <thead className="table-dark">
@@ -91,8 +135,8 @@ function Issues() {
             </tr>
           </thead>
           <tbody>
-            {Array.isArray(issues) && issues.length > 0 ? (
-              issues.map((issue) => (
+            {Array.isArray(filteredIssues) && filteredIssues.length > 0 ? (
+              filteredIssues.map((issue) => (
                 <tr key={issue.id}>
                   <td>{issue.id}</td>
                   <td>{issue.memberName}</td>
@@ -121,7 +165,29 @@ function Issues() {
         </Table>
       </div>
 
-      {/* Add Issue Modal */}
+      {/* ==== ADD NEW ISSUE BUTTON ==== */}
+      <div className="d-flex justify-content-center mt-4">
+        <Button
+          onClick={() => setShowForm(true)}
+          style={{
+            backgroundColor: "black",
+            border: "2px solid gray",
+            color: "white",
+            fontSize: "18px",
+            fontWeight: "600",
+            padding: "10px 25px",
+            borderRadius: "8px",
+            display: "flex",
+            alignItems: "center",
+            gap: "8px",
+          }}
+        >
+          <span style={{ fontSize: "20px", fontWeight: "700" }}>+</span> Add New
+          Issue
+        </Button>
+      </div>
+
+      {/* ==== ADD ISSUE MODAL ==== */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add New Issue</Modal.Title>

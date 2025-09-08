@@ -1,16 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchFines } from "../Slice/FineSlice";
-import {
-  Button,
-  Modal,
-  Form,
-  Container,
-  Row,
-  Col,
-  Table,
-} from "react-bootstrap";
-import "bootstrap/dist/css/bootstrap.min.css";
+import { Button, Modal, Form, Row, Col } from "react-bootstrap";
+import "../css/Fines.css"; // ✅ Already styled
 
 export default function Fines() {
   const dispatch = useDispatch();
@@ -25,6 +17,10 @@ export default function Fines() {
     fineAmount: "",
   });
 
+  // Search states
+  const [localSearch, setLocalSearch] = useState(""); // input box me jo type karenge
+  const [searchQuery, setSearchQuery] = useState(""); // final query on Search button click
+
   useEffect(() => {
     dispatch(FetchFines());
   }, [dispatch]);
@@ -33,6 +29,13 @@ export default function Fines() {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
+
+  // Filter fines only on search button click
+  const filteredFines = fines.filter(
+    (fine) =>
+      fine.memberName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      fine.bookName.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handleSubmit = () => {
     console.log("New Fine Data:", formData);
@@ -47,55 +50,68 @@ export default function Fines() {
   };
 
   return (
-    <Container fluid className="min-vh-100 bg-light py-4">
-      <Row className="justify-content-center">
-        <Col xs={12} md={10} lg={8}>
-          <div className="bg-white rounded-4 shadow-sm p-4">
-            <div className="d-flex justify-content-between align-items-center mb-3">
-              <h2 className="h4 fw-bold m-0 text-dark">💰 Fines Records</h2>
-              <Button variant="dark" onClick={() => setShowForm(true)}>
-                + Add Fine
-              </Button>
-            </div>
-
-            <div className="table-responsive">
-              <Table bordered hover className="align-middle">
-                <thead className="table-dark">
-                  <tr>
-                    <th>ID</th>
-                    <th>Member Name</th>
-                    <th>Book Name</th>
-                    <th>Due Date</th>
-                    <th>Return Date</th>
-                    <th>Fine Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {fines.length > 0 ? (
-                    fines.map((fine) => (
-                      <tr key={fine.id}>
-                        <td>{fine.id}</td>
-                        <td>{fine.memberName}</td>
-                        <td>{fine.bookName}</td>
-                        <td>{fine.dueDate}</td>
-                        <td>{fine.returnDate}</td>
-                        <td>{fine.fineAmount}</td>
-                      </tr>
-                    ))
-                  ) : (
-                    <tr>
-                      <td colSpan="6" className="text-center text-muted py-3">
-                        No fines found
-                      </td>
-                    </tr>
-                  )}
-                </tbody>
-              </Table>
-            </div>
+    <div className="fines-page">
+      <div className="fines-container">
+        {/* Header */}
+        <div className="fines-header">
+          <h2>💰 Fines Records</h2>
+          <div className="search-box">
+            <input
+              type="text"
+              placeholder="Search by member or book"
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
+            />
+            <button
+              className="btn-search"
+              onClick={() => setSearchQuery(localSearch)} // Search par filter apply
+            >
+              Search
+            </button>
           </div>
-        </Col>
-      </Row>
+        </div>
 
+        {/* Table */}
+        <table className="fines-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Member Name</th>
+              <th>Book Name</th>
+              <th>Due Date</th>
+              <th>Return Date</th>
+              <th>Fine Amount (₹)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredFines.length > 0 ? (
+              filteredFines.map((fine) => (
+                <tr key={fine.id}>
+                  <td>{fine.id}</td>
+                  <td>{fine.memberName}</td>
+                  <td>{fine.bookName}</td>
+                  <td>{fine.dueDate}</td>
+                  <td>{fine.returnDate}</td>
+                  <td>{fine.fineAmount}</td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="no-fines">
+                  No fines found
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+
+        {/* Add Fine Button */}
+        <button className="add-fine-btn" onClick={() => setShowForm(true)}>
+          + Add New Fine
+        </button>
+      </div>
+
+      {/* Modal */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add New Fine</Modal.Title>
@@ -163,10 +179,10 @@ export default function Fines() {
             Cancel
           </Button>
           <Button variant="success" onClick={handleSubmit}>
-            Add Fine
+            Add New Fine
           </Button>
         </Modal.Footer>
       </Modal>
-    </Container>
+    </div>
   );
 }

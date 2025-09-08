@@ -8,7 +8,6 @@ import {
   FetchData,
   AddBooks,
   DeleteData,
-  setSearchTerm,
 } from "../Slice/BooksSlice";
 
 function Books() {
@@ -20,9 +19,9 @@ function Books() {
     rent: "",
   });
 
-  const [localSearch, setLocalSearch] = useState(""); // search bar input ke liye local state
+  const [localSearch, setLocalSearch] = useState(""); // live search input
 
-  const { books, status, error, searchTerm } = useSelector(
+  const { books, status, error } = useSelector(
     (state) => state.books
   );
 
@@ -57,23 +56,11 @@ function Books() {
     showToast("error", "❌ Book deleted!");
   };
 
-  // 🔹 Search logic
-  const handleSearch = () => {
-    dispatch(setSearchTerm(localSearch.trim()));
-  };
-
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
-      e.preventDefault();
-      handleSearch();
-    }
-  };
-
-  // 🔹 Filter books based on searchTerm
+  // 🔹 Filter books for live search
   const filteredBooks = books.filter(
     (data) =>
-      data.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      data.author.toLowerCase().includes(searchTerm.toLowerCase())
+      data.title.toLowerCase().includes(localSearch.toLowerCase()) ||
+      data.author.toLowerCase().includes(localSearch.toLowerCase())
   );
 
   return (
@@ -86,20 +73,19 @@ function Books() {
       <header className="books-header d-flex justify-content-between align-items-center mb-3">
         <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
 
-        {/* 🔹 Search Section */}
+        {/* 🔹 Live Search Section */}
         <div className="d-flex" style={{ gap: "10px" }}>
           <Form.Control
             type="text"
             placeholder="Search by Title or Author"
             style={{ width: "250px" }}
             value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)}
-            onKeyDown={handleKeyDown} // enter press to search
+            onChange={(e) => setLocalSearch(e.target.value)} // live filtering
           />
           <Button
             variant="primary"
-            onClick={handleSearch}
             style={{ backgroundColor: "#B87C4C", border: "none" }}
+            onClick={() => {}} // optional, does nothing
           >
             Search
           </Button>
@@ -196,35 +182,30 @@ function Books() {
 
             <div className="modal-body">
               <Form>
-                {[
-                  "title",
-                  "author",
-                  "genre",
-                  "rent",
-                  "imageUrl",
-                  "description",
-                ].map((field) => (
-                  <Form.Group className="mb-3" key={field}>
-                    <Form.Label style={{ color: "black" }}>
-                      {field.charAt(0).toUpperCase() + field.slice(1)}
-                    </Form.Label>
-                    <Form.Control
-                      type={
-                        field === "rent"
-                          ? "number"
-                          : field === "imageUrl"
-                          ? "url"
-                          : "text"
-                      }
-                      as={field === "description" ? "textarea" : "input"}
-                      rows={field === "description" ? 3 : undefined}
-                      placeholder={`Enter ${field}`}
-                      name={field}
-                      value={newBook[field]}
-                      onChange={handleChange}
-                    />
-                  </Form.Group>
-                ))}
+                {["title", "author", "genre", "rent", "imageUrl", "description"].map(
+                  (field) => (
+                    <Form.Group className="mb-3" key={field}>
+                      <Form.Label style={{ color: "black" }}>
+                        {field.charAt(0).toUpperCase() + field.slice(1)}
+                      </Form.Label>
+                      <Form.Control
+                        type={
+                          field === "rent"
+                            ? "number"
+                            : field === "imageUrl"
+                            ? "url"
+                            : "text"
+                        }
+                        as={field === "description" ? "textarea" : "input"}
+                        rows={field === "description" ? 3 : undefined}
+                        placeholder={`Enter ${field}`}
+                        name={field}
+                        value={newBook[field]}
+                        onChange={handleChange}
+                      />
+                    </Form.Group>
+                  )
+                )}
               </Form>
             </div>
 
