@@ -10,14 +10,27 @@ export const AuthProvider = ({ children }) => {
   const [toasts, setToasts] = useState([]);
 
   // ---- LOGIN ----
-  const login = (userRole) => {
-    setIsLoggedIn(true);
-    setRole(userRole);
-    localStorage.setItem("isLoggedIn", true);
-    localStorage.setItem("role", userRole);
+  const login = (username, password) => {
+    if (username.toLowerCase() === "admin" && password === "123") {
+      setIsLoggedIn(true);
+      setRole("admin");
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("role", "admin");
+      showToast("success", "Welcome Admin!");
+      return null;
+    }
 
-    // ✅ Correct success toast
-    showToast("success", "Login successful!");
+    if (username.toLowerCase() === "user" && password === "123") {
+      setIsLoggedIn(true);
+      setRole("user");
+      localStorage.setItem("isLoggedIn", true);
+      localStorage.setItem("role", "user");
+      showToast("success", "Welcome User!");
+      return null;
+    }
+
+    showToast("error", "❌ Invalid username or password!");
+    return "Invalid credentials!";
   };
 
   // ---- LOGOUT ----
@@ -26,8 +39,7 @@ export const AuthProvider = ({ children }) => {
     setRole(null);
     localStorage.removeItem("isLoggedIn");
     localStorage.removeItem("role");
-    
-    // 🔴 Red toast for logout
+
     showToast("error", "Logged out successfully!");
   };
 
@@ -36,16 +48,15 @@ export const AuthProvider = ({ children }) => {
     const id = Date.now();
     setToasts((prev) => [...prev, { id, type, message }]);
 
-    // Auto remove after 5s
     setTimeout(() => {
       setToasts((prev) => prev.filter((toast) => toast.id !== id));
     }, 4000);
   };
 
-  // ---- PROTECT ACTION (for View button etc.) ----
+  // ---- PROTECT ACTION ----
   const requireLogin = (actionName) => {
     if (!isLoggedIn) {
-      showToast("error", "Please login first!"); // 🔴 red popup instead of alert
+      showToast("error", "Please login first!");
       return false;
     }
     return true;
@@ -64,7 +75,11 @@ export const AuthProvider = ({ children }) => {
             key={toast.id}
             style={{
               ...styles.toast,
-              ...(toast.type === "error" ? styles.error : styles.success),
+              ...(toast.type === "error"
+                ? styles.error
+                : toast.type === "success"
+                  ? styles.success
+                  : {}),
             }}
           >
             {toast.type === "error" ? "❌ " : "✅ "}
@@ -95,16 +110,8 @@ const styles = {
     boxShadow: "0 4px 6px rgba(0,0,0,0.2)",
     animation: "fadeIn 0.3s ease-in-out",
   },
-  success: {
-    backgroundColor: "green",
-  },
-  error: {
-    backgroundColor: "red", // 🔴 red popup
-  },
-  info: {
-    backgroundColor: "blue", // 🔵
-  },
-  warning: {
-    backgroundColor: "orange", // 🟠
-  }
-}
+  success: { backgroundColor: "green" },
+  error: { backgroundColor: "red" },
+  info: { backgroundColor: "blue" },
+  warning: { backgroundColor: "orange" },
+};
