@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FetchFines } from "../Slice/FineSlice";
 import { Button, Modal, Form, Row, Col } from "react-bootstrap";
-import "../css/Fines.css"; // ✅ Already styled
+import "../css/Fines.css"; 
 
 export default function Fines() {
   const dispatch = useDispatch();
@@ -17,9 +17,8 @@ export default function Fines() {
     fineAmount: "",
   });
 
-  // Search states
-  const [localSearch, setLocalSearch] = useState(""); // input box me jo type karenge
-  const [searchQuery, setSearchQuery] = useState(""); // final query on Search button click
+  const [localSearch, setLocalSearch] = useState(""); 
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   useEffect(() => {
     dispatch(FetchFines());
@@ -30,7 +29,6 @@ export default function Fines() {
     setFormData({ ...formData, [name]: value });
   };
 
-  // Filter fines only on search button click
   const filteredFines = fines.filter(
     (fine) =>
       fine.memberName.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -52,7 +50,6 @@ export default function Fines() {
   return (
     <div className="fines-page">
       <div className="fines-container">
-        {/* Header */}
         <div className="fines-header">
           <h2>💰 Fines Records</h2>
           <div className="search-box">
@@ -64,14 +61,13 @@ export default function Fines() {
             />
             <button
               className="btn-search"
-              onClick={() => setSearchQuery(localSearch)} // Search par filter apply
+              onClick={() => setSearchQuery(localSearch)} 
             >
               Search
             </button>
           </div>
         </div>
 
-        {/* Table */}
         <table className="fines-table">
           <thead>
             <tr>
@@ -105,7 +101,6 @@ export default function Fines() {
           </tbody>
         </table>
 
-        {/* Add Fine Button */}
         <button className="add-fine-btn" onClick={() => setShowForm(true)}>
           + Add New Fine
         </button>

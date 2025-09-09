@@ -9,7 +9,6 @@ export const AuthProvider = ({ children }) => {
   const [role, setRole] = useState(() => localStorage.getItem("role") || null);
   const [toasts, setToasts] = useState([]);
 
-  // ---- LOGIN ----
   const login = (username, password) => {
     if (username.toLowerCase() === "admin" && password === "123") {
       setIsLoggedIn(true);

@@ -26,11 +26,9 @@ function Members() {
     available: true,
   });
 
-  // search states
   const [localSearch, setLocalSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // ✅ Fetch Members
   const BooksMember = async () => {
     try {
       setLoading(true);
@@ -86,7 +84,6 @@ function Members() {
     }
   };
 
-  // ✅ Filtered members based on searchQuery only when Search button clicked
   const filteredMembers = membershow.filter(
     (member) =>
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -95,7 +92,6 @@ function Members() {
 
   return (
     <div className="container py-4">
-      {/* HEADER WITH SEARCH */}
       <div
         className="d-flex justify-content-between align-items-center mb-3 flex-wrap"
         style={{
@@ -107,10 +103,8 @@ function Members() {
           padding: "10px",
         }}
       >
-        {/* Left: Heading */}
         <h2 style={{ color: "black" }}>👤 Members</h2>
 
-        {/* Right: Search */}
         <InputGroup style={{ maxWidth: "300px" }}>
           <Form.Control
             placeholder="Search by Name or Email"
@@ -211,7 +205,6 @@ function Members() {
         </Button>
       </div>
 
-      {/* ==== ADD MEMBER MODAL ==== */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>Add Member</Modal.Title>

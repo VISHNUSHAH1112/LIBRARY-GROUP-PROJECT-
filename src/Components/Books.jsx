@@ -73,26 +73,24 @@ function Books() {
       <header className="books-header d-flex justify-content-between align-items-center mb-3">
         <h1 >Library Books</h1>
 
-        {/* 🔹 Live Search Section */}
         <div className="d-flex" style={{ gap: "10px" }}>
           <Form.Control
             type="text"
             placeholder="Search by Title or Author"
           
             value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)} // live filtering
+            onChange={(e) => setLocalSearch(e.target.value)} 
           />
           <Button className="navbar-btn"
             variant="primary"
           
-            onClick={() => {}} // optional, does nothing
+            onClick={() => {}} 
           >
             Search
           </Button>
         </div>
       </header>
 
-      {/* ==== BOOKS GRID ==== */}
       {status === "loading" && <p>⏳ Loading books...</p>}
       {status === "error" && <p>❌ {error}</p>}
 
@@ -146,7 +144,6 @@ function Books() {
         )}
       </Row>
 
-      {/* ==== ADD BOOK BUTTON AT BOTTOM ==== */}
       {isLoggedIn && role === "admin" && (
         <div className="d-flex justify-content-center mt-4">
           <Button   className="navbar-btn"
@@ -158,7 +155,6 @@ function Books() {
         </div>
       )}
 
-      {/* ==== MODAL ==== */}
       {showModal && isLoggedIn && role === "admin" && (
         <div className="modal-overlay">
           <div className="modal-content">

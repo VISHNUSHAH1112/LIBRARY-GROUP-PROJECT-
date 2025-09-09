@@ -25,7 +25,6 @@ function Issues() {
     dueDate: "",
   });
 
-  // search states
   const [localSearch, setLocalSearch] = useState(""); 
   const [searchQuery, setSearchQuery] = useState(""); 
 
