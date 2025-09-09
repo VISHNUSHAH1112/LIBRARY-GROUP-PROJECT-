@@ -1,4 +1,4 @@
-/* ✅ Member Item */
+
 .member-item {
   background: #fff;
   border-radius: 12px;
@@ -6,18 +6,18 @@
   margin-bottom: 12px;
   transition: all 0.3s ease;
   border: 1px solid #ddd;
-  cursor: pointer; /* pointer cursor for better UX */
+  cursor: pointer; 
 }
 
-/* ✅ Hover Effect - Now stronger */
+
 .member-item:hover {
-  background: linear-gradient(135deg, #d9f0ff, #e3f2fd); /* light blue gradient */
+  background: linear-gradient(135deg, #d9f0ff, #e3f2fd);
   transform: translateY(-5px) scale(1.02);
   border-color: #007bff;
   box-shadow: 0 6px 16px rgba(0, 123, 255, 0.25);
 }
 
-/* ✅ Text color change on hover */
+
 .member-item:hover .member-name {
   color: #007bff;
 }
@@ -29,7 +29,7 @@
 .member-item:hover .member-address {
   color: #222;
 }
-/* ✅ Modal Overlay (background blur + dark) */
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -37,7 +37,7 @@
   width: 100%;
   height: 100%;
   background: rgba(0,0,0,0.55);
-  backdrop-filter: blur(4px); /* Blur effect */
+  backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,9 +45,9 @@
   animation: fadeIn 0.3s ease-in-out;
 }
 
-/* ✅ Modal Card */
+
 .modal-card {
-  background: linear-gradient(135deg, #ffffff, #f7f9fc); /* Soft gradient bg */
+  background: linear-gradient(135deg, #ffffff, #f7f9fc); 
   padding: 28px 25px;
   border-radius: 18px;
   width: 480px;
@@ -57,7 +57,7 @@
   position: relative;
 }
 
-/* ✅ Modal Heading */
+
 .modal-card h3 {
   font-size: 22px;
   font-weight: 700;
@@ -66,7 +66,7 @@
   text-align: center;
 }
 
-/* ✅ Close Button (X) */
+
 .modal-close {
   position: absolute;
   top: 12px;
@@ -83,7 +83,6 @@
   transform: rotate(90deg);
 }
 
-/* ✅ Input Styling inside modal */
 .modal-card .form-control {
   border-radius: 10px;
   padding: 12px;
@@ -99,7 +98,7 @@
   outline: none;
 }
 
-/* ✅ Modal Buttons */
+
 .modal-actions {
   display: flex;
   justify-content: flex-end;
@@ -136,7 +135,6 @@
   transform: translateY(-2px);
 }
 
-/* ✅ Animations */
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(40px) scale(0.95); }
   to { opacity: 1; transform: translateY(0) scale(1); }
@@ -146,12 +144,12 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
-/* ✅ Member Header */
+
 .member-header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   font-weight: 700;
-  background: linear-gradient(135deg, #007bff, #00c6ff); /* Blue gradient */
+  background: linear-gradient(135deg, #007bff, #00c6ff);
   color: white;
   padding: 14px 18px;
   border-radius: 12px;
@@ -163,9 +161,11 @@
   text-transform: uppercase;
 }
 
-/* ✅ Header Hover Effect */
+
 .member-header:hover {
   background: linear-gradient(135deg, #0056b3, #007bff);
   transform: translateY(-2px);
   transition: all 0.3s ease;
-}
+} 
+
+

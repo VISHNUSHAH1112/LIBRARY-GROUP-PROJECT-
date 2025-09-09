@@ -1,5 +1,3 @@
-
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -88,7 +86,7 @@ function Members() {
     }
   };
 
-  // ✅ Filtered members based on searchQuery
+  // ✅ Filtered members based on searchQuery only when Search button clicked
   const filteredMembers = membershow.filter(
     (member) =>
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -97,7 +95,7 @@ function Members() {
 
   return (
     <div className="container py-4">
-      {/* ==== HEADER WITH SEARCH ==== */}
+      {/* HEADER WITH SEARCH */}
       <div
         className="d-flex justify-content-between align-items-center mb-3 flex-wrap"
         style={{
@@ -132,7 +130,6 @@ function Members() {
         </InputGroup>
       </div>
 
-      {/* ==== LOADING ==== */}
       {loading && (
         <div className="text-center my-3">
           <Spinner animation="border" />
@@ -140,12 +137,10 @@ function Members() {
         </div>
       )}
 
-      {/* ==== NO MEMBERS ==== */}
       {!loading && filteredMembers.length === 0 && (
         <Alert variant="secondary">No members found.</Alert>
       )}
 
-      {/* ==== MEMBERS TABLE ==== */}
       {filteredMembers.length > 0 && (
         <div className="table-responsive">
           <Table bordered hover striped className="align-middle text-center">
@@ -196,10 +191,10 @@ function Members() {
         </div>
       )}
 
-<div className="d-flex justify-content-center mt-4">
-    <Button
-        onClick={() => setShowForm(true)}
-        style={{
+      <div className="d-flex justify-content-center mt-4">
+        <Button
+          onClick={() => setShowForm(true)}
+          style={{
             backgroundColor: "black",
             border: "2px solid gray",
             color: "white",
@@ -210,11 +205,11 @@ function Members() {
             display: "flex",
             alignItems: "center",
             gap: "8px",
-        }}
-    >
-        <span style={{ fontSize: "20px", fontWeight: "700" }}>+</span> Add Member
-    </Button>
-</div>
+          }}
+        >
+          <span style={{ fontSize: "20px", fontWeight: "700" }}>+</span> Add Member
+        </Button>
+      </div>
 
       {/* ==== ADD MEMBER MODAL ==== */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>

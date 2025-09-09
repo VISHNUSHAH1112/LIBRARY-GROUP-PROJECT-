@@ -67,24 +67,24 @@ function Books() {
     <Container
       fluid
       className="books-wrap py-3"
-      style={{ backgroundColor: "#F7F4EA" }}
+      
     >
       {/* ==== HEADER ==== */}
       <header className="books-header d-flex justify-content-between align-items-center mb-3">
-        <h1 style={{ color: "#B87C4C" }}>Library Books</h1>
+        <h1 >Library Books</h1>
 
         {/* 🔹 Live Search Section */}
         <div className="d-flex" style={{ gap: "10px" }}>
           <Form.Control
             type="text"
             placeholder="Search by Title or Author"
-            style={{ width: "250px" }}
+          
             value={localSearch}
             onChange={(e) => setLocalSearch(e.target.value)} // live filtering
           />
-          <Button
+          <Button className="navbar-btn"
             variant="primary"
-            style={{ backgroundColor: "#B87C4C", border: "none" }}
+          
             onClick={() => {}} // optional, does nothing
           >
             Search
@@ -102,11 +102,7 @@ function Books() {
             <Col key={data.id} xs={12} sm={6} md={4} lg={3}>
               <article
                 className="book-card p-3 h-100"
-                style={{
-                  background: "#FFC7A7",
-                  borderRadius: "8px",
-                  boxShadow: "0px 2px 5px rgba(0,0,0,0.1)",
-                }}
+                
               >
                 <div className="book-body">
                   <span className="badge-genre">{data.genre}</span>
@@ -120,7 +116,7 @@ function Books() {
 
                     <div className="d-flex gap-2">
                       <Button
-                        style={{ backgroundColor: "#CFAB8D", border: "none" }}
+                        
                         onClick={() => {
                           if (requireLogin()) {
                             showToast("success", `✅ Opening ${data.title}`);
@@ -132,9 +128,9 @@ function Books() {
                       </Button>
 
                       {isLoggedIn && role === "admin" && (
-                        <Button
+                        <Button  className="delete-btn"
                           onClick={() => deleteBook(data.id)}
-                          style={{ backgroundColor: "red", border: "none" }}
+                     
                         >
                           Delete
                         </Button>
@@ -153,15 +149,9 @@ function Books() {
       {/* ==== ADD BOOK BUTTON AT BOTTOM ==== */}
       {isLoggedIn && role === "admin" && (
         <div className="d-flex justify-content-center mt-4">
-          <Button
+          <Button   className="navbar-btn"
             onClick={() => setShowModal(true)}
-            style={{
-              backgroundColor: "#F7F4EA",
-              border: "2px solid #B17F59",
-              color: "#B17F59",
-              fontSize: "18px",
-              padding: "8px 20px",
-            }}
+           
           >
             + Add Book
           </Button>
@@ -185,7 +175,7 @@ function Books() {
                 {["title", "author", "genre", "rent", "imageUrl", "description"].map(
                   (field) => (
                     <Form.Group className="mb-3" key={field}>
-                      <Form.Label style={{ color: "black" }}>
+                      <Form.Label>
                         {field.charAt(0).toUpperCase() + field.slice(1)}
                       </Form.Label>
                       <Form.Control

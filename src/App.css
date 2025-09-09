@@ -2,20 +2,19 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Poppins", sans-serif;
+    background-color: #f7f4ea;
     color: #333;
 
 }
 
 .books-header {
-    background-color: "#FEC5F6";
+    background: linear-gradient(135deg, #f7f4ea, #dfe6da);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
     padding: 18px 35px;
     border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     margin: 20px auto;
     max-width: 1200px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .books-header h1 {
@@ -23,7 +22,8 @@ body {
     font-size: 28px;
     font-weight: 700;
     letter-spacing: 1px;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    color: #5f7261;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 
 }
 
@@ -46,56 +46,129 @@ body {
 
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    margin-left: 125px;
-    margin-right: 125px;
+    margin: 0 auto;
+    max-width: 1200px;
     padding: 20px;
 }
 
 .book-card {
-    border-radius: 16px;
+    background: linear-gradient(135deg, #dce5d9, #edf1ea);
+    border-radius: 12px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     padding: 20px;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+
 
 }
 
 .book-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, #cddacb, #e6ece3);
 }
 
 .book-title {
     font-size: 20px;
     font-weight: bold;
-    color: #222;
+    color: #3c4a3c;
+    margin-top: 8px;
 }
 
 .book-author {
     font-size: 14px;
-    color: #666;
-    margin-bottom: 10px;
+    color: #6c7a6c;
+    margin-bottom: 12px;
 }
+
+.delete-btn {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    font-size: 16px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.delete-btn:hover {
+    background-color: #b52a37;
+}
+
+.book-footer {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.book-footer button {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.book-footer .btn-view {
+    background: #a8bba3;
+    color: #fff;
+}
+
+.book-footer .btn-view:hover {
+    background: #94a893;
+    transform: translateY(-2px);
+}
+
+.book-footer .btn-delete {
+    background: #d9534f;
+    color: #fff;
+}
+
+.book-footer .btn-delete:hover {
+    background: #c9302c;
+    transform: translateY(-2px);
+}
+
 input.form-control {
-  border: 1px solid black !important;  /* permanent light gray border */
-  box-shadow: none !important;
+    border: 1px solid black !important;
+    box-shadow: none !important;
 }
 
 input.form-control:focus {
-  border: 1px solid black !important;  /* same border even on focus */
-  outline: none !important;
-  box-shadow: none !important;        /* blue glow hatao */
+    border: 1px solid black !important;
+    box-shadow: none !important;
 }
+
 .badge-genre {
-    background: linear-gradient(45deg, #ff7e5f, #feb47b);
+    background: linear-gradient(135deg, #8da58b, #a8bba3);
     color: white;
-    padding: 5px 12px;
+    padding: 5px 14px;
     border-radius: 20px;
     font-size: 12px;
-    margin-bottom: 10px;
+    font-weight: 500;
     display: inline-block;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
 }
+
+.navbar-btn {
+    background-color: #A8BBA3;
+    border: none;
+    color: black;
+    font-size: 16px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    transition: 0.3s ease;
+}
+
+.navbar-btn:hover {
+    background-color: #94a791;
+    color: black;
+}
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -108,8 +181,7 @@ input.form-control:focus {
   align-items: center;
   z-index: 1000;
 }
-
-.modal-content {
+ .modal-content {
   background-color: #fff;
   border-radius: 10px;
   padding: 20px 25px;
@@ -118,7 +190,7 @@ input.form-control:focus {
   max-height: 90vh;  
   overflow-y: auto;  
   box-shadow: 0px 5px 15px rgba(0,0,0,0.3);
-}
+} 
 
 @keyframes fadeIn {
     from {
@@ -129,5 +201,16 @@ input.form-control:focus {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@media (max-width: 576px) {
+    .book-card {
+        padding: 15px;
+    }
+
+    .book-footer button {
+        font-size: 12px;
+        padding: 6px 12px;
     }
 }
