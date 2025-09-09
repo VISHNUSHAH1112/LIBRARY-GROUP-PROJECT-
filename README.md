@@ -1,56 +1,48 @@
+📖 Library Management Project
+🚀 Introduction
 
-# 📖 Library Management Project
+This project is a Library Management System designed with two roles – Admin and Normal User.
 
-## 🚀 Introduction
+🔐 Login System
 
-This project is a **Library Management System** designed with two roles – **Admin** and **Normal User**.
+If a user tries to access without logging in, an alert will appear: “Please login first”.
 
----
+Normal User → Can only view the data (read-only access).
 
-## 🔐 Login System
+Admin → Has full control with CRUD operations.
 
-* If a user tries to access without logging in, an alert will appear: *“Please login first”*.
-* **Normal User** → Can only view the data (read-only access).
-* **Admin** → Has full control with **CRUD operations**.
+👨‍💻 Admin Role (Full Access)
 
----
+Manage Members (Add / Edit / Delete).
 
-## 👨‍💻 Admin Role (Full Access)
+Manage Issues (track which book is issued to which member).
 
-* Manage **Members** (Add / Edit / Delete).
-* Manage **Issues** (track which book is issued to which member).
-* Manage **Fines** (apply or update fines).
+Manage Fines (apply or update fines).
 
----
+Use Search in all modules (Books, Members, Issues, Fines).
 
-## 👤 User Role (Limited Access)
+👤 User Role (Limited Access)
 
-* Can only **view the data**.
-* Cannot perform any changes.
+Can only view the data.
 
----
+Can use Search to quickly find Books, Members, or Issues.
 
-## 🛠️ Technologies Used
+Cannot perform any changes.
 
-* **Frontend:** React.js
-* **State Management:** Redux Toolkit (all data stored in the Redux store).
-* **Backend:** JSON Server / API (for fetching and updating data).
+🔍 Search Feature
 
----
+Books: Search by book name, author, or ID.
 
-## 🔄 Project Flow
+Members: Search by member name 
 
-1. User/Admin → Login.
-2. Role is verified.
-3. If **User** → Only view data.
-4. If **Admin** → Full access to manage Members, Issues, and Fines.
-5. **Redux** → Handles global state, making data accessible across all components.
+Issues: Search which book is issued to which member.
 
----
+Fines: Search fines by member or book.
 
-## 🔮 Future Improvements
+🛠️ Technologies Used
 
-* Implement secure authentication system (JWT or similar).
-* Add search and filter functionality.
+Frontend: React.js
 
+State Management: Redux Toolkit (all data stored in the Redux store).
 
+Backend: JSON Server / API (for fetching and updating data).
