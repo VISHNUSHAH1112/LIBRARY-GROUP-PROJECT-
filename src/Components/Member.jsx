@@ -17,6 +17,9 @@ function Members() {
   const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Track whether editing or adding
+  const [editId, setEditId] = useState(null);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,6 +32,7 @@ function Members() {
   const [localSearch, setLocalSearch] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // ✅ Fetch members
   const BooksMember = async () => {
     try {
       setLoading(true);
@@ -52,7 +56,7 @@ function Members() {
     setmembershow(deletarrarys);
   };
 
-  // ✅ Handle Form
+  // ✅ Handle Form Input
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -61,15 +65,34 @@ function Members() {
     });
   };
 
+  // ✅ Add / Update Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!formData.name || !formData.email) {
       alert("Name and Email are required!");
       return;
     }
+
     try {
-      const res = await axios.post("http://localhost:3000/members", formData);
-      setmembershow([...membershow, res.data]);
+      if (editId) {
+        // Update
+        const res = await axios.put(
+          `http://localhost:3000/members/${editId}`,
+          formData
+        );
+        setmembershow(
+          membershow.map((member) =>
+            member.id === editId ? res.data : member
+          )
+        );
+        setEditId(null);
+      } else {
+        // Add new
+        const res = await axios.post("http://localhost:3000/members", formData);
+        setmembershow([...membershow, res.data]);
+      }
+
+      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -80,10 +103,25 @@ function Members() {
       });
       setShowForm(false);
     } catch (error) {
-      console.log("Error adding member");
+      console.log("Error saving member");
     }
   };
 
+  // ✅ Edit Function
+  const handleEdit = (member) => {
+    setFormData({
+      name: member.name,
+      email: member.email,
+      phone: member.phone,
+      address: member.address,
+      gender: member.gender,
+      available: member.available,
+    });
+    setEditId(member.id);
+    setShowForm(true);
+  };
+
+  // ✅ Filter members
   const filteredMembers = membershow.filter(
     (member) =>
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -92,6 +130,7 @@ function Members() {
 
   return (
     <div className="container py-4">
+      {/* Header */}
       <div
         className="d-flex justify-content-between align-items-center mb-3 flex-wrap"
         style={{
@@ -124,6 +163,7 @@ function Members() {
         </InputGroup>
       </div>
 
+      {/* Loading Spinner */}
       {loading && (
         <div className="text-center my-3">
           <Spinner animation="border" />
@@ -131,10 +171,12 @@ function Members() {
         </div>
       )}
 
+      {/* No Members Found */}
       {!loading && filteredMembers.length === 0 && (
         <Alert variant="secondary">No members found.</Alert>
       )}
 
+      {/* Table */}
       {filteredMembers.length > 0 && (
         <div className="table-responsive">
           <Table bordered hover striped className="align-middle text-center">
@@ -146,6 +188,7 @@ function Members() {
                 <th>Address</th>
                 <th>Gender</th>
                 <th>Status</th>
+                <th>Edit</th>
                 <th>Delete</th>
               </tr>
             </thead>
@@ -171,6 +214,15 @@ function Members() {
                   </td>
                   <td>
                     <Button
+                      variant="primary"
+                      size="sm"
+                      onClick={() => handleEdit(member)}
+                    >
+                      Edit
+                    </Button>
+                  </td>
+                  <td>
+                    <Button
                       variant="danger"
                       size="sm"
                       onClick={() => deletarrary(member.id)}
@@ -185,9 +237,21 @@ function Members() {
         </div>
       )}
 
+      {/* Add Button */}
       <div className="d-flex justify-content-center mt-4">
         <Button
-          onClick={() => setShowForm(true)}
+          onClick={() => {
+            setShowForm(true);
+            setEditId(null); // Reset edit state for new member
+            setFormData({
+              name: "",
+              email: "",
+              phone: "",
+              address: "",
+              gender: "Male",
+              available: true,
+            });
+          }}
           style={{
             backgroundColor: "black",
             border: "2px solid gray",
@@ -205,9 +269,10 @@ function Members() {
         </Button>
       </div>
 
+      {/* Modal */}
       <Modal show={showForm} onHide={() => setShowForm(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>Add Member</Modal.Title>
+          <Modal.Title>{editId ? "Edit Member" : "Add Member"}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
@@ -279,8 +344,8 @@ function Members() {
               </Form.Select>
             </Form.Group>
 
-            <Button variant="success" type="submit" className="w-100">
-              Add Member
+            <Button variant={editId ? "warning" : "success"} type="submit" className="w-100">
+              {editId ? "Update Member" : "Add Member"}
             </Button>
           </Form>
         </Modal.Body>
