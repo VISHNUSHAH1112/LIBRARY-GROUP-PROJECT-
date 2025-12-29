@@ -71,7 +71,7 @@ export default function Fines() {
         <table className="fines-table">
           <thead>
             <tr>
-              <th>ID</th>
+              {/* <th>ID</th> */}
               <th>Member Name</th>
               <th>Book Name</th>
               <th>Due Date</th>
@@ -83,7 +83,7 @@ export default function Fines() {
             {filteredFines.length > 0 ? (
               filteredFines.map((fine) => (
                 <tr key={fine.id}>
-                  <td>{fine.id}</td>
+                  {/* <td>{fine.id}</td> */}
                   <td>{fine.memberName}</td>
                   <td>{fine.bookName}</td>
                   <td>{fine.dueDate}</td>

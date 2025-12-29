@@ -125,7 +125,7 @@ function Issues() {
         <Table bordered hover striped className="align-middle text-center">
           <thead className="table-dark">
             <tr>
-              <th>ID</th>
+              {/* <th>ID</th> */}
               <th>Member Name</th>
               <th>Book Name</th>
               <th>Issue Date</th>
@@ -137,7 +137,7 @@ function Issues() {
             {Array.isArray(filteredIssues) && filteredIssues.length > 0 ? (
               filteredIssues.map((issue) => (
                 <tr key={issue.id}>
-                  <td>{issue.id}</td>
+                  {/* <td>{issue.id}</td> */}
                   <td>{issue.memberName}</td>
                   <td>{issue.bookName}</td>
                   <td>{issue.issueDate}</td>

@@ -1,19 +1,23 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+
 const api = "http://localhost:3000/issues";
 
+// Fetch all issues
 export const FetchIssues = createAsyncThunk("FetchIssues", async () => {
   const res = await axios.get(api);
   return res.data;
 });
 
+// Add a new issue
 export const AddIssues = createAsyncThunk("AddIssues", async (NewIssues) => {
   const res = await axios.post(api, NewIssues);
   return res.data;
 });
 
+// Delete an issue by ID
 export const DeleteIssues = createAsyncThunk("DeleteIssues", async (id) => {
-  const res = await axios.delete(`${api}/${id}`);
+  await axios.delete(`${api}/${id}`);
   return id;
 });
 
@@ -27,42 +31,48 @@ const IssuesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      // fetch
+      // Fetch issues
       .addCase(FetchIssues.pending, (state) => {
         state.loading = true;
       })
       .addCase(FetchIssues.fulfilled, (state, action) => {
         state.loading = false;
-        state.issues = action.payload;
+        // Sort alphabetically by memberName
+        state.issues = action.payload.sort((a, b) =>
+          a.memberName.localeCompare(b.memberName)
+        );
       })
       .addCase(FetchIssues.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
 
-      //   get
+      // Add issues
       .addCase(AddIssues.pending, (state) => {
         state.loading = true;
       })
       .addCase(AddIssues.fulfilled, (state, action) => {
         state.loading = false;
         state.issues.push(action.payload);
+        // Sort after adding
+        state.issues.sort((a, b) => a.memberName.localeCompare(b.memberName));
       })
       .addCase(AddIssues.rejected, (state, action) => {
         state.loading = false;
         state.error = action.error.message;
       })
 
-      //   delete
-
+      // Delete issues
       .addCase(DeleteIssues.pending, (state) => {
         state.loading = true;
       })
       .addCase(DeleteIssues.fulfilled, (state, action) => {
         state.loading = false;
         state.issues = state.issues.filter(
-          (issues) => issues.id !== action.payload
+          (issue) => issue.id !== action.payload
         );
+        // Sort after deletion
+        state.issues.sort((a, b) => a.memberName.localeCompare(b.memberName));
       })
       .addCase(DeleteIssues.rejected, (state, action) => {
         state.loading = false;
