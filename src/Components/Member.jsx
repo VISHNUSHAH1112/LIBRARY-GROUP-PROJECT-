@@ -36,7 +36,7 @@ function Members() {
   const BooksMember = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:3000/members");
+      const res = await axios.get("https://library-json-ufk5.onrender.com/members");
       setmembershow(res.data);
     } catch (error) {
       console.log("Server-Down");
@@ -51,7 +51,7 @@ function Members() {
 
   // ✅ Delete
   const deletarrary = async (id) => {
-    await axios.delete(`http://localhost:3000/members/${id}`);
+    await axios.delete(`https://library-json-ufk5.onrender.com/members/${id}`);
     const deletarrarys = membershow.filter((member) => member.id !== id);
     setmembershow(deletarrarys);
   };
@@ -77,7 +77,7 @@ function Members() {
       if (editId) {
         // Update
         const res = await axios.put(
-          `http://localhost:3000/members/${editId}`,
+          `https://library-json-ufk5.onrender.com/members/${editId}`,
           formData
         );
         setmembershow(
@@ -88,7 +88,7 @@ function Members() {
         setEditId(null);
       } else {
         // Add new
-        const res = await axios.post("http://localhost:3000/members", formData);
+        const res = await axios.post("https://library-json-ufk5.onrender.com/members", formData);
         setmembershow([...membershow, res.data]);
       }
 

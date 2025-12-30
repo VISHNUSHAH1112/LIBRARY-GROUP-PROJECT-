@@ -10,7 +10,7 @@ function Description() {
     useEffect(() => {
         const fetchBook = async () => {
             try {
-                const res = await axios.get(`http://localhost:3000/books/${id}`);
+                const res = await axios.get(`https://library-json-ufk5.onrender.com/books/${id}`);
                 setBook(res.data);
             } catch (error) {
                 console.log(error);
