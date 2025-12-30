@@ -41,7 +41,7 @@ function LibraryNavbar() {
       <Navbar
         expand="lg"
         className="shadow-sm"
-        style={{ backgroundColor: "#A8BBA3" }}
+        style={{ backgroundColor: "#ffffffff" }}
       >
         <Container>
           <Navbar.Brand
@@ -59,9 +59,9 @@ function LibraryNavbar() {
               {isLoggedIn && (
                 <Button
                   style={{
-                    backgroundColor: "#A8BBA3",
+                    backgroundColor: "#000000ff",
                     border: "none",
-                    color: "black",
+                    color: "white",
                     fontSize: "16px",
                   }}
                   disabled={location.pathname === "/"}
@@ -83,9 +83,9 @@ function LibraryNavbar() {
                     <Dropdown.Toggle
                       variant="secondary"
                       style={{
-                        backgroundColor: "#A8BBA3",
+                        backgroundColor: "#000000ff",
                         border: "none",
-                        color: "black",
+                        color: "white",
                         fontSize: "16px",
                       }}
                     >
@@ -103,9 +103,9 @@ function LibraryNavbar() {
 
                   <Button
                     style={{
-                      backgroundColor: "#A8BBA3",
+                      backgroundColor: "#0e0000ff",
                       border: "none",
-                      color: "black",
+                      color: "white",
                       fontSize: "16px",
                     }}
                     onClick={() => navigate("/Members")}

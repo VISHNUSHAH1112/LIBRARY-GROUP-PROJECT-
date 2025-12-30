@@ -135,7 +135,7 @@ function Members() {
         className="d-flex justify-content-between align-items-center mb-3 flex-wrap"
         style={{
           gap: "15px",
-          background: "whitesmoke",
+          background: "white",
           height: "70px",
           borderRadius: "10px",
           boxShadow: "0px 4px 12px rgba(0,0,0,0.35)",

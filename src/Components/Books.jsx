@@ -67,7 +67,7 @@ function Books() {
     <Container
       fluid
       className="books-wrap py-3"
-      
+
     >
       {/* ==== HEADER ==== */}
       <header className="books-header d-flex justify-content-between align-items-center mb-3">
@@ -77,14 +77,14 @@ function Books() {
           <Form.Control
             type="text"
             placeholder="Search by Title or Author"
-          
+
             value={localSearch}
-            onChange={(e) => setLocalSearch(e.target.value)} 
+            onChange={(e) => setLocalSearch(e.target.value)}
           />
           <Button className="navbar-btn"
             variant="primary"
-          
-            onClick={() => {}} 
+
+            onClick={() => { }}
           >
             Search
           </Button>
@@ -100,7 +100,7 @@ function Books() {
             <Col key={data.id} xs={12} sm={6} md={4} lg={3}>
               <article
                 className="book-card p-3 h-100"
-                
+
               >
                 <div className="book-body">
                   <span className="badge-genre">{data.genre}</span>
@@ -114,7 +114,7 @@ function Books() {
 
                     <div className="d-flex gap-2">
                       <Button
-                        
+
                         onClick={() => {
                           if (requireLogin()) {
                             showToast("success", `✅ Opening ${data.title}`);
@@ -126,9 +126,9 @@ function Books() {
                       </Button>
 
                       {isLoggedIn && role === "admin" && (
-                        <Button  className="delete-btn"
+                        <Button className="delete-btn"
                           onClick={() => deleteBook(data.id)}
-                     
+
                         >
                           Delete
                         </Button>
@@ -146,9 +146,9 @@ function Books() {
 
       {isLoggedIn && role === "admin" && (
         <div className="d-flex justify-content-center mt-4">
-          <Button   className="navbar-btn"
+          <Button className="navbar-btn"
             onClick={() => setShowModal(true)}
-           
+
           >
             + Add Book
           </Button>
@@ -179,8 +179,8 @@ function Books() {
                           field === "rent"
                             ? "number"
                             : field === "imageUrl"
-                            ? "url"
-                            : "text"
+                              ? "url"
+                              : "text"
                         }
                         as={field === "description" ? "textarea" : "input"}
                         rows={field === "description" ? 3 : undefined}
@@ -196,8 +196,8 @@ function Books() {
             </div>
 
             <div className="modal-footer d-flex justify-content-end gap-2">
-              <Button onClick={() => setShowModal(false)}>Close</Button>
-              <Button onClick={handleAddBook}>Save Book</Button>
+              <Button onClick={() => setShowModal(false)} className="btn btn-danger">Close</Button>
+              <Button onClick={handleAddBook} className="btn btn-success" >Save Book</Button>
             </div>
           </div>
         </div>
