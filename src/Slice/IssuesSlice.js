@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const api = "https://library-json-ufk5.onrender.com/issues";
+const api = "https://libraryjson-production.up.railway.app/issues";
 
 // Fetch all issues
 export const FetchIssues = createAsyncThunk("FetchIssues", async () => {
