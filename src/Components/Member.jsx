@@ -51,7 +51,7 @@ function Members() {
 
   // ✅ Delete
   const deletarrary = async (id) => {
-    await axios.delete(`https://library-json-ufk5.onrender.com/members/${id}`);
+    await axios.delete(`https://libraryjson-production.up.railway.app/members/${id}`);
     const deletarrarys = membershow.filter((member) => member.id !== id);
     setmembershow(deletarrarys);
   };
